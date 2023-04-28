@@ -1,3 +1,43 @@
+body {
+  background-color:burlywood
+}
+
 #root {
   color: red;
+}
+
+.cards-holder{
+  display: grid;
+  grid-gap: 2rem;
+  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 3rem 0;
+  /* border: 0.10rem black solid; */
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+}
+
+
+#movie-info-holder {
+  display: flex;
+  flex-direction: column;
+  /* border: 0.10rem black solid; */
+  width: 19rem;
+  background-color: gainsboro;
+  border-radius: 0.30rem;
+}
+
+.name-episode-holder {
+  border: 0.10rem black solid;
+  border-radius: 0.30rem;
+  display: flex;
+  justify-content: center;
+}
+
+.medium-img {
+  padding: 1rem;
+}
+
+.movie-description {
+  font-size: small;
+  padding: 0 1rem 1rem 1rem;
 }
