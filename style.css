@@ -1,5 +1,5 @@
 body {
-  background-color:burlywood
+  background-color: lightgrey
 }
 
 #root {
@@ -7,12 +7,13 @@ body {
 }
 
 .cards-container{
+  background-color: rgb(115, 154, 187);
+  padding: 3rem 0;
+  border: 0.10rem black solid;
   display: grid;
   grid-gap: 2rem;
   justify-items: center;
   grid-template-columns: repeat(3, 1fr);
-  padding: 3rem 0;
-  /* border: 0.10rem black solid; */
   grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
 }
 

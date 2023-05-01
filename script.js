@@ -34,6 +34,7 @@ function setup() {
 function makePageForEpisodes(episodeList) {
   // Accessing root element from HTML
   const rootElem = document.getElementById("root");
+  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
   
   console.log(episodeList);
   console.log(episodeList[0].airdate);
