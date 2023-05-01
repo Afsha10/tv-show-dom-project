@@ -6,7 +6,7 @@ body {
   color: red;
 }
 
-.cards-holder{
+.cards-container{
   display: grid;
   grid-gap: 2rem;
   justify-items: center;
@@ -17,7 +17,7 @@ body {
 }
 
 
-#movie-info-holder {
+.episode-info-card {
   display: flex;
   flex-direction: column;
   /* border: 0.10rem black solid; */
@@ -26,18 +26,27 @@ body {
   border-radius: 0.30rem;
 }
 
-.name-episode-holder {
+.episode-name-num-holder {
   border: 0.10rem black solid;
   border-radius: 0.30rem;
   display: flex;
   justify-content: center;
 }
 
+.episode-name-num-text {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+} 
+
 .medium-img {
   padding: 1rem;
 }
 
-.movie-description {
+.episode-description {
   font-size: small;
   padding: 0 1rem 1rem 1rem;
+}
+
+#source {
+  display: flex;
+  justify-content: center;
 }
