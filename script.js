@@ -34,13 +34,12 @@ function setup() {
 function makePageForEpisodes(episodeList) {
   // Accessing root element from HTML
   const rootElem = document.getElementById("root");
-  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
   
   console.log(episodeList);
   console.log(episodeList[0].airdate);
 
   for (let i = 0; i < episodeList.length; i++) {
-    
+
     console.log(episodeList[i].name);
 
     // creating a cardsContainer as a direct child of root. This will hold multiple episode cards.
@@ -82,7 +81,7 @@ function makePageForEpisodes(episodeList) {
     const episodeDescriptionTextElement = document.createElement("p");
     episodeDescriptionTextElement.classList.add("episode-description");
     episodeInfoCard.appendChild(episodeDescriptionTextElement);
-    episodeDescriptionTextElement.innerText = episodeList[i].summary;
+    episodeDescriptionTextElement.innerText = episodeList[i].summary.slice(3,-4);
   }
 }
 
