@@ -7,22 +7,27 @@ Pseudocode:
   - we create a draft of our web page using HTML and CSS 
   - we then convert the HTML elements to JS by creating variables and append them inside the other according to our HTML tree layout as below 
   
-  <div class="cards-container">
-    <div class="episode-info-card">
-      <div class="episode-name-num-holder">
-        <p class="episode-name-num-text"></p>
+  <div id="root">
+    <h1></h1>
+    <div class="top-container">
+      <div class="cards-container"
+        <div class="episode-info-card">
+          <div class="episode-name-num-holder">
+            <h2 class="episode-name-num-text"></h2>
+          </div>
+          <img class= "medium-img" src="">
+          <p class="episode-description"></p>
+        </div>
       </div>
-      <img class= "medium-img" src="">
-      <p class="episode-description"></p>
+    </div>
   </div>
 
 2. For getting each episode we need to access each element inside the array of objects in episodes.js.
 
 3. For each episode element we would need to have name of the episodes, series and episode numbers, image of the episode, and brief description of the movie
-  - for those we would need to create div, p, img, p (description) elements for each episode.
+  - for those we would need to create div, h2, img, p (description) elements for each episode.
 
 */
-
 
 // functoins:
 
@@ -35,19 +40,22 @@ function makePageForEpisodes(episodeList) {
   // Accessing root element from HTML
   const rootElem = document.getElementById("root");
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-  
+
+  const topContainer = document.createElement("div");
+  topContainer.classList.add("top-container");
+  rootElem.appendChild(topContainer);
+
   console.log(episodeList);
   console.log(episodeList[0].airdate);
 
   for (let i = 0; i < episodeList.length; i++) {
-
     console.log(episodeList[i].name);
 
     // creating a cardsContainer as a direct child of root. This will hold multiple episode cards.
 
     const cardsContainer = document.createElement("div");
     cardsContainer.classList.add("cards-container");
-    rootElem.appendChild(cardsContainer);
+    topContainer.appendChild(cardsContainer);
 
     // creating an episodeInfoCard for each episode as a direct child of cardsContainer. This will hold episode name-number-text, images, description.
 
@@ -63,12 +71,12 @@ function makePageForEpisodes(episodeList) {
 
     // creating a episodeNameNumTextElement for each episode as a direct child of episodeNameNumHolder. This will hold the text info related to episode name, season and episode numbers.
 
-    const episodeNameNumTextElement = document.createElement("p");
+    const episodeNameNumTextElement = document.createElement("h2");
     episodeNameNumTextElement.classList.add("episode-name-num-text");
     episodeNameNumHolder.appendChild(episodeNameNumTextElement);
     let formattedSeasonNum = ("0" + episodeList[i].season).slice(-2);
     let formattedEpisodeNum = ("0" + episodeList[i].number).slice(-2);
-    episodeNameNumHolder.innerText = `${episodeList[i].name} - S${formattedSeasonNum}E${formattedEpisodeNum}`
+    episodeNameNumHolder.innerText = `${episodeList[i].name} - S${formattedSeasonNum}E${formattedEpisodeNum}`;
 
     // creating a episodeNameNumTextElement for each episode as the second child of episodeInfoCard. This will hold the image.
 
@@ -82,7 +90,10 @@ function makePageForEpisodes(episodeList) {
     const episodeDescriptionTextElement = document.createElement("p");
     episodeDescriptionTextElement.classList.add("episode-description");
     episodeInfoCard.appendChild(episodeDescriptionTextElement);
-    episodeDescriptionTextElement.innerText = episodeList[i].summary.slice(3,-4);
+    episodeDescriptionTextElement.innerText = episodeList[i].summary.slice(
+      3,
+      -4
+    );
   }
 }
 
