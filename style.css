@@ -3,18 +3,20 @@ body {
 }
 
 #root {
+  background-color: rgb(115, 154, 187);
   color: black;
+  padding: 1rem;
 }
 
 
 .cards-container{
   background-color: rgb(115, 154, 187);
-  border: 0.05rem black solid;
+  /* border: 0.05rem black solid; */
   display: grid;
   grid-gap: 1rem;
   justify-items: center;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr));
 }
 
 
@@ -22,8 +24,6 @@ body {
   display: flex;
   flex-direction: column;
   border: 0.10rem black solid;
-  height: 27rem;
-  width: auto;
   background-color: gainsboro;
   border-radius: 0.30rem;
 }
@@ -33,11 +33,11 @@ body {
   border-radius: 0.30rem;
   display: flex;
   justify-content: center;
-  padding: 1rem;
 }
 
 .episode-name-num-text {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
 } 
 
 .medium-img {
