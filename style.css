@@ -34,6 +34,7 @@ body {
   display: flex;
   justify-content: center;
   padding: 1rem;
+  width: 24.22rem;
 }
 
 .episode-name-num-text {

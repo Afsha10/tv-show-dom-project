@@ -76,6 +76,9 @@ function makePageForEpisodes(episodeList) {
 
     const episodeDescriptionTextContainer = document.createElement("div");
     episodeDescriptionTextContainer.classList.add("episode-description-container");
+    episodeInfoCard.appendChild(episodeDescriptionTextContainer);
+
+    // creating a episodeDescriptionTextElement for each episode as the third child of episodeInfoCard. This will hold the episode description.
 
     const episodeDescriptionTextElement = document.createElement("p");
     episodeDescriptionTextElement.classList.add("episode-description");
