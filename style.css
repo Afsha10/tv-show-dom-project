@@ -1,5 +1,5 @@
 body {
-  background-color: lightgrey
+  background-color: lightgrey;
 }
 
 #root {
@@ -26,6 +26,7 @@ body {
   border: 0.10rem black solid;
   background-color: gainsboro;
   border-radius: 0.30rem;
+  align-items: center;
 }
 
 .episode-name-num-holder {
@@ -33,20 +34,22 @@ body {
   border-radius: 0.30rem;
   display: flex;
   justify-content: center;
+  width: 27rem;
 }
 
 .episode-name-num-text {
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  text-align: center;
 } 
 
 .medium-img {
   padding: 1rem;
+  width: 20rem;
 }
 
 .episode-description {
   font-size: small;
   padding: 0 1rem 1rem 1rem;
+  font-size: medium;
 }
 
 #source {
