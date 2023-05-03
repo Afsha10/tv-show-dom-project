@@ -9,16 +9,14 @@ Pseudocode:
   
   <div id="root">
     <h1></h1>
-    <div class="top-container">
-      <div class="cards-container"
-        <div class="episode-info-card">
-          <div class="episode-name-num-holder">
-            <h2 class="episode-name-num-text"></h2>
-          </div>
-          <img class= "medium-img" src="">
-          <div class="episode-description-container">
-            <p class="episode-description"></p>
-          </div>
+    <div class="cards-container"
+      <div class="episode-info-card">
+        <div class="episode-name-num-holder">
+          <h2 class="episode-name-num-text"></h2>
+        </div>
+        <img class= "medium-img" src="">
+        <div class="episode-description-container">
+          <p class="episode-description"></p>
         </div>
       </div>
     </div>
@@ -39,71 +37,60 @@ function setup() {
 }
 
 function makePageForEpisodes(episodeList) {
-  // Accessing root element from HTML
+  // Get the root element where we'll add the episode cards
   const rootElem = document.getElementById("root");
-  rootElem.textContent = `${episodeList.length} episode(s)`;
 
-  const topContainer = document.createElement("div");
-  topContainer.classList.add("top-container");
-  rootElem.appendChild(topContainer);
+  // Create the page header and cards container
+  rootElem.innerHTML = `<h1>Episodes (${episodeList.length})</h1>
+                        <div class="cards-container"></div>`;
 
-  console.log(episodeList);
-  console.log(episodeList[0].airdate);
+  // Get the cards container element
+  const cardsContainer = rootElem.querySelector(".cards-container");
 
-  for (let i = 0; i < episodeList.length; i++) {
-    console.log(episodeList[i].name);
+  // Loop through each episode and create a card for it
+  episodeList.forEach((episode) => {
+    // Get the episode name, season number, episode number, and combine them
+    const episodeName = episode.name;
+    const seasonNum = ("0" + episode.season).slice(-2);
+    const episodeNum = ("0" + episode.number).slice(-2);
+    const episodeNameNum = `${episodeName} - S${seasonNum}E${episodeNum}`;
 
-    // creating a cardsContainer as a direct child of root. This will hold multiple episode cards.
+    // Get the episode image and description
+    const episodeImageSrc = episode.image.medium;
+    const episodeDescription = episode.summary;
 
-    const cardsContainer = document.createElement("div");
-    cardsContainer.classList.add("cards-container");
-    topContainer.appendChild(cardsContainer);
-
-    // creating an episodeInfoCard for each episode as a direct child of cardsContainer. This will hold episode name-number-text, images, description.
-
+    // Create the episode card elements
     const episodeInfoCard = document.createElement("div");
     episodeInfoCard.classList.add("episode-info-card");
-    cardsContainer.appendChild(episodeInfoCard);
-
-    // creating a episodeNameNumHolder for each episode as the first child of episodeInfoCard. This is the container for the holder of episode name, season and episode numbers.
 
     const episodeNameNumHolder = document.createElement("div");
     episodeNameNumHolder.classList.add("episode-name-num-holder");
-    episodeInfoCard.appendChild(episodeNameNumHolder);
-
-    // creating a episodeNameNumTextElement for each episode as a direct child of episodeNameNumHolder. This will hold the text info related to episode name, season and episode numbers.
 
     const episodeNameNumTextElement = document.createElement("h2");
     episodeNameNumTextElement.classList.add("episode-name-num-text");
-    episodeNameNumHolder.appendChild(episodeNameNumTextElement);
-    let formattedSeasonNum = ("0" + episodeList[i].season).slice(-2);
-    let formattedEpisodeNum = ("0" + episodeList[i].number).slice(-2);
-    episodeNameNumHolder.innerText = `${episodeList[i].name} - S${formattedSeasonNum}E${formattedEpisodeNum}`;
-
-    // creating a episodeNameNumTextElement for each episode as the second child of episodeInfoCard. This will hold the image.
+    episodeNameNumTextElement.textContent = episodeNameNum;
 
     const episodeImage = document.createElement("img");
     episodeImage.classList.add("medium-img");
-    episodeInfoCard.appendChild(episodeImage);
-    episodeImage.src = episodeList[i].image.medium;
-
-    // creating episodeDescriptionTextContainer for each episode as the third child of episodeInfoCard. This will hold the episodeDescriptionTextElement.
+    episodeImage.src = episodeImageSrc;
 
     const episodeDescriptionTextContainer = document.createElement("div");
     episodeDescriptionTextContainer.classList.add("episode-description-container");
-    episodeInfoCard.appendChild(episodeDescriptionTextContainer);
-
-    // creating a episodeDescriptionTextElement for each episode as the third child of episodeInfoCard. This will hold the episode description.
 
     const episodeDescriptionTextElement = document.createElement("p");
     episodeDescriptionTextElement.classList.add("episode-description");
+    episodeDescriptionTextElement.innerHTML = episodeDescription;
+
+    // Add the episode card elements to the container
+    episodeNameNumHolder.appendChild(episodeNameNumTextElement);
+    episodeInfoCard.appendChild(episodeNameNumHolder);
+    episodeInfoCard.appendChild(episodeImage);
     episodeDescriptionTextContainer.appendChild(episodeDescriptionTextElement);
-    episodeDescriptionTextElement.innerText = episodeList[i].summary.slice(
-      3,
-      -4
-    );
-  }
+    episodeInfoCard.appendChild(episodeDescriptionTextContainer);
+    cardsContainer.appendChild(episodeInfoCard);
+  });
 }
+
 
 // calling function setup
 
