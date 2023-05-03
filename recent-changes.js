@@ -1,6 +1,6 @@
 //You can edit ALL of the code here
 /*
-Pseudocode for level 1000:
+Pseudocode for level 100:
 1. We are working with an episode list which is an array
   - create a container using JS connected to "#root"
   - we might need an H1 tag
@@ -29,8 +29,20 @@ Pseudocode for level 1000:
 
 */
 
+/*
+Pseudocode for level 200
+1. we need to create an input element that will take in text
+    a) create the element in JS (google what method to use in JS for that)
+    var x = document.createElement("INPUT");
+    b) we append the input element inside the root element
 
 
+2. we could console.log whatever is typed into the input
+3. store that the input text to a variable (as the input changes the variable will be updated)
+4. we will also need a search function to connect it with our input element
+5. display the results of the search result
+
+*/
 
 // functoins:
 
@@ -44,11 +56,29 @@ function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
 
   // Create the page header and cards container
-  rootElem.innerHTML = `<h1>Episodes (${episodeList.length})</h1>
-                        <div class="cards-container"></div>`;
+  // rootElem.innerHTML = `<h1>Episodes (${episodeList.length})</h1>`
+
+  // Create an input element inside the rootEle
+
+  const inputEle = document.createElement("input");
+  inputEle.classList.add("search-input");
+  rootElem.appendChild(inputEle);
+  console.log(inputEle);
+
+  // Create a heading inside the rootEle
+
+  const headingEle = document.createElement("h1");
+  headingEle.classList.add("heading");
+  headingEle.textContent = `Episodes ${episodeList.length}`;
+  rootElem.appendChild(headingEle);
 
   // Get the cards container element
-  const cardsContainer = rootElem.querySelector(".cards-container");
+
+  const cardsContainer = document.createElement("div");
+  cardsContainer.classList.add("cards-container");
+  rootElem.appendChild(cardsContainer);
+
+  // const cardsContainer = rootElem.querySelector(".cards-container");
 
   // Loop through each episode and create a card for it
   episodeList.forEach((episode) => {
@@ -78,7 +108,9 @@ function makePageForEpisodes(episodeList) {
     episodeImage.src = episodeImageSrc;
 
     const episodeDescriptionTextContainer = document.createElement("div");
-    episodeDescriptionTextContainer.classList.add("episode-description-container");
+    episodeDescriptionTextContainer.classList.add(
+      "episode-description-container"
+    );
 
     const episodeDescriptionTextElement = document.createElement("p");
     episodeDescriptionTextElement.classList.add("episode-description");
@@ -94,8 +126,6 @@ function makePageForEpisodes(episodeList) {
   });
 }
 
-
 // calling function setup
 
 window.onload = setup;
-

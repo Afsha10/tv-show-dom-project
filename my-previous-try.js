@@ -58,9 +58,6 @@ function makePageForEpisodes(episodeList) {
     const episodeDescriptionTextElement = document.createElement("p");
     episodeDescriptionTextElement.classList.add("episode-description");
     episodeDescriptionTextContainer.appendChild(episodeDescriptionTextElement);
-    episodeDescriptionTextElement.innerText = episodeList[i].summary.slice(
-      3,
-      -4
-    );
+    episodeDescriptionTextElement.innerText = episodeList[i].summary.slice(3,-4);
   }
 }

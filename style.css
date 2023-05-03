@@ -8,12 +8,16 @@ body {
   padding: 1rem;
 }
 
+.search-input {
+  margin: 1rem;
+  padding: 1rem;
+}
 
 .cards-container{
   background-color: rgb(115, 154, 187);
   /* border: 0.05rem black solid; */
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: 2rem;
   justify-items: center;
   grid-template-columns: repeat(3, 1fr);
   grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr));
@@ -34,7 +38,7 @@ body {
   border-radius: 0.30rem;
   display: flex;
   justify-content: center;
-  width: 27rem;
+  width: 26.4rem;
 }
 
 .episode-name-num-text {
