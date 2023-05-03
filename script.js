@@ -16,7 +16,9 @@ Pseudocode:
             <h2 class="episode-name-num-text"></h2>
           </div>
           <img class= "medium-img" src="">
-          <p class="episode-description"></p>
+          <div class="episode-description-container">
+            <p class="episode-description"></p>
+          </div>
         </div>
       </div>
     </div>
@@ -39,7 +41,7 @@ function setup() {
 function makePageForEpisodes(episodeList) {
   // Accessing root element from HTML
   const rootElem = document.getElementById("root");
-  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+  rootElem.textContent = `${episodeList.length} episode(s)`;
 
   const topContainer = document.createElement("div");
   topContainer.classList.add("top-container");
@@ -85,11 +87,17 @@ function makePageForEpisodes(episodeList) {
     episodeInfoCard.appendChild(episodeImage);
     episodeImage.src = episodeList[i].image.medium;
 
-    // creating a episodeNameNumTextElement for each episode as the third child of episodeInfoCard. This will hold the episode description.
+    // creating episodeDescriptionTextContainer for each episode as the third child of episodeInfoCard. This will hold the episodeDescriptionTextElement.
+
+    const episodeDescriptionTextContainer = document.createElement("div");
+    episodeDescriptionTextContainer.classList.add("episode-description-container");
+    episodeInfoCard.appendChild(episodeDescriptionTextContainer);
+
+    // creating a episodeDescriptionTextElement for each episode as the third child of episodeInfoCard. This will hold the episode description.
 
     const episodeDescriptionTextElement = document.createElement("p");
     episodeDescriptionTextElement.classList.add("episode-description");
-    episodeInfoCard.appendChild(episodeDescriptionTextElement);
+    episodeDescriptionTextContainer.appendChild(episodeDescriptionTextElement);
     episodeDescriptionTextElement.innerText = episodeList[i].summary.slice(
       3,
       -4
