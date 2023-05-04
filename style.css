@@ -3,7 +3,7 @@ body {
 }
 
 #root {
-  background-color: rgb(115, 154, 187);
+  background-color: rgb(150, 165, 178);
   color: black;
   padding: 1rem;
 }
@@ -17,8 +17,10 @@ body {
   background-color: rgb(115, 154, 187);
   /* border: 0.05rem black solid; */
   display: grid;
-  gap: 3rem;
+  grid-gap: 3rem;
   justify-items: center;
+  padding: 1rem;
+  margin: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 }
 
@@ -29,6 +31,7 @@ body {
   flex-direction: column;
   border: 0.10rem black solid;
   background-color: gainsboro;
+  width: 23rem;
   border-radius: 0.30rem;
   align-items: center;
   padding: 1rem;
@@ -39,7 +42,7 @@ body {
   border-radius: 0.30rem;
   display: flex;
   justify-content: center;
-  width: 24rem;
+  width: 20rem;
 }
 
 .episode-name-num-text {

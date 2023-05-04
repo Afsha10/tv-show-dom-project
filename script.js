@@ -10,11 +10,11 @@ Pseudocode for level 100:
   <div id="root">
     <input id="search-input"/>
     <span class="search-count"></span>
-    <div class="cards-container"
+    <div class="cards-container">
       <div class="episode-info-card">
-        <div class="episode-name-num-holder">
+        <span class="episode-name-num-holder">
           <p class="episode-name-num-text"></p>
-        </div>
+        </span>
         <div class="">
           <img class= "medium-img" src="">
         </div>
@@ -22,7 +22,7 @@ Pseudocode for level 100:
           <p class="episode-description"></p>
         </div>
       </div>
-    </div>
+      </div>
   </div>
 
 2. For getting each episode we need to access each element inside the array of objects in episodes.js.
@@ -36,7 +36,7 @@ Pseudocode for level 100:
 Pseudocode for level 200
 1. we need to create an input element that will take in text
     a) create the element in JS (google what method to use in JS for that)
-    var x = document.createElement("INPUT");
+    var x = document.createElement("input");
     b) we append the input element inside the root element
 
 
@@ -63,16 +63,16 @@ function searchEpisodes() {
 
 function makePageForEpisodes(episodeList) {
   // Get the root element where we'll add the episode cards
-  const rootElem = document.getElementById("root");
+  const rootEle= document.getElementById("root");
 
   // Create the page header and cards container
-  // rootElem.innerHTML = `<h1>Episodes (${episodeList.length})</h1>`
+  // rootEle.innerHTML = `<h1>Episodes (${episodeList.length})</h1>`
 
   // Create an input element inside the rootEle
 
   const inputEle = document.createElement("input");
   inputEle.id = "search-input";
-  rootElem.appendChild(inputEle);
+  rootEle.appendChild(inputEle);
   inputEle.addEventListener("change", searchEpisodes);
 
   // Create a heading inside the rootEle
@@ -80,15 +80,15 @@ function makePageForEpisodes(episodeList) {
   const searchCountEle = document.createElement("span");
   searchCountEle.classList.add("search-count");
   searchCountEle.textContent = `${episodeList.length} episodes `;
-  rootElem.appendChild(searchCountEle);
+  rootEle.appendChild(searchCountEle);
 
   // Get the cards container element
 
   const cardsContainer = document.createElement("div");
   cardsContainer.classList.add("cards-container");
-  rootElem.appendChild(cardsContainer);
+  rootEle.appendChild(cardsContainer);
 
-  // const cardsContainer = rootElem.querySelector(".cards-container");
+  // const cardsContainer = rootEle.querySelector(".cards-container");
 
   // Loop through each episode and create a card for it
   episodeList.forEach((episode) => {
@@ -106,7 +106,7 @@ function makePageForEpisodes(episodeList) {
     const episodeInfoCard = document.createElement("div");
     episodeInfoCard.classList.add("episode-info-card");
 
-    const episodeNameNumHolder = document.createElement("div");
+    const episodeNameNumHolder = document.createElement("span");
     episodeNameNumHolder.classList.add("episode-name-num-holder");
 
     const episodeNameNumTextElement = document.createElement("p");
