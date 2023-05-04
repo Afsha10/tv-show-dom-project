@@ -1,6 +1,6 @@
 //You can edit ALL of the code here
 /*
-Pseudocode for level 1000:
+Pseudocode for level 100:
 1. We are working with an episode list which is an array
   - create a container using JS connected to "#root"
   - we might need an H1 tag
@@ -8,13 +8,16 @@ Pseudocode for level 1000:
   - we then convert the HTML elements to JS by creating variables and append them inside the other according to our HTML tree layout as below 
   
   <div id="root">
-    <h1></h1>
+    <input id="search-input"/>
+    <span class="search-count"></span>
     <div class="cards-container"
       <div class="episode-info-card">
         <div class="episode-name-num-holder">
-          <h2 class="episode-name-num-text"></h2>
+          <p class="episode-name-num-text"></p>
         </div>
-        <img class= "medium-img" src="">
+        <div class="">
+          <img class= "medium-img" src="">
+        </div>
         <div class="episode-description-container">
           <p class="episode-description"></p>
         </div>
@@ -29,8 +32,22 @@ Pseudocode for level 1000:
 
 */
 
+/*
+Pseudocode for level 200
+1. we need to create an input element that will take in text
+    a) create the element in JS (google what method to use in JS for that)
+    var x = document.createElement("INPUT");
+    b) we append the input element inside the root element
 
 
+2. we could console.log whatever is typed into the input
+3. store that the input text to a variable (as the input changes the variable will be updated)
+4. we will also need a search function to connect it with our input element
+5. display the results of the search result
+
+
+extra: add h1 "tv guide"
+*/
 
 // functoins:
 
@@ -39,16 +56,39 @@ function setup() {
   makePageForEpisodes(allEpisodes);
 }
 
+function searchEpisodes() {
+  const inputField = document.querySelector("#search-input");
+  const enteredInput = inputField.value;
+}
+
 function makePageForEpisodes(episodeList) {
   // Get the root element where we'll add the episode cards
   const rootElem = document.getElementById("root");
 
   // Create the page header and cards container
-  rootElem.innerHTML = `<h1>Episodes (${episodeList.length})</h1>
-                        <div class="cards-container"></div>`;
+  // rootElem.innerHTML = `<h1>Episodes (${episodeList.length})</h1>`
+
+  // Create an input element inside the rootEle
+
+  const inputEle = document.createElement("input");
+  inputEle.id = "search-input";
+  rootElem.appendChild(inputEle);
+  inputEle.addEventListener("change", searchEpisodes);
+
+  // Create a heading inside the rootEle
+
+  const searchCountEle = document.createElement("span");
+  searchCountEle.classList.add("search-count");
+  searchCountEle.textContent = `${episodeList.length} episodes `;
+  rootElem.appendChild(searchCountEle);
 
   // Get the cards container element
-  const cardsContainer = rootElem.querySelector(".cards-container");
+
+  const cardsContainer = document.createElement("div");
+  cardsContainer.classList.add("cards-container");
+  rootElem.appendChild(cardsContainer);
+
+  // const cardsContainer = rootElem.querySelector(".cards-container");
 
   // Loop through each episode and create a card for it
   episodeList.forEach((episode) => {
@@ -69,9 +109,12 @@ function makePageForEpisodes(episodeList) {
     const episodeNameNumHolder = document.createElement("div");
     episodeNameNumHolder.classList.add("episode-name-num-holder");
 
-    const episodeNameNumTextElement = document.createElement("h2");
+    const episodeNameNumTextElement = document.createElement("p");
     episodeNameNumTextElement.classList.add("episode-name-num-text");
     episodeNameNumTextElement.textContent = episodeNameNum;
+
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("episode-image-container");
 
     const episodeImage = document.createElement("img");
     episodeImage.classList.add("medium-img");
@@ -87,15 +130,14 @@ function makePageForEpisodes(episodeList) {
     // Add the episode card elements to the container
     episodeNameNumHolder.appendChild(episodeNameNumTextElement);
     episodeInfoCard.appendChild(episodeNameNumHolder);
-    episodeInfoCard.appendChild(episodeImage);
+    episodeInfoCard.appendChild(imageContainer);
+    imageContainer.appendChild(episodeImage);
     episodeDescriptionTextContainer.appendChild(episodeDescriptionTextElement);
     episodeInfoCard.appendChild(episodeDescriptionTextContainer);
     cardsContainer.appendChild(episodeInfoCard);
   });
 }
 
-
 // calling function setup
 
 window.onload = setup;
-

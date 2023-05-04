@@ -8,7 +8,7 @@ body {
   padding: 1rem;
 }
 
-.search-input {
+#search-input {
   margin: 1rem;
   padding: 1rem;
 }
@@ -17,11 +17,11 @@ body {
   background-color: rgb(115, 154, 187);
   /* border: 0.05rem black solid; */
   display: grid;
-  grid-gap: 2rem;
+  gap: 3rem;
   justify-items: center;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 }
+
 
 
 .episode-info-card {
@@ -31,6 +31,7 @@ body {
   background-color: gainsboro;
   border-radius: 0.30rem;
   align-items: center;
+  padding: 1rem;
 }
 
 .episode-name-num-holder {
@@ -38,16 +39,15 @@ body {
   border-radius: 0.30rem;
   display: flex;
   justify-content: center;
-  width: 26.4rem;
+  width: 24rem;
 }
 
 .episode-name-num-text {
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 } 
 
-.medium-img {
+.episode-image-container {
   padding: 1rem;
-  width: 20rem;
 }
 
 .episode-description {
@@ -60,3 +60,7 @@ body {
   display: flex;
   justify-content: center;
 }
+
+
+/* display: none; // hide something
+display: block; // show something */
