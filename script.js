@@ -43,10 +43,6 @@ Pseudocode for level 200
 3. filter through the episodes and match with the enteredInput (we take in all the episodes and use filter method to only display the ones that match)
 4. display the results of the search result 
 
-3. store that the input text to a variable (as the input changes the variable will be updated)
-4. we will also need a search function to connect it with our input element
-5. 
-
 
 extra: add h1 "tv guide"
 */
@@ -172,7 +168,7 @@ function searchEpisodes() {
   // flush the content of the rootEle before adding in any content (by empltying the innerHTML of the rootEle)
 
   rootEle.innerHTML = "";
-  
+
   searchCountEle.innerText = filteredEpisodes.length;
   makePageForEpisodes(filteredEpisodes);
 }
