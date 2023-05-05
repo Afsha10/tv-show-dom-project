@@ -66,4 +66,10 @@ body {
 
 
 /* display: none; // hide something
-display: block; // show something */
+display: block; // show something 
+you can target each of these cards and give it a class to hide or show. This is CSS way.
+
+Another way is: These cards are build from the JS array. 
+We can build a second array which will only hold the ones that match our criteria.
+
+*/
