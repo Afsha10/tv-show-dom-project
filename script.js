@@ -9,7 +9,7 @@ Pseudocode for level 100:
   
   <div id="root">
     <input id="search-input"/>
-    <span class="search-count">Displaying<span>searchCountEle</span>/73 episodes</span>
+    <span class="search-result-info">Displaying<span class="serach-count">searchCountEle</span>/73 episodes</span>
     <div class="cards-container">
       <div class="episode-info-card">
         <span class="episode-name-num-holder">
