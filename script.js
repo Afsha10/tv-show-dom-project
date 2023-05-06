@@ -7,9 +7,9 @@ Pseudocode for level 100:
   - we create a draft of our web page using HTML and CSS 
   - we then convert the HTML elements to JS by creating variables and append them inside the other according to our HTML tree layout as below 
   
+  <input id="search-input"/>
+  <span class="search-result-info">Displaying<span class="serach-count">searchCountEle</span>/73 episodes</span>
   <div id="root">
-    <input id="search-input"/>
-    <span class="search-result-info">Displaying<span class="serach-count">searchCountEle</span>/73 episodes</span>
     <div class="cards-container">
       <div class="episode-info-card">
         <span class="episode-name-num-holder">
@@ -22,7 +22,7 @@ Pseudocode for level 100:
           <p class="episode-description"></p>
         </div>
       </div>
-      </div>
+    </div>
   </div>
 
 2. For getting each episode we need to access each element inside the array of objects in episodes.js.
@@ -52,160 +52,129 @@ To make it work:
 extra: add h1 "tv guide"
 */
 
-// function showing all episodes
+//Get DOM elements
+const rootElem = document.getElementById("root");
+const searchInput = document.getElementById("search-input");
+const searchSpan = document.querySelector(".search-info");
 
+// Global variables
 let allEpisodes;
 
+// Fetch episodes function
 function setup() {
   allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
 }
 
+window.onload = setup;
+
 // level 100
 
-  // Create an input element inside the rootEle
+// Create an input element inside the rootEle
 
-  const rootEle = document.getElementById("root");
-  
-  function makePageForEpisodes(episodeList) {
-    // Get the root element where we'll add the episode cards
-    const rootEle = document.getElementById("root");
+function makePageForEpisodes(episodeList) {
+  // Get the root element where we'll add the episode cards
+  // creating a span inside our span element
+  // creating the top span element inside the rootEle
 
-    // creating a span inside our span element
-    // creating the top span element inside the rootEle
-    
-    const searchCountEle = document.createElement("span");
-    const searchResultInfo = document.createElement("span");
-    const cardsContainer = document.createElement("div");
+  const searchCountEle = document.createElement("span");
+  const cardsContainer = document.createElement("div");
 
-    searchCountEle.classList.add("search-count");
-    cardsContainer.classList.add("cards-container");
-    searchResultInfo.classList.add("search-result-info");
+  searchCountEle.classList.add("search-count");
+  cardsContainer.classList.add("cards-container");
 
-    // searchCountEle.textContent = filteredEpisodes.length;
+  // searchCountEle.textContent = filteredEpisodes.length;
 
-    //  `Displaying <span class="search-count">13</span>/73 episodes`
-    
-    searchResultInfo.textContent = `Displaying ${searchCountEle}/${episodeList.length} episodes`;
-    rootEle.appendChild(searchResultInfo);
-    rootEle.appendChild(cardsContainer);
+  //  `Displaying <span class="search-count">13</span>/73 episodes`
 
-    // Creating the cards container element inside the rootEl
+  rootElem.appendChild(cardsContainer);
 
-    // Loop through each episode and create a card for it
-    episodeList.forEach((episode) => {
-      // Get the episode name, season number, episode number, and combine them
-      const episodeName = episode.name;
-      const seasonNum = ("0" + episode.season).slice(-2);
-      const episodeNum = ("0" + episode.number).slice(-2);
-      const episodeNameNum = `${episodeName} - S${seasonNum}E${episodeNum}`;
+  // Creating the cards container element inside the rootEl
 
-      // Get the episode image and description
-      const episodeImageSrc = episode.image.medium;
-      const episodeDescription = episode.summary;
+  // Loop through each episode and create a card for it
+  episodeList.forEach((episode) => {
+    // Get the episode name, season number, episode number, and combine them
+    const episodeName = episode.name;
+    const seasonNum = ("0" + episode.season).slice(-2);
+    const episodeNum = ("0" + episode.number).slice(-2);
+    const episodeNameNum = `${episodeName} - S${seasonNum}E${episodeNum}`;
 
-      // Create the episode card elements
-      const episodeInfoCard = document.createElement("div");
-      episodeInfoCard.classList.add("episode-info-card");
+    // Get the episode image and description
+    const episodeImageSrc = episode.image.medium;
+    const episodeDescription = episode.summary;
 
-      const episodeNameNumHolder = document.createElement("div");
-      episodeNameNumHolder.classList.add("episode-name-num-holder");
+    // Create the episode card elements
+    const episodeInfoCard = document.createElement("div");
+    episodeInfoCard.classList.add("episode-info-card");
 
-      const episodeNameNumElement = document.createElement("span");
-      episodeNameNumElement.classList.add("episode-name-num-text");
-      episodeNameNumElement.textContent = episodeNameNum;
+    const episodeNameNumHolder = document.createElement("div");
+    episodeNameNumHolder.classList.add("episode-name-num-holder");
 
-      const imageContainer = document.createElement("div");
-      imageContainer.classList.add("episode-image-container");
+    const episodeNameNumElement = document.createElement("span");
+    episodeNameNumElement.classList.add("episode-name-num-text");
+    episodeNameNumElement.textContent = episodeNameNum;
 
-      const episodeImage = document.createElement("img");
-      episodeImage.classList.add("medium-img");
-      episodeImage.src = episodeImageSrc;
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("episode-image-container");
 
-      const episodeDescriptionTextContainer = document.createElement("div");
-      episodeDescriptionTextContainer.classList.add(
-        "episode-description-container"
-      );
+    const episodeImage = document.createElement("img");
+    episodeImage.classList.add("medium-img");
+    episodeImage.src = episodeImageSrc;
 
-      const episodeDescriptionTextElement = document.createElement("p");
-      episodeDescriptionTextElement.classList.add("episode-description");
-      episodeDescriptionTextElement.innerHTML = episodeDescription;
+    const episodeDescriptionTextContainer = document.createElement("div");
+    episodeDescriptionTextContainer.classList.add(
+      "episode-description-container"
+    );
 
-      // Add the episode card elements to the container
-      episodeNameNumHolder.appendChild(episodeNameNumElement);
-      episodeInfoCard.appendChild(episodeNameNumHolder);
-      episodeInfoCard.appendChild(imageContainer);
-      imageContainer.appendChild(episodeImage);
-      episodeDescriptionTextContainer.appendChild(
-        episodeDescriptionTextElement
-      );
-      episodeInfoCard.appendChild(episodeDescriptionTextContainer);
-      cardsContainer.appendChild(episodeInfoCard);
-    });
-  }
+    const episodeDescriptionTextElement = document.createElement("p");
+    episodeDescriptionTextElement.classList.add("episode-description");
+    episodeDescriptionTextElement.innerHTML = episodeDescription;
 
-// calling function setup
+    // Update info about displayed episodes
+    searchSpan.textContent = `Displaying 0/${episodeList.length} episodes`;
 
-window.onload = setup;
+    // Add the episode card elements to the container
+    episodeNameNumHolder.appendChild(episodeNameNumElement);
+    episodeInfoCard.appendChild(episodeNameNumHolder);
+    episodeInfoCard.appendChild(imageContainer);
+    imageContainer.appendChild(episodeImage);
+    episodeDescriptionTextContainer.appendChild(episodeDescriptionTextElement);
+    episodeInfoCard.appendChild(episodeDescriptionTextContainer);
+    cardsContainer.appendChild(episodeInfoCard);
+  });
+}
 
 // level 200
 
 // function to search
 
-const inputEle = document.createElement("input");
-inputEle.id = "search-input";
-rootEle.appendChild(inputEle);
-inputEle.addEventListener("keyup", searchEpisodes);
-
-// function to update the episodes
-
-// Uncaught ReferenceError: episodeNameNumTextElement is not defined (170, 168, 156)
-
-function searchEpisodes() {
-  const searchInputField = document.querySelector("#search-input");
-  const enteredInput = searchInputField.value.toLowerCase();
-  const episodeDisplayCount = document.querySelector(".search-count");
-  console.log(episodeDisplayCount)
-
-/*   const collectionOfNameNumEpisode = document.querySelectorAll(".episode-name-num-text");
-  // console.log(collectionOfNameNumEpisode);
-  const arrayCollectionOfNameNumEpisode = Array.from(collectionOfNameNumEpisode)
-  console.log(arrayCollectionOfNameNumEpisode[0]); 
-*/
-
-  
-
-
+function displaySearchedEpisodes(inputValue) {
   /*
     allEpisodes [{}, {}, {}] => each episode is an object with props **the data from episodes.js**
     arrayCollectionOfNameNumEpisode => an array of CURRENT nodes **from the dom**
-
     each array element has access to .textContent
-
   */
 
   // creating a fresh array which only holds the episodes that match our search criteria
   const filteredEpisodes = allEpisodes.filter((episode) => {
-    if (
-      episode.name.toLowerCase().includes(enteredInput) ||
-      episode.summary.toLowerCase().includes(enteredInput)
-    ) {
-      return episode;
-    }
+    return (
+      episode.name.toLowerCase().includes(inputValue) ||
+      episode.summary.toLowerCase().includes(inputValue)
+    );
   });
 
-  // // flush the content of the rootEle before adding in any content (by emptying the innerHTML of the rootEle)
-
-  /*
-  document.querySelector is null -> 202 -> 156
-  */
-
-  rootEle.innerHTML = "";
-
-  // document.querySelector(".search-count").innerText = filteredEpisodes.length;
-  // makePageForEpisodes(filteredEpisodes);
+  // Display searchedEpisodes
+  if (filteredEpisodes.length !== 0) {
+    rootElem.innerHTML = "";
+    makePageForEpisodes(filteredEpisodes);
+  }
+  searchSpan.textContent = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`;
 }
 
+// List of event listeners (Should be always at the bottom)
 
-
+searchInput.addEventListener("input", (event) => {
+  const inputValue = event.target.value.trim().toLowerCase();
+  displaySearchedEpisodes(inputValue);
+});
 
