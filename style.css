@@ -2,6 +2,13 @@ body {
   background-color: lightgrey;
 }
 
+.search-bar {
+  position: fixed;
+  background-color: lightskyblue;
+  width: 100%;
+  top: 0;
+}
+
 #root {
   background-color: rgb(150, 165, 178);
   color: black;
@@ -13,39 +20,40 @@ body {
   padding: 1rem;
 }
 
-.cards-container{
+.cards-container {
   background-color: rgb(115, 154, 187);
   /* border: 0.05rem black solid; */
   display: grid;
   grid-gap: 3rem;
   justify-items: center;
   padding: 1rem;
-  margin: 1rem;
+  margin: 5rem 1rem 1rem 1rem;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 }
 
 .episode-info-card {
   display: flex;
   flex-direction: column;
-  border: 0.10rem black solid;
+  border: 0.1rem black solid;
   background-color: gainsboro;
   width: 23rem;
-  border-radius: 0.30rem;
+  border-radius: 0.3rem;
   align-items: center;
   padding: 1rem;
 }
 
 .episode-name-num-holder {
-  border: 0.10rem black solid;
-  border-radius: 0.30rem;
+  border: 0.1rem black solid;
+  border-radius: 0.3rem;
   display: flex;
   justify-content: center;
   width: 20rem;
 }
 
 .episode-name-num-text {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-} 
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
 
 .episode-image-container {
   padding: 1rem;
@@ -61,7 +69,6 @@ body {
   display: flex;
   justify-content: center;
 }
-
 
 /* display: none; // hide something
 display: block; // show something 
