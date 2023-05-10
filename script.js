@@ -44,6 +44,7 @@ function makePageForEpisodes(episodeList) {
 
     const episodeInfoCard = document.createElement("div");
     episodeInfoCard.classList.add("episode-info-card");
+    // episodeInfoCard.id = "episode-card" + i; // need help with i
 
     const episodeNameNumHolder = document.createElement("div");
     episodeNameNumHolder.classList.add("episode-name-num-holder");
@@ -119,6 +120,15 @@ searchInput.addEventListener("input", (event) => {
 
 // level 300
 
+// jump to episode function
+
+function jumpToEpisode() {
+  const episodeSelectHTML = document.querySelector("#select-html"); // this is the dropdown
+  const position = episodeSelectHTML.value; // we set a variable for the value which is the number
+  const episodeSelectHTMLId = "episode-card" + position; // position is from the dropdown list; we are making the id will will find
+  document.getElementById(episodeSelectHTMLId).scrollIntoView();
+}
+
 // build selection dropdown list
 
 function buildEpisodeDropdownList(episodeList) {
@@ -133,11 +143,10 @@ function buildEpisodeDropdownList(episodeList) {
     // const episodeOptionValue = `S${optionEpisodeName} - S${optionSeasonPadded}E${optionEpisodePadded}`;
     const episodeOptionText = `S${optionSeasonPadded}E${optionEpisodePadded} - ${optionEpisodeName}`;
 
-    episodeOptionHTML.textContent = episodeOptionText;
-    episodeOptionHTML.value = i;
-    episodeSelectHTML.appendChild(episodeOptionHTML);
+    episodeOptionHTML.textContent = episodeOptionText; // it is the episode list showing on the dropdown list
+    episodeOptionHTML.value = i; // the value of the dropdown item is stored as i from the for loop
+    episodeSelectHTML.appendChild(episodeOptionHTML); // we append each of the episodes into the episodeSelectHTML
 
-    // episodeSelectHTML.addEventListener('change', (e) => {
-    // if (optionHTML.value.includes())
+    episodeSelectHTML.addEventListener("change", jumpToEpisode);
   }
 }

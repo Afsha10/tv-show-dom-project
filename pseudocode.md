@@ -84,6 +84,8 @@ Create scroll to card functionality
 2. If value is included then find episodeNameNumElement and save to variable
 3. use variable.scrollIntoView({behaviour: smooth}) to scroll down to card.
 
+lesson from level 300: we can not only set up classes but also we can add unique ids to each item inside our array and it is easier to jump around and delete things because we know which position we are. The pattern is give in a for loop to give each card a unique identifier based on the number of its position. By giving an id, we can do stuff with the unique ones.
+
 alternative:
 
 [Set Attribute](<https://www.javatpoint.com/javascript-setattribute#:~:text=%E2%86%92%20%E2%86%90%20prev-,JavaScript%20setAttribute(),update%20the%20existing%20attribute's%20value.>)
