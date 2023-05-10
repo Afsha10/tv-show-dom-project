@@ -1,8 +1,8 @@
 //Get DOM elements
-const rootElem = document.getElementById("root");
+const rootElem = document.getElementById("root"); // Get the root element where we'll add the episode cards
 const searchInput = document.getElementById("search-input");
 const searchSpan = document.querySelector(".search-info");
-const selectHTML = document.querySelector("#select-html");
+const episodeSelectHTML = document.querySelector("#select-html");
 
 // Global variables
 let allEpisodes;
@@ -11,6 +11,7 @@ let allEpisodes;
 function setup() {
   allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
+  buildEpisodeDropdownList(allEpisodes);
 }
 
 window.onload = setup;
@@ -20,54 +21,26 @@ window.onload = setup;
 // Create an input element inside the rootEle
 
 function makePageForEpisodes(episodeList) {
-  // Get the root element where we'll add the episode cards
-  // creating a span inside our span element
-  // creating the top span element inside the rootEle
-
-  const searchCountEle = document.createElement("span");
-  const cardsContainer = document.createElement("div");
+  const searchCountEle = document.createElement("span"); // Creating the top span element inside the rootEle
+  const cardsContainer = document.createElement("div"); // Creating the cards container element inside the rootEl
 
   searchCountEle.classList.add("search-count");
   cardsContainer.classList.add("cards-container");
 
-  // searchCountEle.textContent = filteredEpisodes.length;
-  //  `Displaying <span class="search-count">13</span>/73 episodes`
-
   rootElem.appendChild(cardsContainer);
 
-  // Creating the cards container element inside the rootEl
-
   // Loop through each episode and create a card for it
-  for (let i = 0; i < episodeList.length; i++) {
-    const episodeName = episodeList[i].name;
-    const seasonNum = ("0" + episodeList[i].season).slice(-2);
-    const episodeNum = ("0" + episodeList[i].number).slice(-2);
-    console.log(seasonNum);
-  }
 
   episodeList.forEach((episode) => {
     // Get the episode name, season number, episode number, and combine them
     const episodeName = episode.name;
-    const seasonNum = ("0" + episode.season).slice(-2);
-    const episodeNum = ("0" + episode.number).slice(-2);
-    const episodeNameNum = `${episodeName} - S${seasonNum}E${episodeNum}`;
-    const optionValue = `S${episodeName} - S${seasonNum}E${episodeNum}`;
-    const optionText = `S${seasonNum}E${episodeNum} - ${episodeName}`;
+    const paddedSeasonNum = ("0" + episode.season).slice(-2);
+    const paddedEpisodeNum = ("0" + episode.number).slice(-2);
+    const episodeNameNum = `${episodeName} - S${paddedSeasonNum}E${paddedEpisodeNum}`;
 
-    // Get the episode image and description
-    const episodeImageSrc = episode.image.medium;
+    const episodeImageSrc = episode.image.medium; // Get the episode image and description
     // Create the episode card elements
     const episodeDescription = episode.summary;
-
-    // Create the option element (inside the selectHTML)
-    const optionHTML = document.createElement("option");
-    optionHTML.setAttribute("value", optionValue);
-    optionHTML.textContent = optionText;
-    selectHTML.appendChild(optionHTML);
-
-    // selectHTML.addEventListener('change', (e) => {
-
-    // })
 
     const episodeInfoCard = document.createElement("div");
     episodeInfoCard.classList.add("episode-info-card");
@@ -75,6 +48,7 @@ function makePageForEpisodes(episodeList) {
     const episodeNameNumHolder = document.createElement("div");
     episodeNameNumHolder.classList.add("episode-name-num-holder");
 
+    // Creating a span inside our span element
     const episodeNameNumElement = document.createElement("span");
     episodeNameNumElement.classList.add("episode-name-num-text");
     episodeNameNumElement.textContent = episodeNameNum;
@@ -145,6 +119,25 @@ searchInput.addEventListener("input", (event) => {
 
 // level 300
 
-// console.log(selectHTML);
+// build selection dropdown list
 
-// if (optionHTML.value.includes())
+function buildEpisodeDropdownList(episodeList) {
+  const episodeSelectHTML = document.querySelector("#select-html");
+  // Create the option element (inside the episodeSelectHTML)
+
+  for (let i = 0; i < episodeList.length; i++) {
+    const episodeOptionHTML = document.createElement("option");
+    const optionEpisodeName = episodeList[i].name;
+    const optionSeasonPadded = ("0" + episodeList[i].season).slice(-2);
+    const optionEpisodePadded = ("0" + episodeList[i].number).slice(-2);
+    // const episodeOptionValue = `S${optionEpisodeName} - S${optionSeasonPadded}E${optionEpisodePadded}`;
+    const episodeOptionText = `S${optionSeasonPadded}E${optionEpisodePadded} - ${optionEpisodeName}`;
+
+    episodeOptionHTML.textContent = episodeOptionText;
+    episodeOptionHTML.value = i;
+    episodeSelectHTML.appendChild(episodeOptionHTML);
+
+    // episodeSelectHTML.addEventListener('change', (e) => {
+    // if (optionHTML.value.includes())
+  }
+}

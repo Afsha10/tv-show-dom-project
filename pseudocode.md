@@ -55,7 +55,14 @@ Create Select element
 2. Write out placeholder text (it takes the value attribute)
 3. Connect the selectHTML elment in JavaScript
 4. Console.log(selectHTML)
+   </li>
+   `;
+   })
+   .join('');
+   charactersList.innerHTML = htmlString;
+   };
 
+loadCharacters();
 Create option element for each episode
 
 1. We created an option element for each episode
@@ -67,7 +74,7 @@ Pinned header to the top of the site.
 
 1. Change header position to fixed
 2. Added a top value of 0
-3. updated background-color.
+3. updated background-color
 
 4. If the value attribute from optionHTML
 
