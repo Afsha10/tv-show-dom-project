@@ -126,7 +126,10 @@ function jumpToEpisode() {
   const episodeSelectHTML = document.querySelector("#select-html"); // this is the dropdown
   const position = episodeSelectHTML.value; // we set a variable for the value which is the number
   const episodeSelectHTMLId = "episode-card" + position; // position is from the dropdown list; we are making the id will will find
-  document.getElementById(episodeSelectHTMLId).scrollIntoView();
+  document.getElementById(episodeSelectHTMLId).scrollIntoView({
+    block: "center",
+    behavior: "smooth",
+  });
 }
 
 // build selection dropdown list
