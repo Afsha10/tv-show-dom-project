@@ -31,7 +31,7 @@ function makePageForEpisodes(episodeList) {
 
   // Loop through each episode and create a card for it
 
-  episodeList.forEach((episode) => {
+  episodeList.forEach((episode, index) => {
     // Get the episode name, season number, episode number, and combine them
     const episodeName = episode.name;
     const paddedSeasonNum = ("0" + episode.season).slice(-2);
@@ -44,7 +44,7 @@ function makePageForEpisodes(episodeList) {
 
     const episodeInfoCard = document.createElement("div");
     episodeInfoCard.classList.add("episode-info-card");
-    // episodeInfoCard.id = "episode-card" + i; // need help with i
+    episodeInfoCard.id = "episode-card" + index;
 
     const episodeNameNumHolder = document.createElement("div");
     episodeNameNumHolder.classList.add("episode-name-num-holder");
@@ -150,3 +150,11 @@ function buildEpisodeDropdownList(episodeList) {
     episodeSelectHTML.addEventListener("change", jumpToEpisode);
   }
 }
+
+// window.scrollTo({
+//   top:
+//     Math.round(
+//       card.getBoundingClientRect().top + document.documentElement.scrollTop
+//     ) - 100,
+//   behavior: "smooth",
+// });
