@@ -9,9 +9,14 @@ let allEpisodes;
 
 // Fetch episodes function
 function setup() {
-  allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
-  buildEpisodeDropdownList(allEpisodes);
+  fetch("https://api.tvmaze.com/shows/82/episodes")
+    .then(function (response) {
+      return response.json();
+    })
+    .then((result) => {
+      makePageForEpisodes(result);
+      buildEpisodeDropdownList(result);
+    });
 }
 
 window.onload = setup;
@@ -122,9 +127,11 @@ searchInput.addEventListener("input", (event) => {
 
 // jump to episode function
 
-function jumpToEpisode() {
+function jumpToEpisode(event) {
+  // console.log(event.target);
   const episodeSelectHTML = document.querySelector("#select-html"); // this is the dropdown
   const position = episodeSelectHTML.value; // we set a variable for the value which is the number
+  // displaySearchedEpisodes(episodeSelectHTML);
   const episodeSelectHTMLId = "episode-card" + position; // position is from the dropdown list; we are making the id will will find
   document.getElementById(episodeSelectHTMLId).scrollIntoView({
     block: "center",
