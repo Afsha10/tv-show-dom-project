@@ -75,7 +75,7 @@ function makePageForEpisodes(episodeList) {
     episodeDescriptionTextHtml.innerHTML = episodeDescription;
 
     // Update info about displayed episodes
-    searchResultDisplayHtml.textContent = `Displaying 73/${episodeList.length} episodes`;
+    searchResultDisplayHtml.textContent = `Displaying ${cardsContainerHtml.length}/${episodeList.length} episodes`;
 
     // Add the episode card elements to the container
     episodeNameNumHolderHtml.appendChild(episodeNameNumTextHtml);
@@ -94,12 +94,6 @@ function makePageForEpisodes(episodeList) {
 // function to search
 
 function displaySearchedEpisodes(inputValue) {
-  /*
-    allEpisodes [{}, {}, {}] => each episode is an object with props **the data from episodes.js**
-    arrayCollectionOfNameNumEpisode => an array of CURRENT nodes **from the dom**
-    each array element has access to .textContent
-  */
-
   // creating a fresh array which only holds the episodes that match our search criteria
   const filteredEpisodes = allEpisodes.filter((episode) => {
     return (
