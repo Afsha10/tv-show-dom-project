@@ -106,10 +106,11 @@ function displaySearchedEpisodes(inputValue) {
   });
 
   // Display searchedEpisodes
-  if (filteredEpisodes.length !== 0) {
-    rootHtml.innerHTML = "";
-    makePageForEpisodes(filteredEpisodes);
-  }
+
+  rootHtml.innerHTML = "";
+  makePageForEpisodes(filteredEpisodes);
+  buildEpisodeDropdownList(filteredEpisodes);
+
   searchResultDisplayHtml.textContent = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`;
 }
 
@@ -125,7 +126,7 @@ searchInputHtml.addEventListener("input", (event) => {
 // jump to episode function
 
 function jumpToEpisode(event) {
-  // console.log(event.target);
+  console.log(event.target);
   const episodeSelectHTML = document.querySelector("#select-html"); // this is the dropdown
   const position = episodeSelectHTML.value; // we set a variable for the value which is the number
   // displaySearchedEpisodes(episodeSelectHTML);
@@ -140,6 +141,8 @@ function jumpToEpisode(event) {
 
 function buildEpisodeDropdownList(episodeList) {
   const episodeSelectHTML = document.querySelector("#select-html");
+  episodeSelectHTML.innerHTML = "";
+
   // Create the option element (inside the episodeSelectHTML)
 
   for (let i = 0; i < episodeList.length; i++) {
