@@ -1,7 +1,7 @@
 //Get DOM elements
-const rootElem = document.getElementById("root"); // Get the root element where we'll add the episode cards
-const searchInput = document.getElementById("search-input");
-const searchSpan = document.querySelector(".search-info");
+const rootHtml = document.getElementById("root"); // Get the root element where we'll add the episode cards
+const searchInputHtml = document.getElementById("search-input");
+const searchResultDisplayHtml = document.querySelector(".search-display");
 const episodeSelectHTML = document.querySelector("#select-html");
 
 // Global variables
@@ -26,13 +26,11 @@ window.onload = setup;
 // Create an input element inside the rootEle
 
 function makePageForEpisodes(episodeList) {
-  const searchCountEle = document.createElement("span"); // Creating the top span element inside the rootEle
-  const cardsContainer = document.createElement("div"); // Creating the cards container element inside the rootEl
+  // const searchCountHtml = document.createElement("span"); // Creating the top span element inside the rootEle
+  const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
 
-  searchCountEle.classList.add("search-count");
-  cardsContainer.classList.add("cards-container");
-
-  rootElem.appendChild(cardsContainer);
+  // searchCountHtml.classList.add("search-count");
+  cardsContainerHtml.classList.add("cards-container");
 
   // Loop through each episode and create a card for it
 
@@ -43,49 +41,51 @@ function makePageForEpisodes(episodeList) {
     const paddedEpisodeNum = ("0" + episode.number).slice(-2);
     const episodeNameNum = `${episodeName} - S${paddedSeasonNum}E${paddedEpisodeNum}`;
 
-    const episodeImageSrc = episode.image.medium; // Get the episode image and description
     // Create the episode card elements
+    const episodeImageSrc = episode.image.medium;
     const episodeDescription = episode.summary;
 
-    const episodeInfoCard = document.createElement("div");
-    episodeInfoCard.classList.add("episode-info-card");
-    episodeInfoCard.id = "episode-card" + index;
+    const episodeCardHtml = document.createElement("div");
+    episodeCardHtml.classList.add("episode-card");
+    episodeCardHtml.id = "episode-card" + index;
 
-    const episodeNameNumHolder = document.createElement("div");
-    episodeNameNumHolder.classList.add("episode-name-num-holder");
+    const episodeNameNumHolderHtml = document.createElement("div");
+    episodeNameNumHolderHtml.classList.add("episode-name-num-holder");
 
     // Creating a span inside our span element
-    const episodeNameNumElement = document.createElement("span");
-    episodeNameNumElement.classList.add("episode-name-num-text");
-    episodeNameNumElement.textContent = episodeNameNum;
+    const episodeNameNumTextHtml = document.createElement("span");
+    episodeNameNumTextHtml.classList.add("episode-name-num-text");
+    episodeNameNumTextHtml.textContent = episodeNameNum;
 
-    const imageContainer = document.createElement("div");
-    imageContainer.classList.add("episode-image-container");
+    const imageContainerHtml = document.createElement("div");
+    imageContainerHtml.classList.add("episode-image-container");
 
-    const episodeImage = document.createElement("img");
-    episodeImage.classList.add("medium-img");
-    episodeImage.src = episodeImageSrc;
+    // Get the episode image and description
+    const episodeImageHtml = document.createElement("img");
+    episodeImageHtml.classList.add("medium-img");
+    episodeImageHtml.src = episodeImageSrc;
 
-    const episodeDescriptionTextContainer = document.createElement("div");
-    episodeDescriptionTextContainer.classList.add(
+    const episodeDescriptionContainerHtml = document.createElement("div");
+    episodeDescriptionContainerHtml.classList.add(
       "episode-description-container"
     );
 
-    const episodeDescriptionTextElement = document.createElement("p");
-    episodeDescriptionTextElement.classList.add("episode-description");
-    episodeDescriptionTextElement.innerHTML = episodeDescription;
+    const episodeDescriptionTextHtml = document.createElement("p");
+    episodeDescriptionTextHtml.classList.add("episode-description-text");
+    episodeDescriptionTextHtml.innerHTML = episodeDescription;
 
     // Update info about displayed episodes
-    searchSpan.textContent = `Displaying 0/${episodeList.length} episodes`;
+    searchResultDisplayHtml.textContent = `Displaying 73/${episodeList.length} episodes`;
 
     // Add the episode card elements to the container
-    episodeNameNumHolder.appendChild(episodeNameNumElement);
-    episodeInfoCard.appendChild(episodeNameNumHolder);
-    episodeInfoCard.appendChild(imageContainer);
-    imageContainer.appendChild(episodeImage);
-    episodeDescriptionTextContainer.appendChild(episodeDescriptionTextElement);
-    episodeInfoCard.appendChild(episodeDescriptionTextContainer);
-    cardsContainer.appendChild(episodeInfoCard);
+    episodeNameNumHolderHtml.appendChild(episodeNameNumTextHtml);
+    episodeCardHtml.appendChild(episodeNameNumHolderHtml);
+    episodeCardHtml.appendChild(imageContainerHtml);
+    imageContainerHtml.appendChild(episodeImageHtml);
+    episodeDescriptionContainerHtml.appendChild(episodeDescriptionTextHtml);
+    episodeCardHtml.appendChild(episodeDescriptionContainerHtml);
+    cardsContainerHtml.appendChild(episodeCardHtml);
+    rootHtml.appendChild(cardsContainerHtml);
   });
 }
 
@@ -110,15 +110,15 @@ function displaySearchedEpisodes(inputValue) {
 
   // Display searchedEpisodes
   if (filteredEpisodes.length !== 0) {
-    rootElem.innerHTML = "";
+    rootHtml.innerHTML = "";
     makePageForEpisodes(filteredEpisodes);
   }
-  searchSpan.textContent = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`;
+  searchResultDisplayHtml.textContent = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`;
 }
 
 // List of event listeners (Should be always at the bottom)
 
-searchInput.addEventListener("input", (event) => {
+searchInputHtml.addEventListener("input", (event) => {
   const inputValue = event.target.value.trim().toLowerCase();
   displaySearchedEpisodes(inputValue);
 });
@@ -151,20 +151,12 @@ function buildEpisodeDropdownList(episodeList) {
     const optionSeasonPadded = ("0" + episodeList[i].season).slice(-2);
     const optionEpisodePadded = ("0" + episodeList[i].number).slice(-2);
     // const episodeOptionValue = `S${optionEpisodeName} - S${optionSeasonPadded}E${optionEpisodePadded}`;
-    const episodeOptionText = `S${optionSeasonPadded}E${optionEpisodePadded} - ${optionEpisodeName}`;
+    const episodeOptionTextHtml = `S${optionSeasonPadded}E${optionEpisodePadded} - ${optionEpisodeName}`;
 
-    episodeOptionHTML.textContent = episodeOptionText; // it is the episode list showing on the dropdown list
+    episodeOptionHTML.textContent = episodeOptionTextHtml; // it is the episode list showing on the dropdown list
     episodeOptionHTML.value = i; // the value of the dropdown item is stored as i from the for loop
     episodeSelectHTML.appendChild(episodeOptionHTML); // we append each of the episodes into the episodeSelectHTML
 
     episodeSelectHTML.addEventListener("change", jumpToEpisode);
   }
 }
-
-// window.scrollTo({
-//   top:
-//     Math.round(
-//       card.getBoundingClientRect().top + document.documentElement.scrollTop
-//     ) - 100,
-//   behavior: "smooth",
-// });

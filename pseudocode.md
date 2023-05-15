@@ -10,10 +10,10 @@ Pseudocode for level 100:
 - we then convert the HTML elements to JS by creating variables and append them inside the other according to our HTML tree layout as below
 
   <input id="search-input"/>
-  <span class="search-result-info">Displaying<span class="serach-count">searchCountEle</span>/73 episodes</span>
+  <span class="search-display">Displaying<span class="serach-count">searchCountEle</span>/73 episodes</span>
   <div id="root">
     <div class="cards-container">
-      <div class="episode-info-card">
+      <div class="episode-card">
         <span class="episode-name-num-holder">
           <p class="episode-name-num-text"></p>
         </span>
@@ -94,3 +94,43 @@ To display the selected episode we will need to apply a filtering logic based on
 
 const optionValue = `S${episodeName} - S${seasonNum}E${episodeNum}`; <= Same as episodeNameNumElement
 const optionText = `S${seasonNum}E${episodeNum} - ${episodeName}`;
+
+<body>
+    <header class="search-bar">
+      <select id="select-html">
+        <option value="">All episodes</option>
+      </select>
+      <input type="text" id="search-input" placeholder="Search episode(s)" />
+      <span class="search-info"></span>
+    </header>
+    <h1>TV Show Guide</h1>
+    <p class="directing-users">
+      Please select an episode from the top left menu
+    </p>
+    <div id="root">
+      <!-- 
+      <span class="search-count"></span>
+      <div class="cards-container">
+        <div class="episode-info-card">
+          <span class="episode-name-num-holder">
+            <p class="episode-name-num-text"></p>
+          </span>
+          <div class="">
+            <img class= "medium-img" src="">
+          </div>
+          <div class="episode-description-container">
+            <p class="episode-description"></p>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+    <script src="episodes.js"></script>
+
+    <!-- Loads YOUR javascript code -->
+    <script src="script.js"></script>
+    <footer>
+      <p id="source">Source: TVMaze.com</p>
+    </footer>
+
+  </body>

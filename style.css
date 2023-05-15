@@ -31,7 +31,7 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 }
 
-.episode-info-card {
+.episode-card {
   display: flex;
   flex-direction: column;
   border: 0.1rem black solid;
@@ -59,7 +59,7 @@ body {
   padding: 1rem;
 }
 
-.episode-description {
+.episode-description-text {
   font-size: small;
   padding: 0 1rem 1rem 1rem;
   font-size: medium;
