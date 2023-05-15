@@ -76,7 +76,9 @@ function makePageForEpisodes(episodeList) {
     episodeDescriptionTextHtml.innerHTML = episodeDescription;
 
     // Update info about displayed episodes
-    searchResultDisplayHtml.textContent = `Displaying ${cardsContainerHtml.length}/${episodeList.length} episodes`;
+    searchResultDisplayHtml.textContent = `Displaying ${index + 1}/${
+      episodeList.length
+    } episodes`;
 
     // Add the episode card elements to the container
     episodeNameNumHolderHtml.appendChild(episodeNameNumTextHtml);
