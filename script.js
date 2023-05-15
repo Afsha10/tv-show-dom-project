@@ -14,6 +14,7 @@ function setup() {
       return response.json();
     })
     .then((result) => {
+      allEpisodes = result;
       makePageForEpisodes(result);
       buildEpisodeDropdownList(result);
     });
