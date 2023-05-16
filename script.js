@@ -9,14 +9,23 @@ let allEpisodes;
 
 // Fetch episodes function
 function setup() {
-  fetch("https://api.tvmaze.com/shows/82/episodes")
-    .then(function (response) {
-      return response.json();
+  fetch("https://api.tvmaze.com/shows/82/episodes") // returns a promise and it is pending
+    .then((response) => {
+      if (response.status >= 200 && response.status <= 299) {
+        return response.json(); // returns the promise as fulfilled and gives us a response object which we pass into the callback function
+      } else {
+        throw new Error(
+          `Encountered something unexpected: ${response.status} ${response.statusText}`
+        );
+      }
     })
     .then((result) => {
       allEpisodes = result;
       makePageForEpisodes(result);
       buildEpisodeDropdownList(result);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 }
 
