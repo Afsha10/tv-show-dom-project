@@ -2,14 +2,49 @@
 const rootHtml = document.getElementById("root"); // Get the root element where we'll add the episode cards
 const searchInputHtml = document.getElementById("search-input");
 const searchResultDisplayHtml = document.querySelector(".search-display");
-const episodeSelectHTML = document.querySelector("#select-html");
+const episodeSelectHtml = document.querySelector("#episode-html");
+const showSelectHtml = document.querySelector("#show-html");
 
 // Global variables
 let allEpisodes;
+let allShows;
+
+window.onload = setup;
 
 // Fetch episodes function
 function setup() {
-  fetch("https://api.tvmaze.com/shows/82/episodes") // returns a promise and it is pending
+  allShows = getAllShows().sort((a, b) => {
+    return a.name.localeCompare(b.name); // sort shows into alphabeltical order
+  });
+
+  buildShowDropdownList(allShows);
+
+  // fetch(`https://api.tvmaze.com/shows/${allShows[0].id}/episodes`) // returns a promise and it is pending
+  //   .then((response) => {
+  //     if (response.status >= 200 && response.status <= 299) {
+  //       return response.json(); // returns the promise as fulfilled and gives us a response object which we pass into the callback function
+  //     } else {
+  //       throw new Error(
+  //         `Encountered something unexpected: ${response.status} ${response.statusText}`
+  //       );
+  //     }
+  //   })
+  //   .then((data) => {
+  //     allEpisodes = data;
+  //     makePageForEpisodes(data);
+  //     buildEpisodeDropdownList(data);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+  // console.log(allShows);
+
+  // fetchShow(allShows[0]);
+}
+
+function fetchShow(event) {
+  let SHOW_ID = event.target.value;
+  fetch(`https://api.tvmaze.com/shows/${SHOW_ID}/episodes`) // returns a promise and it is pending
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
         return response.json(); // returns the promise as fulfilled and gives us a response object which we pass into the callback function
@@ -19,17 +54,15 @@ function setup() {
         );
       }
     })
-    .then((result) => {
-      allEpisodes = result;
-      makePageForEpisodes(result);
-      buildEpisodeDropdownList(result);
+    .then((data) => {
+      allEpisodes = data;
+      makePageForEpisodes(allEpisodes);
+      buildEpisodeDropdownList(allEpisodes);
     })
     .catch((error) => {
       console.log(error);
     });
 }
-
-window.onload = setup;
 
 // level 100
 
@@ -37,6 +70,7 @@ window.onload = setup;
 
 function makePageForEpisodes(episodeList) {
   // const searchCountHtml = document.createElement("span"); // Creating the top span element inside the rootEle
+  rootHtml.innerHTML = "";
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
 
   // searchCountHtml.classList.add("search-count");
@@ -115,7 +149,6 @@ function displaySearchedEpisodes(inputValue) {
   });
 
   // Display searchedEpisodes
-
   rootHtml.innerHTML = "";
   makePageForEpisodes(filteredEpisodes);
   buildEpisodeDropdownList(filteredEpisodes);
@@ -136,11 +169,11 @@ searchInputHtml.addEventListener("input", (event) => {
 
 function jumpToEpisode(event) {
   console.log(event.target);
-  const episodeSelectHTML = document.querySelector("#select-html"); // this is the dropdown
-  const position = episodeSelectHTML.value; // we set a variable for the value which is the number
+  const episodeSelectHtml = document.querySelector("#episode-html"); // this is the dropdown
+  const position = episodeSelectHtml.value; // we set a variable for the value which is the number
   // displaySearchedEpisodes(episodeSelectHTML);
-  const episodeSelectHTMLId = "episode-card" + position; // position is from the dropdown list; we are making the id will will find
-  document.getElementById(episodeSelectHTMLId).scrollIntoView({
+  const episodeSelectHtmlId = "episode-card" + position; // position is from the dropdown list; we are making the id will will find
+  document.getElementById(episodeSelectHtmlId).scrollIntoView({
     block: "center",
     behavior: "smooth",
   });
@@ -149,23 +182,42 @@ function jumpToEpisode(event) {
 // build selection dropdown list
 
 function buildEpisodeDropdownList(episodeList) {
-  const episodeSelectHTML = document.querySelector("#select-html");
-  episodeSelectHTML.innerHTML = "";
+  const episodeSelectHtml = document.querySelector("#episode-html");
+  episodeSelectHtml.innerHTML = "";
 
   // Create the option element (inside the episodeSelectHTML)
 
   for (let i = 0; i < episodeList.length; i++) {
-    const episodeOptionHTML = document.createElement("option");
+    const episodeOptionHtml = document.createElement("option");
     const optionEpisodeName = episodeList[i].name;
     const optionSeasonPadded = ("0" + episodeList[i].season).slice(-2);
     const optionEpisodePadded = ("0" + episodeList[i].number).slice(-2);
     // const episodeOptionValue = `S${optionEpisodeName} - S${optionSeasonPadded}E${optionEpisodePadded}`;
     const episodeOptionTextHtml = `S${optionSeasonPadded}E${optionEpisodePadded} - ${optionEpisodeName}`;
 
-    episodeOptionHTML.textContent = episodeOptionTextHtml; // it is the episode list showing on the dropdown list
-    episodeOptionHTML.value = i; // the value of the dropdown item is stored as i from the for loop
-    episodeSelectHTML.appendChild(episodeOptionHTML); // we append each of the episodes into the episodeSelectHTML
+    episodeOptionHtml.textContent = episodeOptionTextHtml; // it is the episode list showing on the dropdown list
+    episodeOptionHtml.value = i; // the value of the dropdown item is stored as i from the for loop
+    episodeSelectHtml.appendChild(episodeOptionHtml); // we append each of the episodes into the episodeSelectHTML
 
-    episodeSelectHTML.addEventListener("change", jumpToEpisode);
+    episodeSelectHtml.addEventListener("change", jumpToEpisode);
+  }
+}
+
+// level 400
+
+function buildShowDropdownList(allShows) {
+  for (let i = 0; i < allShows.length; i++) {
+    const showOptionHtml = document.createElement("option");
+
+    // Get information
+    const optionShowName = allShows[i].name;
+
+    // (When we give the show id, the API will return a different show)
+    showOptionHtml.value = allShows[i].id;
+
+    // update text content for showOptionHml
+    showOptionHtml.textContent = optionShowName;
+    showSelectHtml.appendChild(showOptionHtml);
+    showSelectHtml.addEventListener("change", fetchShow);
   }
 }

@@ -134,3 +134,37 @@ const optionText = `S${seasonNum}E${episodeNum} - ${episodeName}`;
     </footer>
 
   </body>
+
+rootHtml.innerHTML = ""; // for enhanced experience we should always reset the rootHtml to nothing and if results are not equal to zero. We can make episodes for page because this is what empties everything and we could have a choice saying if not equal to 0, makePageForEpisodes, else "no results found". This condition meant that we never reset the page with the facts that there were no results.
+
+## Level 400
+
+```txt
+
+  const allShows = getAllShows().map(show => show.name).sort()
+  order allShows alphetically - later look at case-insensitive
+
+  const allShowsAlphebetical = getAllShows() but alphabetical!
+
+  create select element
+
+  const showSelectHtml = document.createElement('select')
+
+  <select> => allows user to choose show from allShows
+
+  for (let i = 0; i < allShows.length; i++) {
+    const showOptionHtml = document.createElement("option");
+
+    Get information
+    const optionShowName = allShowsAlphebetical[i].name;
+
+    (When we give the show id, the API will return a different show)
+    showOptionHtml.value = allShowsAlphebetical[i].id; // the value of the dropdown item is stored as i from the for loop
+
+    update text content for showOptionHml
+    showOptionHtml.textContent = optionShowName;
+
+    showSelectHtml.addEventListener("change", fetchShow);
+  }
+
+```
