@@ -86,7 +86,7 @@ function makePageForEpisodes(episodeList) {
     const episodeNameNum = `${episodeName} - S${paddedSeasonNum}E${paddedEpisodeNum}`;
 
     // Create the episode card elements
-    const episodeImageSrc = episode.image.medium;
+    const episodeImageSrc = episode.image?.medium;
     const episodeDescription = episode.summary;
 
     const episodeCardHtml = document.createElement("div");

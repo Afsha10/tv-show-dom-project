@@ -141,16 +141,17 @@ rootHtml.innerHTML = ""; // for enhanced experience we should always reset the r
 
 ```txt
 
+
   const allShows = getAllShows().map(show => show.name).sort()
   order allShows alphetically - later look at case-insensitive
 
   const allShowsAlphebetical = getAllShows() but alphabetical!
 
-  create select element
+  create select element for dropdown of shows. We get the dropdown list from the array of objects
 
   const showSelectHtml = document.createElement('select')
 
-  <select> => allows user to choose show from allShows
+  <select> => allows user to choose show from allShows array
 
   for (let i = 0; i < allShows.length; i++) {
     const showOptionHtml = document.createElement("option");
@@ -166,5 +167,10 @@ rootHtml.innerHTML = ""; // for enhanced experience we should always reset the r
 
     showSelectHtml.addEventListener("change", fetchShow);
   }
+
+We find the SHOW_ID and use it in fetch https://api.tvmaze.com/shows/${SHOW_ID}/episodes to access all the episodes with their id.
+1. we fetch first
+2. display it
+
 
 ```
