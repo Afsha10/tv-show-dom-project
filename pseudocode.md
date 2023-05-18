@@ -174,3 +174,7 @@ We find the SHOW_ID and use it in fetch https://api.tvmaze.com/shows/${SHOW_ID}/
 
 
 ```
+
+Make an html file
+Make a new demo CSS file
+Make a nice responsive design according to the requirement creating one card with one show and repeat it 6 times and see how it works on mobile or desktop.
