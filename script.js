@@ -42,8 +42,8 @@ function setup() {
   // fetchShow(allShows[0]);
 }
 
-function fetchShow(event) {
-  let SHOW_ID = event.target.value;
+function fetchShow(tvShowId) {
+  let SHOW_ID = tvShowId.target.value;
   fetch(`https://api.tvmaze.com/shows/${SHOW_ID}/episodes`) // returns a promise and it is pending
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
@@ -168,7 +168,7 @@ searchInputHtml.addEventListener("input", (event) => {
 // jump to episode function
 
 function jumpToEpisode(event) {
-  console.log(event.target);
+  console.log("JumpToEpisode event.target", event.target);
   const episodeSelectHtml = document.querySelector("#episode-html"); // this is the dropdown
   const position = episodeSelectHtml.value; // we set a variable for the value which is the number
   // displaySearchedEpisodes(episodeSelectHTML);
