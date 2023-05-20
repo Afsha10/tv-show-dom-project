@@ -4,31 +4,69 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./demo.css" />
     <title>Demo</title>
   </head>
   <body>
-    <header class="search-bar">
+    <header class="header">AfshaTV</header>
+    <nav class="nav-bar">
       <select id="show-html">
-        <option value="">All shows</option>
+        <option value="">Select a Show</option>
+      </select>
+      <select id="season-html">
+        <option value="">Select a Season</option>
+      </select>
+      <select id="episode-html">
+        <option value="">Select an Episode</option>
       </select>
       <input
         type="text"
         autocomplete="off"
         id="search-input"
-        placeholder="Search show(s)"
+        placeholder="Search show(s)/ episode(s)"
       />
-      <span class="search-display"></span>
-    </header>
+      <span class="search-display">Dislplaying xx/ xx episodes</span>
+    </nav>
     <div id="root">
       <div class="cards-container">
         <div class="card">
-          <h1>Da Vinci's Demons</h1>
-          <div>
+            <div class="title-holder">
+                <h1 class="title">Planet Earth</h1>
+            </div>
+            <div class="image-holder">
+                <img
+                class="show-image"
+                src="http://static.tvmaze.com/uploads/images/medium_portrait/6/15320.jpg"
+                alt="picture of the show"
+                />
+            </div>
+            <div class="summary-holder">
+                <p class="summary">
+                    David Attenborough celebrates the amazing variety of the natural world in this epic documentary series, filmed over four years across 64 different countries.
+                </p>
+            </div>
+            <div class="info-box">
+                <ul class="show-info-list">
+                    <li>Rated: 10</li>
+                    <li>Genres: documentary</li>
+                    <li>Status: Ended</li>
+                    <li>Runtime: 45</li>
+                </ul>
+            </div>
+        </div>
+          <div class="card">
+          <div class="title-holder">
+            <h1 class="title">The Game of Thrones</h1>
+          </div>
+          <div class="image-holder">
             <img
-              src="http://static.tvmaze.com/uploads/images/medium_portrait/4/11724.jpg"
+              class="show-image"
+              src="http://static.tvmaze.com/uploads/images/medium_portrait/190/476117.jpg"
               alt="picture of the show"
             />
-            <p>
+          </div>
+          <div class="summary-holder">
+            <p class="summary">
               The outlaw camp of Deadwood marches slowly towards civilization,
               facing its first elections. But the power struggles continue over
               everything in Deadwood—influence, money, and whores—as the
@@ -36,17 +74,174 @@
               threat of a powerful newcomer, seeking to remake Deadwood in his
               image.
             </p>
-            <div class="info-box">
-              <ul>
-                <li>Rated: 8</li>
-                <li>Genres: Drama | Horror</li>
-                <li>Status: Ended</li>
-                <li>Runtime: 60</li>
-              </ul>
-            </div>
+          </div>
+          <div class="info-box">
+            <ul class="show-info-list">
+              <li>Rated: 7</li>
+              <li>Genres: Adventure</li>
+              <li>Status: Ended</li>
+              <li>Runtime: 55</li>
+            </ul>
+          </div>
+          </div>
+            <div class="card">
+          <div class="title-holder">
+            <h1 class="title"Breaking Bad</h1>
+          </div>
+          <div class="image-holder">
+            <img
+              class="show-image"
+              src="http://static.tvmaze.com/uploads/images/medium_portrait/0/2400.jpg"
+              alt="picture of the show"
+            />
+          </div>
+          <div class="summary-holder">
+            <p class="summary">
+              Breaking Bad follows protagonist Walter White, a chemistry teacher who lives in New Mexico with his wife and teenage son who has cerebral palsy. White is diagnosed with Stage III cancer and given a prognosis of two years left to live. With a new sense of fearlessness based on his medical prognosis, and a desire to secure his family's financial security, White chooses to enter a dangerous world of drugs and crime and ascends to power in this world. The series explores how a fatal diagnosis such as White's releases a typical man from the daily concerns and constraints of normal society and follows his transformation from mild family man to a kingpin of the drug trade.
+            </p>
+          </div>
+          <div class="info-box">
+            <ul class="show-info-list">
+              <li>Rated: 8</li>
+              <li>Genres: Drama | Horror</li>
+              <li>Status: Ended</li>
+              <li>Runtime: 60</li>
+            </ul>
+          </div>
+          </div>
+          <div class="card">
+          <div class="title-holder">
+            <h1 class="title">Planet Earth</h1>
+          </div>
+          <div class="image-holder">
+            <img
+              class="show-image"
+              src="http://static.tvmaze.com/uploads/images/medium_portrait/6/15320.jpg"
+              alt="picture of the show"
+            />
+          </div>
+          <div class="summary-holder">
+            <p class="summary">
+              David Attenborough celebrates the amazing variety of the natural world in this epic documentary series, filmed over four years across 64 different countries.
+            </p>
+          </div>
+          <div class="info-box">
+            <ul class="show-info-list">
+              <li>Rated: 10</li>
+              <li>Genres: documentary</li>
+              <li>Status: Ended</li>
+              <li>Runtime: 45</li>
+            </ul>
           </div>
         </div>
+                <div class="card">
+            <div class="title-holder">
+                <h1 class="title">Planet Earth</h1>
+            </div>
+            <div class="image-holder">
+                <img
+                class="show-image"
+                src="http://static.tvmaze.com/uploads/images/medium_portrait/6/15320.jpg"
+                alt="picture of the show"
+                />
+            </div>
+            <div class="summary-holder">
+                <p class="summary">
+                    David Attenborough celebrates the amazing variety of the natural world in this epic documentary series, filmed over four years across 64 different countries.
+                </p>
+            </div>
+            <div class="info-box">
+                <ul class="show-info-list">
+                    <li>Rated: 10</li>
+                    <li>Genres: documentary</li>
+                    <li>Status: Ended</li>
+                    <li>Runtime: 45</li>
+                </ul>
+            </div>
+        </div>
+          <div class="card">
+          <div class="title-holder">
+            <h1 class="title">The Game of Thrones</h1>
+          </div>
+          <div class="image-holder">
+            <img
+              class="show-image"
+              src="http://static.tvmaze.com/uploads/images/medium_portrait/190/476117.jpg"
+              alt="picture of the show"
+            />
+          </div>
+          <div class="summary-holder">
+            <p class="summary">
+              The outlaw camp of Deadwood marches slowly towards civilization,
+              facing its first elections. But the power struggles continue over
+              everything in Deadwood—influence, money, and whores—as the
+              founding camp members form strategic alliances to face down the
+              threat of a powerful newcomer, seeking to remake Deadwood in his
+              image.
+            </p>
+          </div>
+          <div class="info-box">
+            <ul class="show-info-list">
+              <li>Rated: 7</li>
+              <li>Genres: Adventure</li>
+              <li>Status: Ended</li>
+              <li>Runtime: 55</li>
+            </ul>
+          </div>
+          </div>
+            <div class="card">
+          <div class="title-holder">
+            <h1 class="title"Breaking Bad</h1>
+          </div>
+          <div class="image-holder">
+            <img
+              class="show-image"
+              src="http://static.tvmaze.com/uploads/images/medium_portrait/0/2400.jpg"
+              alt="picture of the show"
+            />
+          </div>
+          <div class="summary-holder">
+            <p class="summary">
+              Breaking Bad follows protagonist Walter White, a chemistry teacher who lives in New Mexico with his wife and teenage son who has cerebral palsy. White is diagnosed with Stage III cancer and given a prognosis of two years left to live. With a new sense of fearlessness based on his medical prognosis, and a desire to secure his family's financial security, White chooses to enter a dangerous world of drugs and crime and ascends to power in this world. The series explores how a fatal diagnosis such as White's releases a typical man from the daily concerns and constraints of normal society and follows his transformation from mild family man to a kingpin of the drug trade.
+            </p>
+          </div>
+          <div class="info-box">
+            <ul class="show-info-list">
+              <li>Rated: 8</li>
+              <li>Genres: Drama | Horror</li>
+              <li>Status: Ended</li>
+              <li>Runtime: 60</li>
+            </ul>
+          </div>
+          </div>
+          <div class="card">
+          <div class="title-holder">
+            <h1 class="title">Planet Earth</h1>
+          </div>
+          <div class="image-holder">
+            <img
+              class="show-image"
+              src="http://static.tvmaze.com/uploads/images/medium_portrait/6/15320.jpg"
+              alt="picture of the show"
+            />
+          </div>
+          <div class="summary-holder">
+            <p class="summary">
+              David Attenborough celebrates the amazing variety of the natural world in this epic documentary series, filmed over four years across 64 different countries.
+            </p>
+          </div>
+          <div class="info-box">
+            <ul class="show-info-list">
+              <li>Rated: 10</li>
+              <li>Genres: documentary</li>
+              <li>Status: Ended</li>
+              <li>Runtime: 45</li>
+            </ul>
+          </div>
       </div>
     </div>
+    <footer class="footer">
+      <p id="source">Source: TVMaze.com</p>
+    </footer>
   </body>
 </html>

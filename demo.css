@@ -1,0 +1,99 @@
+.header, .footer {
+    width: auto;
+    height: 5rem;
+    background-color: aquamarine;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+}
+
+/* #show-html, #season-html, #episode-html {
+    width: 100%;
+} */
+
+.card {
+    margin: 2rem;
+    padding: 2rem;
+    border: 0.25rem solid gold;
+    border-radius: 1rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 2rem;
+  grid-template-areas:
+    "t"
+    "i"
+    "s"
+    "b";
+}
+
+
+.title-holder {
+  grid-area: t;
+}
+
+.image-holder {
+  width: 10rem;
+  grid-area: i;
+}
+
+.show-image {
+    width: 100%;
+}
+
+.summary-holder {
+    width: 20rem;
+    padding: 0.5rem;
+  grid-area: s;
+}
+
+.info-box {
+    width: 15rem;
+  grid-area: b;
+}
+
+.show-info-list {
+      list-style-type: none;
+}
+
+@media (min-width: 450px) {
+  .card {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+      "t t t t t t t t t t t t"
+      "i i i i b b b b b b b b"
+      "i i i i b b b b b b b b"
+      "i i i i b b b b b b b b"
+      "s s s s s s s s s s s s"
+      "s s s s s s s s s s s s";
+  }
+}
+
+@media (min-width: 620px) {
+  .card {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+      ". . . t t t t t t . . ."
+      "i i i s s s s s s b b b"
+      "i i i s s s s s s b b b"
+      "i i i s s s s s s b b b";
+  }
+}

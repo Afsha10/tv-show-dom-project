@@ -14,7 +14,7 @@ window.onload = setup;
 // Fetch episodes function
 function setup() {
   allShows = getAllShows().sort((a, b) => {
-    return a.name.localeCompare(b.name); // sort shows into alphabeltical order
+    return a.name.localeCompare(b.name); // sort shows into alphabeltical order by comparing string, not numbers
   });
 
   buildShowDropdownList(allShows);
