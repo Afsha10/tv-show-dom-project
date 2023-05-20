@@ -8,7 +8,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.direction-holder {
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: bold;
+}
+
+#show-listing-button {
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem auto;
+    padding: 0.5rem;
 }
 
 .footer {
@@ -20,7 +35,8 @@
 .nav-bar {
     display: flex;
     flex-direction: column;
-    width: 10rem;
+    width: 13rem;
+    gap: 1rem;
 }
 
 /* #show-html, #season-html, #episode-html {
@@ -68,6 +84,10 @@
   grid-area: b;
 }
 
+.search-display {
+    width: 30rem;
+}
+
 .show-info-list {
       list-style-type: none;
 }
@@ -85,6 +105,15 @@
       "s s s s s s s s s s s s";
   }
 }
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    width: 16rem;
+    gap: 1rem;
+}
+
 
 @media (min-width: 620px) {
   .card {

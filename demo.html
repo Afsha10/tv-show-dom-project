@@ -8,26 +8,35 @@
     <title>Demo</title>
   </head>
   <body>
-    <header class="header">AfshaTV</header>
+    <header class="header">
+        <div class="title-holder">
+            <h1>TV Shows Guide</h1>
+        </div>
+    </header>
+    <div class="direction-holder">
+        <p class="direct-users">Please select a show from the menu</p>
+    </div>
     <nav class="nav-bar">
       <select id="show-html">
         <option value="">Select a Show</option>
       </select>
-      <select id="season-html">
+      <!-- <select id="season-html">
         <option value="">Select a Season</option>
       </select>
       <select id="episode-html">
         <option value="">Select an Episode</option>
-      </select>
+      </select> -->
       <input
         type="text"
         autocomplete="off"
         id="search-input"
-        placeholder="Search show(s)/ episode(s)"
+        placeholder="Search show(s)"
       />
-      <span class="search-display">Dislplaying xx/ xx episodes</span>
+      <span class="search-display">Dislplaying xx show(s)</span>
     </nav>
+
     <div id="root">
+      <button id="show-listing-button">View Show Listing</button>
       <div class="cards-container">
         <div class="card">
             <div class="title-holder">
@@ -86,7 +95,7 @@
           </div>
             <div class="card">
           <div class="title-holder">
-            <h1 class="title"Breaking Bad</h1>
+            <h1 class="title">Breaking Bad</h1>
           </div>
           <div class="image-holder">
             <img
@@ -191,7 +200,7 @@
           </div>
             <div class="card">
           <div class="title-holder">
-            <h1 class="title"Breaking Bad</h1>
+            <h1 class="title">Breaking Bad</h1>
           </div>
           <div class="image-holder">
             <img
