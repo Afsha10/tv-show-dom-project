@@ -2,7 +2,7 @@
 const rootHtml = document.getElementById("root"); // Get the root element where we'll add the episode cards
 const searchInputHtml = document.getElementById("search-input");
 const searchResultDisplayHtml = document.querySelector(".search-display");
-const episodeSelectHtml = document.querySelector("#episode-html");
+const episodeSelectHtml = document.querySelector("#episode-select-html");
 const showSelectHtml = document.querySelector("#show-html");
 
 // Global variables
@@ -18,6 +18,7 @@ function setup() {
   });
 
   buildShowDropdownList(allShows);
+  makePageForShows(allShows);
 
   // fetch(`https://api.tvmaze.com/shows/${allShows[0].id}/episodes`) // returns a promise and it is pending
   //   .then((response) => {
@@ -151,6 +152,7 @@ function displaySearchedEpisodes(inputValue) {
   // Display searchedEpisodes
   rootHtml.innerHTML = "";
   makePageForEpisodes(filteredEpisodes);
+  // makePageForShows(allShows);
   buildEpisodeDropdownList(filteredEpisodes);
 
   searchResultDisplayHtml.textContent = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`;
@@ -167,9 +169,10 @@ searchInputHtml.addEventListener("input", (event) => {
 
 // jump to episode function
 
+
 function jumpToEpisode(event) {
   console.log("JumpToEpisode event.target", event.target);
-  const episodeSelectHtml = document.querySelector("#episode-html"); // this is the dropdown
+  const episodeSelectHtml = document.querySelector("#episode-select-html"); // this is the dropdown
   const position = episodeSelectHtml.value; // we set a variable for the value which is the number
   // displaySearchedEpisodes(episodeSelectHTML);
   const episodeSelectHtmlId = "episode-card" + position; // position is from the dropdown list; we are making the id will will find
@@ -182,7 +185,7 @@ function jumpToEpisode(event) {
 // build selection dropdown list
 
 function buildEpisodeDropdownList(episodeList) {
-  const episodeSelectHtml = document.querySelector("#episode-html");
+  const episodeSelectHtml = document.querySelector("#episode-select-html");
   episodeSelectHtml.innerHTML = "";
 
   // Create the option element (inside the episodeSelectHTML)
@@ -220,4 +223,62 @@ function buildShowDropdownList(allShows) {
     showSelectHtml.appendChild(showOptionHtml);
     showSelectHtml.addEventListener("change", fetchShow);
   }
+}
+
+
+// level 500
+
+function makePageForShows(allShows) {
+  console.log(allShows);
+  // const searchCountHtml = document.createElement("span"); // Creating the top span element inside the rootEle
+  rootHtml.innerHTML = "";
+  const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
+
+  // searchCountHtml.classList.add("search-count");
+  cardsContainerHtml.classList.add("cards-container");
+
+  // Loop through each show and create a card for it
+
+  allShows.forEach((show, index) => {
+    // Get the show name, season number, show number, and combine them
+    const showName = show.name;
+
+    // Create the show card elements
+    const showImageSrc = show.image?.medium;
+    const showDescription = show.summary;
+
+    const showCardHtml = document.createElement("div");
+    showCardHtml.classList.add("show-card");
+
+    const imageContainerHtml = document.createElement("div");
+    imageContainerHtml.classList.add("show-image-container");
+
+    // Get the show image and description
+    const showImageHtml = document.createElement("img");
+    showImageHtml.classList.add("medium-img");
+    showImageHtml.src = showImageSrc;
+
+    const showDescriptionContainerHtml = document.createElement("div");
+    showDescriptionContainerHtml.classList.add(
+      "show-description-container"
+    );
+
+    const showDescriptionTextHtml = document.createElement("p");
+    showDescriptionTextHtml.classList.add("show-description-text");
+    showDescriptionTextHtml.innerHTML = showDescription;
+
+    showCardHtml.appendChild(imageContainerHtml);
+    imageContainerHtml.appendChild(showImageHtml);
+    showDescriptionContainerHtml.appendChild(showDescriptionTextHtml);
+    showCardHtml.appendChild(showDescriptionContainerHtml);
+    cardsContainerHtml.appendChild(showCardHtml);
+    rootHtml.appendChild(cardsContainerHtml);
+
+    showCardHtml.addEventListener("click", takeToShow)
+
+  });
+}
+
+function takeToShow() {
+  console.log("Hi EMILIE");
 }
