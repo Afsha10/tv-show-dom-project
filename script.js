@@ -1,7 +1,7 @@
 //Get DOM elements
 const rootHtml = document.getElementById("root"); // Get the root element where we'll add the episode cards
 const searchInputHtml = document.getElementById("search-input");
-const searchResultDisplayHtml = document.querySelector(".search-display");
+const searchResultDisplayHtml = document.querySelector(".display-search");
 const episodeSelectHtml = document.querySelector("#episode-select-html");
 const showSelectHtml = document.querySelector("#show-html");
 
@@ -173,9 +173,10 @@ searchInputHtml.addEventListener("input", (event) => {
 function jumpToEpisode(event) {
   console.log("JumpToEpisode event.target", event.target);
   const episodeSelectHtml = document.querySelector("#episode-select-html"); // this is the dropdown
-  const position = episodeSelectHtml.value; // we set a variable for the value which is the number
+  const selectEpisodePosition = episodeSelectHtml.value; // we set a variable for the value which is the number
   // displaySearchedEpisodes(episodeSelectHTML);
-  const episodeSelectHtmlId = "episode-card" + position; // position is from the dropdown list; we are making the id will will find
+  const episodeSelectHtmlId = "episode-card" + selectEpisodePosition; // position is from the dropdown list; we are making the id will will find
+
   document.getElementById(episodeSelectHtmlId).scrollIntoView({
     block: "center",
     behavior: "smooth",

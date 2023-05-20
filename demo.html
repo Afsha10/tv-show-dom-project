@@ -13,30 +13,31 @@
             <h1>TV Shows Guide</h1>
         </div>
     </header>
-    <div class="direction-holder">
-        <p class="direct-users">Please select a show from the menu</p>
+    <div class="big-button-holder">
+        <button id="show-listing-button">View Show Listing</button>
     </div>
-    <nav class="nav-bar">
-      <select id="show-select-html">
-        <option value="">Select a Show</option>
-      </select>
-      <!-- <select id="season-select-html">
-        <option value="">Select a Season</option>
-      </select>
-      <select id="episode-select-html">
-        <option value="">Select an Episode</option>
-      </select> -->
-      <input
-        type="text"
-        autocomplete="off"
-        id="search-input"
-        placeholder="Search show(s)"
-      />
-      <span class="search-display">Dislplaying xx show(s)</span>
-    </nav>
+    <div class="nav-bar-holder">
+      <nav class="nav-bar">
+        <select id="show-select-html">
+          <option value="">Select a Show</option>
+        </select>
+        <!-- <select id="season-select-html">
+          <option value="">Select a Season</option>
+        </select>
+        <select id="episode-select-html">
+          <option value="">Select an Episode</option>
+        </select> -->
+        <input
+          type="text"
+          autocomplete="off"
+          id="search-input"
+          placeholder="Search show(s)"
+        />
+        <span class="display-search">Dislplaying xx show(s)</span>
+      </nav>
+    </div>
 
-    <div id="root">
-      <button id="show-listing-button">View Show Listing</button>
+    <div id="root">   
       <div class="cards-container">
         <div class="card">
             <div class="title-holder">

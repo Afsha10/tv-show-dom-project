@@ -1,29 +1,30 @@
 .header, .footer {
     width: auto;
-    height: 5rem;
-    background-color: aquamarine;
+    height: 4rem;
+    background-color: #8FE4DF;
 }
 
 .header {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #8FE4DF;
 }
 
-.direction-holder {
-    background-color: aliceblue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
+.big-button-holder {
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
 #show-listing-button {
+    background-color: #8FE4DF;
     border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
     margin: 0.5rem auto;
-    padding: 0.5rem;
+    padding: 0.2rem 8rem;
+    font-weight:500;
 }
 
 .footer {
@@ -32,10 +33,17 @@
     align-items: end;
 }
 
+.nav-bar-holder {
+  border: #190f0f;
+  background-color: #D9D9D9;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
 .nav-bar {
     display: flex;
     flex-direction: column;
-    width: 13rem;
     gap: 1rem;
 }
 
@@ -44,7 +52,8 @@
 } */
 
 .card {
-    margin: 2rem;
+  background-color: #D1EBF1;
+    margin: 0.5rem;
     padding: 2rem;
     border: 0.25rem solid gold;
     border-radius: 1rem;
@@ -65,6 +74,8 @@
 }
 
 .image-holder {
+  padding: 1rem;
+      background-color: #D9D9D9;
   width: 10rem;
   grid-area: i;
 }
@@ -77,6 +88,9 @@
     width: 20rem;
     padding: 0.5rem;
   grid-area: s;
+  background-color: #D9D9D9;
+  display: flex;
+  padding: 1rem;
 }
 
 .info-box {
@@ -84,15 +98,24 @@
   grid-area: b;
 }
 
-.search-display {
-    width: 30rem;
+.display-search {
+    display: block;
 }
 
 .show-info-list {
-      list-style-type: none;
+    list-style-type: none;
+    padding: 1rem;
+
+    /* background-color: #D1EBF1; */
+    background-color: #D9D9D9;
+
 }
 
-@media (min-width: 450px) {
+li {
+      gap: rem;
+}
+
+@media screen and (min-width: 450px) {
   .card {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -106,16 +129,20 @@
   }
 }
 
+.nav-bar-holder {
+    padding: 1rem;
+    background-color: #D9D9D9;
+
+}
+
 .nav-bar {
     display: flex;
     flex-direction: row;
-    padding: 1rem;
-    width: 16rem;
-    gap: 1rem;
+    height: 2rem;
+
 }
 
-
-@media (min-width: 620px) {
+@media screen and (min-width: 620px) {
   .card {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(4, 1fr);
@@ -125,4 +152,9 @@
       "i i i s s s s s s b b b"
       "i i i s s s s s s b b b";
   }
+}
+
+.nav-bar-holder {
+  padding: 1rem;
+  background-color: #D9D9D9;
 }
