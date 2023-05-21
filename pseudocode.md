@@ -183,3 +183,113 @@ Make a nice responsive design according to the requirement creating one card wit
 Plan for making the shows cards clickible - level 500:
 1. target each card which is
 1. put an eventListener on each card
+
+
+
+
+
+function makePageForShows(allShows) {
+  console.log(allShows);
+  // const searchCountHtml = document.createElement("span"); // Creating the top span element inside the rootEle
+  rootHtml.innerHTML = "";
+  const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
+
+  // searchCountHtml.classList.add("search-count");
+  cardsContainerHtml.classList.add("cards-container");
+
+  // Loop through each show and create a card for it
+
+  allShows.forEach((show, index) => {
+    // Get the show name, season number, show number, and combine them
+  
+    const showName = show.name;
+    const showNameContainerHtml = document.createElement("div");
+    showNameContainerHtml.classList.add("show-name-container");
+
+    const showNameTextHtml = document.createElement("p");
+    showNameTextHtml.classList.add("show-name-text");
+    showNameTextHtml.innerHTML = showName;
+
+    // Create the show card elements
+    const showImageSrc = show.image?.medium;
+    const showDescription = show.summary;
+
+    const showCardHtml = document.createElement("div");
+    showCardHtml.classList.add("show-card");
+
+    const imageContainerHtml = document.createElement("div");
+    imageContainerHtml.classList.add("show-image-container");
+
+    // Get the show image and description
+    const showImageHtml = document.createElement("img");
+    showImageHtml.classList.add("medium-img");
+    showImageHtml.src = showImageSrc;
+
+    const showDescriptionContainerHtml = document.createElement("div");
+    showDescriptionContainerHtml.classList.add(
+      "show-description-container"
+    );
+
+    const showDescriptionTextHtml = document.createElement("p");
+    showDescriptionTextHtml.classList.add("show-description-text");
+    showDescriptionTextHtml.innerHTML = showDescription;
+
+    const showRating = show.rating.average;    
+    const showGenre = show.genres;
+    const showStatus = show.status;
+    const showRuntime = show.runtime;
+
+    const showBasicInfoContainerHtml = document.createElement("div");
+    showBasicInfoContainerHtml.classList.add("show-info-container");
+    
+    const showRatingValueHtml = document.createElement("span");
+    const showRatingDescriptionHtml = document.createElement("span");
+    const showRatingContainer = document.createElement("p");
+    showRatingValueHtml.classList.add("show-rating-text");
+    showRatingDescriptionHtml.classList.add("show-rating-span");
+    showRatingDescriptionHtml.innerText = "Rated: "
+    showRatingValueHtml.innerHTML = `${showRating}`;
+
+    const showGenreValueHtml = document.createElement("span");
+    const showGenreDescriptionHtml = document.createElement("span");
+    const showGenreContainer = document.createElement("p");
+    showGenreValueHtml.classList.add("show-genre-text");
+    showRatingDescriptionHtml.classList.add("show-genre-span");
+    showRatingDescriptionHtml.innerText = "Genres: ";   
+    showGenreValueHtml.innerHTML = `${showGenre}`;
+    
+    const showStatusTextHtml = document.createElement("p");
+    showStatusTextHtml.classList.add("show-status-text");
+    showStatusTextHtml.innerHTML = `Status: ${showStatus}`;
+    
+    const showRuntimeTextHtml = document.createElement("p");
+    showRuntimeTextHtml.classList.add("show-runtime-text");
+    showRuntimeTextHtml.innerHTML = `Runtime: ${showRuntime}`;
+    
+    showCardHtml.appendChild(showNameContainerHtml);
+    showNameContainerHtml.appendChild(showNameTextHtml);
+
+    showCardHtml.appendChild(imageContainerHtml);
+    imageContainerHtml.appendChild(showImageHtml);
+
+    showDescriptionContainerHtml.appendChild(showDescriptionTextHtml);
+    showCardHtml.appendChild(showDescriptionContainerHtml);
+
+    showRatingContainer.appendChild(showRatingDescriptionHtml)
+    showRatingContainer.appendChild(showRatingValueHtml);
+    showBasicInfoContainerHtml.appendChild(showRatingContainer);
+
+    showBasicInfoContainerHtml.appendChild(showStatusTextHtml);
+
+    showBasicInfoContainerHtml.appendChild(showRuntimeTextHtml);
+
+    showBasicInfoContainerHtml.appendChild(showGenreTextHtml);
+    
+    showCardHtml.appendChild(showBasicInfoContainerHtml);
+    cardsContainerHtml.appendChild(showCardHtml);
+    rootHtml.appendChild(cardsContainerHtml);
+
+    showCardHtml.addEventListener("click", takeToShow)
+
+  });
+}

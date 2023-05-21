@@ -140,6 +140,8 @@ function makePageForEpisodes(episodeList) {
 
 // function to search
 
+
+
 function displaySearchedEpisodes(inputValue) {
   // creating a fresh array which only holds the episodes that match our search criteria
   const filteredEpisodes = allEpisodes.filter((episode) => {
@@ -161,6 +163,10 @@ function displaySearchedEpisodes(inputValue) {
 // List of event listeners (Should be always at the bottom)
 
 searchInputHtml.addEventListener("input", (event) => {
+  // {
+  //   input: event.target.value.trim().toLowerCase(),
+  //   search: true,
+  // }
   const inputValue = event.target.value.trim().toLowerCase();
   displaySearchedEpisodes(inputValue);
 });
@@ -174,8 +180,11 @@ function jumpToEpisode(event) {
   console.log("JumpToEpisode event.target", event.target);
   const episodeSelectHtml = document.querySelector("#episode-select-html"); // this is the dropdown
   const selectEpisodePosition = episodeSelectHtml.value; // we set a variable for the value which is the number
-  // displaySearchedEpisodes(episodeSelectHTML);
   const episodeSelectHtmlId = "episode-card" + selectEpisodePosition; // position is from the dropdown list; we are making the id will will find
+  // displaySearchedEpisodes(episodeSelectHtml);
+
+  /* Plan is to use the episodeSelectHtmlId how? */
+  
 
   document.getElementById(episodeSelectHtmlId).scrollIntoView({
     block: "center",
@@ -286,36 +295,65 @@ function makePageForShows(allShows) {
     const showRatingValueHtml = document.createElement("span");
     const showRatingDescriptionHtml = document.createElement("span");
     const showRatingContainer = document.createElement("p");
-    showRatingValueHtml.classList.add("show-rating-text");
-    showRatingDescriptionHtml.classList.add("show-rating-span");
+    showRatingValueHtml.classList.add("show-rating-value");
+    showRatingDescriptionHtml.classList.add("show-rating-description");
+    showRatingContainer.classList.add("show-rating-container");
     showRatingDescriptionHtml.innerText = "Rated: "
     showRatingValueHtml.innerHTML = `${showRating}`;
-    showRatingContainer.appendChild(showRatingDescriptionHtml)
-    showRatingContainer.appendChild(showRatingValueHtml);
 
-    const showGenreTextHtml = document.createElement("p");
-    showGenreTextHtml.classList.add("show-genre-text");
-    showGenreTextHtml.innerHTML = `Genres: ${showGenre}`;
+    const showGenreValueHtml = document.createElement("span");
+    const showGenreDescriptionHtml = document.createElement("span");
+    const showGenreContainer = document.createElement("p");
+    showGenreValueHtml.classList.add("show-genre-value");
+    showGenreDescriptionHtml.classList.add("show-genre-description");
+    showGenreContainer.classList.add("show-genre-container");
+    showGenreDescriptionHtml.innerText = "Genres: "; 
+    showGenreValueHtml.innerHTML = `${showGenre}`;
 
-    const showStatusTextHtml = document.createElement("p");
-    showStatusTextHtml.classList.add("show-status-text");
-    showStatusTextHtml.innerHTML = `Status: ${showStatus}`;
-
-    const showRuntimeTextHtml = document.createElement("p");
-    showRuntimeTextHtml.classList.add("show-runtime-text");
-    showRuntimeTextHtml.innerHTML = `Runtime: ${showRuntime}`;
+    const showStatusValueHtml = document.createElement("span");
+    const showStatusDescriptionHtml = document.createElement("span");
+    const showStatusContainer = document.createElement("p");
+    showStatusValueHtml.classList.add("show-status-value");
+    showStatusDescriptionHtml.classList.add("show-status-description");
+    showStatusContainer.classList.add("show-status-container");
+    showStatusDescriptionHtml.innerText = "Status: "; 
+    showStatusValueHtml.innerHTML = `${showStatus}`;
+    
+    const showRuntimeValueHtml = document.createElement("span");
+    const showRuntimeDescriptionHtml = document.createElement("span");
+    const showRuntimeContainer = document.createElement("p");
+    showRuntimeValueHtml.classList.add("show-runtime-value");
+    showRuntimeDescriptionHtml.classList.add("show-runtime-description");
+    showRuntimeContainer.classList.add("show-runtime-container");
+    showRuntimeDescriptionHtml.innerText = "Runtime: ";
+    showRuntimeValueHtml.innerHTML = `${showRuntime}`;
     
     showCardHtml.appendChild(showNameContainerHtml);
     showNameContainerHtml.appendChild(showNameTextHtml);
-    showBasicInfoContainerHtml.appendChild(showRatingContainer);
-    showBasicInfoContainerHtml.appendChild(showStatusTextHtml);
-    showBasicInfoContainerHtml.appendChild(showRuntimeTextHtml);
-    showBasicInfoContainerHtml.appendChild(showGenreTextHtml);
-    showCardHtml.appendChild(showBasicInfoContainerHtml);
+
     showCardHtml.appendChild(imageContainerHtml);
     imageContainerHtml.appendChild(showImageHtml);
+
     showDescriptionContainerHtml.appendChild(showDescriptionTextHtml);
     showCardHtml.appendChild(showDescriptionContainerHtml);
+
+    showRatingContainer.appendChild(showRatingDescriptionHtml)
+    showRatingContainer.appendChild(showRatingValueHtml);
+    showBasicInfoContainerHtml.appendChild(showRatingContainer);
+    
+    showGenreContainer.appendChild(showGenreDescriptionHtml);
+    showGenreContainer.appendChild(showGenreValueHtml);
+    showBasicInfoContainerHtml.appendChild(showGenreContainer);
+
+    showGenreContainer.appendChild(showStatusDescriptionHtml);
+    showGenreContainer.appendChild(showStatusValueHtml);
+    showBasicInfoContainerHtml.appendChild(showStatusContainer);
+
+    showRuntimeContainer.appendChild(showRuntimeDescriptionHtml);
+    showRuntimeContainer.appendChild(showRuntimeValueHtml);
+    showBasicInfoContainerHtml.appendChild(showRuntimeContainer);
+    
+    showCardHtml.appendChild(showBasicInfoContainerHtml);
     cardsContainerHtml.appendChild(showCardHtml);
     rootHtml.appendChild(cardsContainerHtml);
 
@@ -325,5 +363,5 @@ function makePageForShows(allShows) {
 }
 
 function takeToShow() {
-  console.log("Hi EMILIE");
+  console.log("Hi Afsha");
 }

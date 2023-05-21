@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
 
-  <body>
+  <body>    
     <header class="search-bar">
       <select id="show-html">
         <option value="">Select a Show</option>
@@ -25,9 +25,12 @@
       <span class="display-search"></span>
     </header>
     <h1>TV Show Guide</h1>
-    <p class="directing-users">
+    <div class="big-button-holder">
+      <button id="show-listing-button">View Show Listing</button>
+    </div>
+    <!-- <p class="directing-users">
       Please select an episode from the top left menu
-    </p>
+    </p> -->
     <div id="root">
       <!-- 
       <span class="search-count"></span>
@@ -50,7 +53,7 @@
     <!-- <script src="shows.js"></script>  -->
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
-    <footer>
+    <footer id="footer">
       <p id="source">Source: TVMaze.com</p>
     </footer>
   </body>

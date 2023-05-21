@@ -96,6 +96,7 @@
 .info-box {
     width: 15rem;
   grid-area: b;
+  border: #190f0f solid 1px;
 }
 
 .display-search {
