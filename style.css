@@ -41,6 +41,34 @@ body {
   padding: 1rem;
 }
 
+.show-name-text {
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
+}
+
+.show-image-container {
+  padding: 1rem;
+  background-color: rebeccapurple;
+}
+
+.show-description-container {
+  background-color: rebeccapurple;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.show-description-text {
+  width: 18rem;
+  text-align: justify;
+}
+
+.show-info-container {
+  width: 18rem;
+  padding: 1rem;
+  background-color: rebeccapurple;
+}
+
 .episode-name-num-holder {
   border: 0.1rem black solid;
   border-radius: 0.3rem;

@@ -345,8 +345,8 @@ function makePageForShows(allShows) {
     showGenreContainer.appendChild(showGenreValueHtml);
     showBasicInfoContainerHtml.appendChild(showGenreContainer);
 
-    showGenreContainer.appendChild(showStatusDescriptionHtml);
-    showGenreContainer.appendChild(showStatusValueHtml);
+    showStatusContainer.appendChild(showStatusDescriptionHtml);
+    showStatusContainer.appendChild(showStatusValueHtml);
     showBasicInfoContainerHtml.appendChild(showStatusContainer);
 
     showRuntimeContainer.appendChild(showRuntimeDescriptionHtml);
