@@ -285,20 +285,21 @@ function makePageForShows(allShows) {
     
     const showRatingTextHtml = document.createElement("p");
     showRatingTextHtml.classList.add("show-rating-text");
-    showRatingTextHtml.innerHTML = showRating;
+    showRatingTextHtml.innerHTML = `Rated: ${showRating}`;
 
     const showGenreTextHtml = document.createElement("p");
     showGenreTextHtml.classList.add("show-genre-text");
-    showGenreTextHtml.innerHTML = showGenre;
+    showGenreTextHtml.innerHTML = `Genres: ${showGenre}`;
 
     const showStatusTextHtml = document.createElement("p");
     showStatusTextHtml.classList.add("show-status-text");
-    showStatusTextHtml.innerHTML = showStatus;
+    showStatusTextHtml.innerHTML = `Status: ${showStatus}`;
 
     const showRuntimeTextHtml = document.createElement("p");
     showRuntimeTextHtml.classList.add("show-runtime-text");
-    showRuntimeTextHtml.innerHTML = showRuntime;
+    showRuntimeTextHtml.innerHTML = `Runtime: ${showRuntime}`;
 
+    showBasicInfoContainerHtml.appendChild(showStatusTextHtml);
     showBasicInfoContainerHtml.appendChild(showRuntimeTextHtml);
     showBasicInfoContainerHtml.appendChild(showRatingTextHtml);
     showBasicInfoContainerHtml.appendChild(showGenreTextHtml);
