@@ -280,8 +280,8 @@ function makePageForShows(allShows) {
     const showStatus = show.status;
     const showRuntime = show.runtime;
 
-    const showInfoContainerHtml = document.createElement("div");
-    showInfoContainerHtml.classList.add("show-info-container");
+    const showBasicInfoContainerHtml = document.createElement("div");
+    showBasicInfoContainerHtml.classList.add("show-info-container");
     
     const showRatingTextHtml = document.createElement("p");
     showRatingTextHtml.classList.add("show-rating-text");
@@ -299,10 +299,10 @@ function makePageForShows(allShows) {
     showRuntimeTextHtml.classList.add("show-runtime-text");
     showRuntimeTextHtml.innerHTML = showRuntime;
 
-    showInfoContainerHtml.appendChild(showRuntimeTextHtml);
-    showInfoContainerHtml.appendChild(showRatingTextHtml);
-    showInfoContainerHtml.appendChild(showGenreTextHtml);
-    showCardHtml.appendChild(showInfoContainerHtml);
+    showBasicInfoContainerHtml.appendChild(showRuntimeTextHtml);
+    showBasicInfoContainerHtml.appendChild(showRatingTextHtml);
+    showBasicInfoContainerHtml.appendChild(showGenreTextHtml);
+    showCardHtml.appendChild(showBasicInfoContainerHtml);
     showNameContainerHtml.appendChild(showNameTextHtml);
     showCardHtml.appendChild(showNameContainerHtml);
     showCardHtml.appendChild(imageContainerHtml);
