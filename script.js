@@ -242,7 +242,14 @@ function makePageForShows(allShows) {
 
   allShows.forEach((show, index) => {
     // Get the show name, season number, show number, and combine them
+  
     const showName = show.name;
+    const showNameContainerHtml = document.createElement("div");
+    showNameContainerHtml.classList.add("show-name-container");
+
+    const showNameTextHtml = document.createElement("p");
+    showNameTextHtml.classList.add("show-name-text");
+    showNameTextHtml.innerHTML = showName;
 
     // Create the show card elements
     const showImageSrc = show.image?.medium;
@@ -268,6 +275,36 @@ function makePageForShows(allShows) {
     showDescriptionTextHtml.classList.add("show-description-text");
     showDescriptionTextHtml.innerHTML = showDescription;
 
+    const showRating = show.rating.average;    
+    const showGenre = show.genres;
+    const showStatus = show.status;
+    const showRuntime = show.runtime;
+
+    const showInfoContainerHtml = document.createElement("div");
+    showInfoContainerHtml.classList.add("show-info-container");
+    
+    const showRatingTextHtml = document.createElement("p");
+    showRatingTextHtml.classList.add("show-rating-text");
+    showRatingTextHtml.innerHTML = showRating;
+
+    const showGenreTextHtml = document.createElement("p");
+    showGenreTextHtml.classList.add("show-genre-text");
+    showGenreTextHtml.innerHTML = showGenre;
+
+    const showStatusTextHtml = document.createElement("p");
+    showStatusTextHtml.classList.add("show-status-text");
+    showStatusTextHtml.innerHTML = showStatus;
+
+    const showRuntimeTextHtml = document.createElement("p");
+    showRuntimeTextHtml.classList.add("show-runtime-text");
+    showRuntimeTextHtml.innerHTML = showRuntime;
+
+    showInfoContainerHtml.appendChild(showRuntimeTextHtml);
+    showInfoContainerHtml.appendChild(showRatingTextHtml);
+    showInfoContainerHtml.appendChild(showGenreTextHtml);
+    showCardHtml.appendChild(showInfoContainerHtml);
+    showNameContainerHtml.appendChild(showNameTextHtml);
+    showCardHtml.appendChild(showNameContainerHtml);
     showCardHtml.appendChild(imageContainerHtml);
     imageContainerHtml.appendChild(showImageHtml);
     showDescriptionContainerHtml.appendChild(showDescriptionTextHtml);
