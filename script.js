@@ -283,9 +283,15 @@ function makePageForShows(allShows) {
     const showBasicInfoContainerHtml = document.createElement("div");
     showBasicInfoContainerHtml.classList.add("show-info-container");
     
-    const showRatingTextHtml = document.createElement("p");
-    showRatingTextHtml.classList.add("show-rating-text");
-    showRatingTextHtml.innerHTML = `Rated: ${showRating}`;
+    const showRatingValueHtml = document.createElement("span");
+    const showRatingDescriptionHtml = document.createElement("span");
+    const showRatingContainer = document.createElement("p");
+    showRatingValueHtml.classList.add("show-rating-text");
+    showRatingDescriptionHtml.classList.add("show-rating-span");
+    showRatingDescriptionHtml.innerText = "Rated: "
+    showRatingValueHtml.innerHTML = `${showRating}`;
+    showRatingContainer.appendChild(showRatingDescriptionHtml)
+    showRatingContainer.appendChild(showRatingValueHtml);
 
     const showGenreTextHtml = document.createElement("p");
     showGenreTextHtml.classList.add("show-genre-text");
@@ -298,14 +304,14 @@ function makePageForShows(allShows) {
     const showRuntimeTextHtml = document.createElement("p");
     showRuntimeTextHtml.classList.add("show-runtime-text");
     showRuntimeTextHtml.innerHTML = `Runtime: ${showRuntime}`;
-
+    
+    showCardHtml.appendChild(showNameContainerHtml);
+    showNameContainerHtml.appendChild(showNameTextHtml);
+    showBasicInfoContainerHtml.appendChild(showRatingContainer);
     showBasicInfoContainerHtml.appendChild(showStatusTextHtml);
     showBasicInfoContainerHtml.appendChild(showRuntimeTextHtml);
-    showBasicInfoContainerHtml.appendChild(showRatingTextHtml);
     showBasicInfoContainerHtml.appendChild(showGenreTextHtml);
     showCardHtml.appendChild(showBasicInfoContainerHtml);
-    showNameContainerHtml.appendChild(showNameTextHtml);
-    showCardHtml.appendChild(showNameContainerHtml);
     showCardHtml.appendChild(imageContainerHtml);
     imageContainerHtml.appendChild(showImageHtml);
     showDescriptionContainerHtml.appendChild(showDescriptionTextHtml);
