@@ -43,8 +43,8 @@ function setup() {
   // fetchShow(allShows[0]);
 }
 
-function fetchShow(tvShowId) {
-  let SHOW_ID = tvShowId.target.value;
+function fetchShow(event) {
+  let SHOW_ID = event.target.value; // event.target is a DOM element which is the select elment containing all the show options. The value of the select element is the value of the selected option element and event.target.value is a property of that the select element which contains the id in this case
   fetch(`https://api.tvmaze.com/shows/${SHOW_ID}/episodes`) // returns a promise and it is pending
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
@@ -164,9 +164,12 @@ searchInputHtml.addEventListener("input", (event) => {
   //   input: event.target.value.trim().toLowerCase(),
   //   search: true,
   // }
-  const inputValue = event.target.value.trim().toLowerCase();
+  console.log(event);
+  const inputValue = event.target.value.trim().toLowerCase(); // target is the dom element in which the input is happening and .value is the text that is being entered
   displaySearchedEpisodes(inputValue);
 });
+
+
 
 // level 300
 
@@ -176,17 +179,19 @@ searchInputHtml.addEventListener("input", (event) => {
 function jumpToEpisode(event) {
   console.log("JumpToEpisode event.target", event.target);
   const episodeSelectHtml = document.querySelector("#episode-select-html"); // this is the dropdown
-  const selectEpisodePosition = episodeSelectHtml.value; // we set a variable for the value which is the number
-  const episodeSelectHtmlId = "episode-card" + selectEpisodePosition; // position is from the dropdown list; we are making the id will will find
   // displaySearchedEpisodes(episodeSelectHtml);
 
   /* Plan is to use the episodeSelectHtmlId how? */
-  
 
-  document.getElementById(episodeSelectHtmlId).scrollIntoView({
-    block: "center",
-    behavior: "smooth",
+  const filteredEpisodes = allEpisodes.filter((episode) => {
+    return episode.id === episodeSelectHtml.value;
   });
+
+  // Display searchedEpisodes
+  rootHtml.innerHTML = "";
+  makePageForEpisodes(filteredEpisodes);
+  // makePageForShows(allShows);
+  buildEpisodeDropdownList(filteredEpisodes);
 }
 
 // build selection dropdown list
@@ -247,6 +252,11 @@ function makePageForShows(allShows) {
   // Loop through each show and create a card for it
 
   allShows.forEach((show, index) => {
+    // Create the show card elements
+
+    const showCardHtml = document.createElement("div");
+    showCardHtml.classList.add("show-card");
+
     // Get the show name
     const showName = show.name;
     const showNameTextHtml = document.createElement("p");
@@ -254,11 +264,6 @@ function makePageForShows(allShows) {
     showNameTextHtml.classList.add("show-name-text");
     showNameContainerHtml.classList.add("show-name-container");
     showNameTextHtml.innerHTML = showName;
-
-    // Create the show card elements
-
-    const showCardHtml = document.createElement("div");
-    showCardHtml.classList.add("show-card");
 
     // Get the show image
 
@@ -269,14 +274,14 @@ function makePageForShows(allShows) {
     imageContainerHtml.classList.add("show-image-container");
     showImageHtml.src = showImageSrc;
 
-    // Get the show description
+    // Get the show summary
 
-    const showDescription = show.summary;
-    const showDescriptionTextHtml = document.createElement("p");
-    const showDescriptionContainerHtml = document.createElement("div");
-    showDescriptionTextHtml.classList.add("show-description-text");
-    showDescriptionContainerHtml.classList.add("show-description-container");
-    showDescriptionTextHtml.innerHTML = showDescription;
+    const showSummary = show.summary;
+    const showSummaryTextHtml = document.createElement("p");
+    const showSummaryContainerHtml = document.createElement("div");
+    showSummaryTextHtml.classList.add("show-summary-text");
+    showSummaryContainerHtml.classList.add("show-summary-container");
+    showSummaryTextHtml.innerHTML = showSummary;
 
     // Create the show basic info container elements
     
@@ -288,8 +293,8 @@ function makePageForShows(allShows) {
     const showStatus = show.status;
     const showRuntime = show.runtime;
 
-    const showRatingValueHtml = document.createElement("span");
     const showRatingDescriptionHtml = document.createElement("span");
+    const showRatingValueHtml = document.createElement("span");
     const showRatingContainer = document.createElement("p");
     showRatingValueHtml.classList.add("show-rating-value");
     showRatingDescriptionHtml.classList.add("show-rating-description");
@@ -297,8 +302,8 @@ function makePageForShows(allShows) {
     showRatingDescriptionHtml.innerText = "Rated: ";
     showRatingValueHtml.innerHTML = `${showRating}`;
 
-    const showGenreValueHtml = document.createElement("span");
     const showGenreDescriptionHtml = document.createElement("span");
+    const showGenreValueHtml = document.createElement("span");
     const showGenreContainer = document.createElement("p");
     showGenreValueHtml.classList.add("show-genre-value");
     showGenreDescriptionHtml.classList.add("show-genre-description");
@@ -330,8 +335,8 @@ function makePageForShows(allShows) {
     showCardHtml.appendChild(imageContainerHtml);
     imageContainerHtml.appendChild(showImageHtml);
 
-    showDescriptionContainerHtml.appendChild(showDescriptionTextHtml);
-    showCardHtml.appendChild(showDescriptionContainerHtml);
+    showSummaryContainerHtml.appendChild(showSummaryTextHtml);
+    showCardHtml.appendChild(showSummaryContainerHtml);
 
     showRatingContainer.appendChild(showRatingDescriptionHtml);
     showRatingContainer.appendChild(showRatingValueHtml);
@@ -360,3 +365,32 @@ function makePageForShows(allShows) {
 function takeToShowEpisodes() {
   console.log("Hi Afsha");
 }
+
+// function displaySearchedShows(inputValue) {
+//   // creating a fresh array which only holds the episodes that match our search criteria
+//   const filteredEpisodes = allEpisodes.filter((allShows) => {
+//     return (
+//       show.name.toLowerCase().includes(inputValue) ||
+//       show.summary.toLowerCase().includes(inputValue)
+//     );
+//   });
+
+//   // Display searchedEpisodes
+//   rootHtml.innerHTML = "";
+//   makePageForShows(filteredShows);
+//   // makePageForShows(allShows);
+//   buildShowDropdownList(filteredShows);
+
+//   searchResultDisplayHtml.textContent = `Displaying ${filteredShows.length}/${allEpisodes.length} shows`;
+// }
+
+// // List of event listeners (Should be always at the bottom)
+
+// searchInputHtml.addEventListener("input", (event) => {
+//   // {
+//   //   input: event.target.value.trim().toLowerCase(),
+//   //   search: true,
+//   // }
+//   const inputValue = event.target.value.trim().toLowerCase(); // target is the dom element in which the input is happening and .value is the text that is being entered
+//   displaySearchedEpisodes(inputValue);
+// });

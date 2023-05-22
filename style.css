@@ -15,7 +15,7 @@ body {
     background-color: #8FE4DF;
   }
 
-  .header {
+.header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +23,7 @@ body {
     /* position: fixed; */
   }
   
-  .big-button-holder {
+.big-button-holder {
     height: 3rem;
     display: flex;
     justify-content: center;
@@ -59,6 +59,8 @@ body {
 } */
 
 #root {
+  display: flex;
+  justify-content: center;
   background-color: #8fe4df;
   color: black;
   padding: 1rem;
@@ -77,6 +79,7 @@ body {
   gap: 3rem;
   justify-items: center;
   justify-content: center;
+  width: 18.25rem;
   padding: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 }
@@ -98,26 +101,41 @@ body {
   text-align: center;
 }
 
-.show-image-container {
-  padding: 1rem;
-  background-color: #E9E6E6;
+.show-name-container {
+  grid-area: n;
 }
 
-.show-description-container {
+.show-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  width: fit-content;
+  padding: 1rem;
+  background-color: #E9E6E6;
+  grid-area: i;
+}
+
+.show-summary-container {
   background-color: #E9E6E6;
   margin: 1rem;
   padding: 1rem;
+  grid-area: s;
 }
 
-.show-description-text {
+.show-summary-text {
   width: 18rem;
   text-align: justify;
 }
 
+
 .show-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
   width: 18rem;
   padding: 1rem;
   background-color: #E9E6E6;
+  grid-area: b;
 }
 
 .episode-name-num-holder {
@@ -137,16 +155,12 @@ body {
   padding: 1rem;
 }
 
-.episode-description-text {
+.episode-summary-text {
   font-size: small;
   padding: 0 1rem 1rem 1rem;
   font-size: medium;
 }
 
-#source {
-  display: flex;
-  justify-content: center;
-}
 
 .show-card {
   display: flex;
@@ -155,15 +169,29 @@ body {
   background-color: #D1EBF1;
   width: 18rem;
   border-radius: 0.3rem;
-  align-items: center;
+  justify-content: center;
+  /* align-items: center; */
   padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 2rem;
+  grid-template-areas:
+    "n"
+    "i"
+    "s"
+    "b";
 }
-
 
 
 #footer {
   display: flex;
   flex-direction: column;
+}
+
+#source {
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (min-width: 450px) {
