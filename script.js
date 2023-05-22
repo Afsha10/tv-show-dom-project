@@ -70,11 +70,10 @@ function fetchShow(tvShowId) {
 // Create an input element inside the rootEle
 
 function makePageForEpisodes(episodeList) {
-  // const searchCountHtml = document.createElement("span"); // Creating the top span element inside the rootEle
+
   rootHtml.innerHTML = "";
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
 
-  // searchCountHtml.classList.add("search-count");
   cardsContainerHtml.classList.add("cards-container");
 
   // Loop through each episode and create a card for it
@@ -87,36 +86,36 @@ function makePageForEpisodes(episodeList) {
     const episodeNameNum = `${episodeName} - S${paddedSeasonNum}E${paddedEpisodeNum}`;
 
     // Create the episode card elements
-    const episodeImageSrc = episode.image?.medium;
-    const episodeDescription = episode.summary;
 
     const episodeCardHtml = document.createElement("div");
     episodeCardHtml.classList.add("episode-card");
     episodeCardHtml.id = "episode-card" + index;
 
-    const episodeNameNumHolderHtml = document.createElement("div");
-    episodeNameNumHolderHtml.classList.add("episode-name-num-holder");
+    // Get the episode title
 
-    // Creating a span inside our span element
+    const episodeNameNumHolderHtml = document.createElement("div");
     const episodeNameNumTextHtml = document.createElement("span");
+    episodeNameNumHolderHtml.classList.add("episode-name-num-holder");
     episodeNameNumTextHtml.classList.add("episode-name-num-text");
     episodeNameNumTextHtml.textContent = episodeNameNum;
 
-    const imageContainerHtml = document.createElement("div");
-    imageContainerHtml.classList.add("episode-image-container");
+    // Get the episode image
 
-    // Get the episode image and description
+    const episodeImageSrc = episode.image?.medium;
     const episodeImageHtml = document.createElement("img");
+    const imageContainerHtml = document.createElement("div");
     episodeImageHtml.classList.add("medium-img");
+    imageContainerHtml.classList.add("episode-image-container");
     episodeImageHtml.src = episodeImageSrc;
-
+    
+    // Get the episode description
+    const episodeDescription = episode.summary;
+    const episodeDescriptionTextHtml = document.createElement("p");
     const episodeDescriptionContainerHtml = document.createElement("div");
+    episodeDescriptionTextHtml.classList.add("episode-description-text");
     episodeDescriptionContainerHtml.classList.add(
       "episode-description-container"
-    );
-
-    const episodeDescriptionTextHtml = document.createElement("p");
-    episodeDescriptionTextHtml.classList.add("episode-description-text");
+      );
     episodeDescriptionTextHtml.innerHTML = episodeDescription;
 
     // Update info about displayed episodes
@@ -133,14 +132,12 @@ function makePageForEpisodes(episodeList) {
     episodeCardHtml.appendChild(episodeDescriptionContainerHtml);
     cardsContainerHtml.appendChild(episodeCardHtml);
     rootHtml.appendChild(cardsContainerHtml);
-  });
+  }); // end of for.each
 }
 
 // level 200
 
 // function to search
-
-
 
 function displaySearchedEpisodes(inputValue) {
   // creating a fresh array which only holds the episodes that match our search criteria
@@ -250,55 +247,54 @@ function makePageForShows(allShows) {
   // Loop through each show and create a card for it
 
   allShows.forEach((show, index) => {
-    // Get the show name, season number, show number, and combine them
-  
+    // Get the show name
     const showName = show.name;
-    const showNameContainerHtml = document.createElement("div");
-    showNameContainerHtml.classList.add("show-name-container");
-
     const showNameTextHtml = document.createElement("p");
+    const showNameContainerHtml = document.createElement("div");
     showNameTextHtml.classList.add("show-name-text");
+    showNameContainerHtml.classList.add("show-name-container");
     showNameTextHtml.innerHTML = showName;
 
     // Create the show card elements
-    const showImageSrc = show.image?.medium;
-    const showDescription = show.summary;
 
     const showCardHtml = document.createElement("div");
     showCardHtml.classList.add("show-card");
 
-    const imageContainerHtml = document.createElement("div");
-    imageContainerHtml.classList.add("show-image-container");
+    // Get the show image
 
-    // Get the show image and description
+    const showImageSrc = show.image?.medium;
     const showImageHtml = document.createElement("img");
+    const imageContainerHtml = document.createElement("div");
     showImageHtml.classList.add("medium-img");
+    imageContainerHtml.classList.add("show-image-container");
     showImageHtml.src = showImageSrc;
 
-    const showDescriptionContainerHtml = document.createElement("div");
-    showDescriptionContainerHtml.classList.add(
-      "show-description-container"
-    );
+    // Get the show description
 
+    const showDescription = show.summary;
     const showDescriptionTextHtml = document.createElement("p");
+    const showDescriptionContainerHtml = document.createElement("div");
     showDescriptionTextHtml.classList.add("show-description-text");
+    showDescriptionContainerHtml.classList.add("show-description-container");
     showDescriptionTextHtml.innerHTML = showDescription;
 
-    const showRating = show.rating.average;    
+    // Create the show basic info container elements
+    
+    const showBasicInfoContainerHtml = document.createElement("div");
+    showBasicInfoContainerHtml.classList.add("show-info-container");
+
+    const showRating = show.rating.average;
     const showGenre = show.genres;
     const showStatus = show.status;
     const showRuntime = show.runtime;
 
-    const showBasicInfoContainerHtml = document.createElement("div");
-    showBasicInfoContainerHtml.classList.add("show-info-container");
-    
     const showRatingValueHtml = document.createElement("span");
     const showRatingDescriptionHtml = document.createElement("span");
     const showRatingContainer = document.createElement("p");
     showRatingValueHtml.classList.add("show-rating-value");
     showRatingDescriptionHtml.classList.add("show-rating-description");
     showRatingContainer.classList.add("show-rating-container");
-    showRatingDescriptionHtml.innerText = "Rated: "
+    showRatingDescriptionHtml.innerText = "Rated: ";
     showRatingValueHtml.innerHTML = `${showRating}`;
 
     const showGenreValueHtml = document.createElement("span");
@@ -307,7 +303,7 @@ function makePageForShows(allShows) {
     showGenreValueHtml.classList.add("show-genre-value");
     showGenreDescriptionHtml.classList.add("show-genre-description");
     showGenreContainer.classList.add("show-genre-container");
-    showGenreDescriptionHtml.innerText = "Genres: "; 
+    showGenreDescriptionHtml.innerText = "Genres: ";
     showGenreValueHtml.innerHTML = `${showGenre}`;
 
     const showStatusValueHtml = document.createElement("span");
@@ -316,9 +312,9 @@ function makePageForShows(allShows) {
     showStatusValueHtml.classList.add("show-status-value");
     showStatusDescriptionHtml.classList.add("show-status-description");
     showStatusContainer.classList.add("show-status-container");
-    showStatusDescriptionHtml.innerText = "Status: "; 
+    showStatusDescriptionHtml.innerText = "Status: ";
     showStatusValueHtml.innerHTML = `${showStatus}`;
-    
+
     const showRuntimeValueHtml = document.createElement("span");
     const showRuntimeDescriptionHtml = document.createElement("span");
     const showRuntimeContainer = document.createElement("p");
@@ -327,7 +323,7 @@ function makePageForShows(allShows) {
     showRuntimeContainer.classList.add("show-runtime-container");
     showRuntimeDescriptionHtml.innerText = "Runtime: ";
     showRuntimeValueHtml.innerHTML = `${showRuntime}`;
-    
+
     showCardHtml.appendChild(showNameContainerHtml);
     showNameContainerHtml.appendChild(showNameTextHtml);
 
@@ -337,10 +333,10 @@ function makePageForShows(allShows) {
     showDescriptionContainerHtml.appendChild(showDescriptionTextHtml);
     showCardHtml.appendChild(showDescriptionContainerHtml);
 
-    showRatingContainer.appendChild(showRatingDescriptionHtml)
+    showRatingContainer.appendChild(showRatingDescriptionHtml);
     showRatingContainer.appendChild(showRatingValueHtml);
     showBasicInfoContainerHtml.appendChild(showRatingContainer);
-    
+
     showGenreContainer.appendChild(showGenreDescriptionHtml);
     showGenreContainer.appendChild(showGenreValueHtml);
     showBasicInfoContainerHtml.appendChild(showGenreContainer);
@@ -352,16 +348,15 @@ function makePageForShows(allShows) {
     showRuntimeContainer.appendChild(showRuntimeDescriptionHtml);
     showRuntimeContainer.appendChild(showRuntimeValueHtml);
     showBasicInfoContainerHtml.appendChild(showRuntimeContainer);
-    
+
     showCardHtml.appendChild(showBasicInfoContainerHtml);
     cardsContainerHtml.appendChild(showCardHtml);
     rootHtml.appendChild(cardsContainerHtml);
 
-    showCardHtml.addEventListener("click", takeToShow)
-
+    showCardHtml.addEventListener("click", takeToShowEpisodes);
   });
 }
 
-function takeToShow() {
+function takeToShowEpisodes() {
   console.log("Hi Afsha");
 }
