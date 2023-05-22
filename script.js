@@ -3,7 +3,7 @@ const rootHtml = document.getElementById("root"); // Get the root element where 
 const searchInputHtml = document.getElementById("search-input");
 const searchResultDisplayHtml = document.querySelector(".display-search");
 const episodeSelectHtml = document.querySelector("#episode-select-html");
-const showSelectHtml = document.querySelector("#show-html");
+const showSelectHtml = document.querySelector("#show-select-html");
 
 // Global variables
 let allEpisodes;

@@ -7,46 +7,37 @@
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
-
-  <body>    
-    <header class="search-bar">
-      <select id="show-html">
-        <option value="">Select a Show</option>
-      </select>
-      <select id="episode-select-html">
-        <option value="">All episodes</option>
-      </select>
-      <input
-        type="text"
-        autocomplete="off"
-        id="search-input"
-        placeholder="Search show(s) / episode(s)"
-      />
-      <span class="display-search"></span>
-    </header>
-    <h1>TV Show Guide</h1>
+  
+  <body>
+    <header class="header">
+      <div class="title-holder">
+        <h1>TV Show Guide</h1>
+      </div>
+    </header>   
     <div class="big-button-holder">
       <button id="show-listing-button">View Show Listing</button>
     </div>
-    <!-- <p class="directing-users">
-      Please select an episode from the top left menu
-    </p> -->
+        <div class="nav-bar-holder">
+      <nav class="nav-bar">
+        <select id="show-select-html">
+          <option value="">Select a Show</option>
+        </select>
+        <!-- <select id="season-select-html">
+          <option value="">Select a Season</option>
+        </select> -->
+        <select id="episode-select-html">
+          <option value="">Select an Episode</option>
+        </select>
+        <input
+          type="text"
+          autocomplete="off"
+          id="search-input"
+          placeholder="Search show(s)"
+        />
+        <span class="display-search">Dislplaying xx / xx show(s)</span>
+      </nav>
+    </div>
     <div id="root">
-      <!-- 
-      <span class="search-count"></span>
-      <div class="cards-container">
-        <div class="episode-card">
-          <span class="episode-name-num-holder">
-            <p class="episode-name-num-text"></p>
-          </span>
-          <div class="">
-            <img class= "medium-img" src="">
-          </div>
-          <div class="episode-description-container">
-            <p class="episode-description"></p>
-          </div>
-        </div>
-      </div> -->
     </div>
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="./shows.js"></script>

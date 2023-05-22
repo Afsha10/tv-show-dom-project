@@ -75,7 +75,7 @@
 
 .image-holder {
   padding: 1rem;
-      background-color: #D9D9D9;
+  background-color: #D9D9D9;
   width: 10rem;
   grid-area: i;
 }
@@ -153,9 +153,8 @@ li {
       "i i i s s s s s s b b b"
       "i i i s s s s s s b b b";
   }
-}
-
-.nav-bar-holder {
-  padding: 1rem;
-  background-color: #D9D9D9;
+  .nav-bar-holder {
+    padding: 1rem;
+    background-color: #D9D9D9;
+  }
 }
