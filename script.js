@@ -74,7 +74,7 @@ function makePageForEpisodes(episodeList) {
   rootHtml.innerHTML = "";
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
 
-  cardsContainerHtml.classList.add("cards-container");
+  cardsContainerHtml.classList.add("episode-cards-container");
 
   // Loop through each episode and create a card for it
 
@@ -247,7 +247,7 @@ function makePageForShows(allShows) {
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
 
   // searchCountHtml.classList.add("search-count");
-  cardsContainerHtml.classList.add("cards-container");
+  cardsContainerHtml.classList.add("show-cards-container");
 
   // Loop through each show and create a card for it
 
