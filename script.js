@@ -19,32 +19,10 @@ function setup() {
 
   buildShowDropdownList(allShows);
   makePageForShows(allShows);
-
-  // fetch(`https://api.tvmaze.com/shows/${allShows[0].id}/episodes`) // returns a promise and it is pending
-  //   .then((response) => {
-  //     if (response.status >= 200 && response.status <= 299) {
-  //       return response.json(); // returns the promise as fulfilled and gives us a response object which we pass into the callback function
-  //     } else {
-  //       throw new Error(
-  //         `Encountered something unexpected: ${response.status} ${response.statusText}`
-  //       );
-  //     }
-  //   })
-  //   .then((data) => {
-  //     allEpisodes = data;
-  //     makePageForEpisodes(data);
-  //     buildEpisodeDropdownList(data);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // console.log(allShows);
-
-  // fetchShow(allShows[0]);
 }
 
 function fetchShow(event) {
-  let SHOW_ID = event.target.value; // event.target is a DOM element which is the select elment containing all the show options. The value of the select element is the value of the selected option element and event.target.value is a property of that the select element which contains the id in this case
+  let SHOW_ID = event.target.value; // event.target is a DOM element which is the select element containing all the show options. The value of the select element is the value of the selected option element and event.target.value is a property of that the select element which contains the id in this case
   fetch(`https://api.tvmaze.com/shows/${SHOW_ID}/episodes`) // returns a promise and it is pending
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
@@ -83,7 +61,7 @@ function makePageForEpisodes(episodeList) {
     const episodeName = episode.name;
     const paddedSeasonNum = ("0" + episode.season).slice(-2);
     const paddedEpisodeNum = ("0" + episode.number).slice(-2);
-    const episodeNameNum = `${episodeName} - S${paddedSeasonNum}E${paddedEpisodeNum}`;
+    const episodeNameNumSeasonCombo = `${episodeName} - S${paddedSeasonNum}E${paddedEpisodeNum}`;
 
     // Create the episode card elements
 
@@ -93,29 +71,29 @@ function makePageForEpisodes(episodeList) {
 
     // Get the episode title
 
-    const episodeNameNumHolderHtml = document.createElement("div");
-    const episodeNameNumTextHtml = document.createElement("span");
-    episodeNameNumHolderHtml.classList.add("episode-name-num-holder");
-    episodeNameNumTextHtml.classList.add("episode-name-num-text");
-    episodeNameNumTextHtml.textContent = episodeNameNum;
+    const episodeNameNumSeasonComboHolderHtml = document.createElement("div");
+    const episodeNameNumSeasonComboTextHtml = document.createElement("span");
+    episodeNameNumSeasonComboHolderHtml.classList.add("episode-name-num-holder");
+    episodeNameNumSeasonComboTextHtml.classList.add("episode-name-num-text");
+    episodeNameNumSeasonComboTextHtml.textContent = episodeNameNumSeasonCombo;
 
     // Get the episode image
 
-    const episodeImageSrc = episode.image?.medium;
     const episodeImageHtml = document.createElement("img");
-    const imageContainerHtml = document.createElement("div");
+    const episodeImageSrc = episode.image?.medium;
+    const episodeImageContainerHtml = document.createElement("div");
     episodeImageHtml.classList.add("medium-img");
-    imageContainerHtml.classList.add("episode-image-container");
+    episodeImageContainerHtml.classList.add("episode-image-container");
     episodeImageHtml.src = episodeImageSrc;
     
     // Get the episode description
-    const episodeDescription = episode.summary;
     const episodeDescriptionTextHtml = document.createElement("p");
     const episodeDescriptionContainerHtml = document.createElement("div");
     episodeDescriptionTextHtml.classList.add("episode-description-text");
     episodeDescriptionContainerHtml.classList.add(
       "episode-description-container"
       );
+      const episodeDescription = episode.summary;
     episodeDescriptionTextHtml.innerHTML = episodeDescription;
 
     // Update info about displayed episodes
@@ -124,10 +102,10 @@ function makePageForEpisodes(episodeList) {
     } episodes`;
 
     // Add the episode card elements to the container
-    episodeNameNumHolderHtml.appendChild(episodeNameNumTextHtml);
-    episodeCardHtml.appendChild(episodeNameNumHolderHtml);
-    episodeCardHtml.appendChild(imageContainerHtml);
-    imageContainerHtml.appendChild(episodeImageHtml);
+    episodeNameNumSeasonComboHolderHtml.appendChild(episodeNameNumSeasonComboTextHtml);
+    episodeCardHtml.appendChild(episodeNameNumSeasonComboHolderHtml);
+    episodeCardHtml.appendChild(episodeImageContainerHtml);
+    episodeImageContainerHtml.appendChild(episodeImageHtml);
     episodeDescriptionContainerHtml.appendChild(episodeDescriptionTextHtml);
     episodeCardHtml.appendChild(episodeDescriptionContainerHtml);
     cardsContainerHtml.appendChild(episodeCardHtml);
@@ -142,16 +120,18 @@ function makePageForEpisodes(episodeList) {
 function displaySearchedEpisodes(inputValue) {
   // creating a fresh array which only holds the episodes that match our search criteria
   const filteredEpisodes = allEpisodes.filter((episode) => {
-    return (
-      episode.name.toLowerCase().includes(inputValue) ||
-      episode.summary.toLowerCase().includes(inputValue)
-    );
+    if (episode.summary !== null && episode.name !== null) {
+      return (
+        episode.name.toLowerCase().includes(inputValue) ||
+        episode.summary.toLowerCase().includes(inputValue)
+      );
+    }
   });
 
   // Display searchedEpisodes
   rootHtml.innerHTML = "";
   makePageForEpisodes(filteredEpisodes);
-  // makePageForShows(allShows);
+  // makePageForEpisodes(episodeList);
   buildEpisodeDropdownList(filteredEpisodes);
 
   searchResultDisplayHtml.textContent = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`;
@@ -164,7 +144,6 @@ searchInputHtml.addEventListener("input", (event) => {
   //   input: event.target.value.trim().toLowerCase(),
   //   search: true,
   // }
-  console.log(event);
   const inputValue = event.target.value.trim().toLowerCase(); // target is the dom element in which the input is happening and .value is the text that is being entered
   displaySearchedEpisodes(inputValue);
 });
@@ -183,15 +162,15 @@ function jumpToEpisode(event) {
 
   /* Plan is to use the episodeSelectHtmlId how? */
 
-  const filteredEpisodes = allEpisodes.filter((episode) => {
+  const selectedEpisodes = allEpisodes.filter((episode) => {
     return episode.id === episodeSelectHtml.value;
   });
 
-  // Display searchedEpisodes
+  // Display selectedEpisodes
   rootHtml.innerHTML = "";
-  makePageForEpisodes(filteredEpisodes);
-  // makePageForShows(allShows);
-  buildEpisodeDropdownList(filteredEpisodes);
+  makePageForEpisodes(selectedEpisodes);
+  // makePageForEpisodes(episodeList);
+  // buildEpisodeDropdownList(selectedShows);
 }
 
 // build selection dropdown list
@@ -266,12 +245,12 @@ function makePageForShows(allShows) {
     showNameTextHtml.innerHTML = showName;
 
     // Get the show image
-
+    
     const showImageSrc = show.image?.medium;
     const showImageHtml = document.createElement("img");
-    const imageContainerHtml = document.createElement("div");
+    const showImageContainerHtml = document.createElement("div");
     showImageHtml.classList.add("medium-img");
-    imageContainerHtml.classList.add("show-image-container");
+    showImageContainerHtml.classList.add("show-image-container");
     showImageHtml.src = showImageSrc;
 
     // Get the show summary
@@ -332,8 +311,8 @@ function makePageForShows(allShows) {
     showCardHtml.appendChild(showNameContainerHtml);
     showNameContainerHtml.appendChild(showNameTextHtml);
 
-    showCardHtml.appendChild(imageContainerHtml);
-    imageContainerHtml.appendChild(showImageHtml);
+    showCardHtml.appendChild(showImageContainerHtml);
+    showImageContainerHtml.appendChild(showImageHtml);
 
     showSummaryContainerHtml.appendChild(showSummaryTextHtml);
     showCardHtml.appendChild(showSummaryContainerHtml);
