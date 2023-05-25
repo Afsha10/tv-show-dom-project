@@ -156,20 +156,25 @@ searchInputHtml.addEventListener("input", (event) => {
 
 
 function jumpToEpisode(event) {
-  console.log("JumpToEpisode event.target", event.target);
+  console.log("JumpToEpisode event.target.value", event.target.value);
   const episodeSelectHtml = document.querySelector("#episode-select-html"); // this is the dropdown
   // displaySearchedEpisodes(episodeSelectHtml);
 
   /* Plan is to use the episodeSelectHtmlId how? */
+  /*
+  allEpisodes exists ✅
+  */
+ console.log(allEpisodes);
 
   const selectedEpisodes = allEpisodes.filter((episode) => {
-    return episode.id === episodeSelectHtml.value;
+    // console.log(episode.name);
+    // console.log(episodeSelectHtml.value);
+    return episode.name === episodeSelectHtml.value;
   });
-
+  console.log(selectedEpisodes, "<---selectedEpisodes");
   // Display selectedEpisodes
   rootHtml.innerHTML = "";
   makePageForEpisodes(selectedEpisodes);
-  // makePageForEpisodes(episodeList);
   // buildEpisodeDropdownList(selectedShows);
 }
 
@@ -190,7 +195,8 @@ function buildEpisodeDropdownList(episodeList) {
     const episodeOptionTextHtml = `S${optionSeasonPadded}E${optionEpisodePadded} - ${optionEpisodeName}`;
 
     episodeOptionHtml.textContent = episodeOptionTextHtml; // it is the episode list showing on the dropdown list
-    episodeOptionHtml.value = i; // the value of the dropdown item is stored as i from the for loop
+    // episodeOptionHtml.value = i; // the value of the dropdown item is stored as i from the for loop
+    episodeOptionHtml.value = episodeList[i].name; // the value of the dropdown item is stored as i from the for loop
     episodeSelectHtml.appendChild(episodeOptionHtml); // we append each of the episodes into the episodeSelectHTML
 
     episodeSelectHtml.addEventListener("change", jumpToEpisode);
@@ -220,7 +226,7 @@ function buildShowDropdownList(allShows) {
 // level 500
 
 function makePageForShows(allShows) {
-  console.log(allShows);
+  // console.log(allShows);
   // const searchCountHtml = document.createElement("span"); // Creating the top span element inside the rootEle
   rootHtml.innerHTML = "";
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
