@@ -55,6 +55,7 @@ function fetchShowEpisodes(event) {
 
 function makePageForEpisodes(episodeList) {
   showSelectHtml.remove();
+  console.log(showSelectHtml, "<---ShowSelectHTML");
   rootHtml.innerHTML = "";
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
 
@@ -353,9 +354,21 @@ function makePageForShows(allShows) {
   });
 }
 
+showListingButton.addEventListener ("click", () => {
+  // the argument after "click" should be a reference to a function, but when the function is called with allShows in this case then it won't be a reference, it will be the return value of the function
+
+  makePageForShows(allShows);
+  showSelectHtml.value = "";
+  episodeSelectHtml.before(showSelectHtml)
+  episodeSelectHtml.remove();
+}); 
+
+
+
 function takeToShowEpisodes() {
   console.log("Hi Afsha");
 }
+
 
 // function displaySearchedShows(inputValue) {
 //   // creating a fresh array which only holds the episodes that match our search criteria
