@@ -4,6 +4,7 @@ const searchInputHtml = document.getElementById("search-input");
 const searchResultDisplayHtml = document.querySelector(".display-search");
 const episodeSelectHtml = document.querySelector("#episode-select-html");
 const showSelectHtml = document.querySelector("#show-select-html");
+const showListingButton = document.querySelector("#show-listing-button");
 
 // Global variables
 let allEpisodes;
@@ -21,8 +22,8 @@ function setup() {
   makePageForShows(allShows);
 }
 
-function fetchShow(event) {
-  let SHOW_ID = event.target.value; // event.target is a DOM element which is the select element containing all the show options. The value of the select element is the value of the selected option element and event.target.value is a property of that the select element which contains the id in this case
+function fetchShowEpisodes(event) {
+  let SHOW_ID = event.target.value; // event.target is a DOM element which is the select element containing all the show options. event.target always refers to the element that triggered that event. The value of the select element is the value of the selected option element and event.target.value is a property of that the select element which contains the id in this case
   fetch(`https://api.tvmaze.com/shows/${SHOW_ID}/episodes`) // returns a promise and it is pending
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
@@ -47,8 +48,13 @@ function fetchShow(event) {
 
 // Create an input element inside the rootEle
 
-function makePageForEpisodes(episodeList) {
+/*
+  If the user clicks show select then the show select will disappear
+  If the user clicks the see show listing button then the episodes will disappear and the shows will appear also the episode list should not be shown initially
+*/
 
+function makePageForEpisodes(episodeList) {
+  showSelectHtml.remove();
   rootHtml.innerHTML = "";
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
 
@@ -218,7 +224,7 @@ function buildShowDropdownList(allShows) {
     // update text content for showOptionHml
     showOptionHtml.textContent = optionShowName;
     showSelectHtml.appendChild(showOptionHtml);
-    showSelectHtml.addEventListener("change", fetchShow);
+    showSelectHtml.addEventListener("change", fetchShowEpisodes);
   }
 }
 

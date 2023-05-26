@@ -568,3 +568,27 @@ function makePageForShows(allShows) {
 function takeToShow() {
   console.log("Hi EMILIE");
 }
+
+
+
+need to do some destructuring like below:
+
+function createEpisodeHeadingText(string) {
+  const episodeNameNumSeasonComboHolderHtml = document.createElement("div");
+  const episodeNameNumSeasonComboTextHtml = document.createElement("span");
+  episodeNameNumSeasonComboHolderHtml.classList.add("episode-name-num-holder");
+  episodeNameNumSeasonComboTextHtml.classList.add("episode-name-num-text");
+  episodeNameNumSeasonComboTextHtml.textContent = string;
+  return {
+    episodeNameNumSeasonComboHolderHtml,
+    episodeNameNumSeasonComboTextHtml
+  }
+}
+
+// destructuring demo
+
+const {
+  episodeNameNumSeasonComboHolderHtml,
+  episodeNameNumSeasonComboTextHtml
+} = createEpisodeHeadingText('sometext') 
+
