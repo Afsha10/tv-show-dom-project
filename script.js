@@ -165,12 +165,7 @@ searchInputHtml.addEventListener("input", (event) => {
 function jumpToEpisode(event) {
   console.log("JumpToEpisode event.target.value", event.target.value);
   const episodeSelectHtml = document.querySelector("#episode-select-html"); // this is the dropdown
-  // displaySearchedEpisodes(episodeSelectHtml);
 
-  /* Plan is to use the episodeSelectHtmlId how? */
-  /*
-  allEpisodes exists ✅
-  */
  console.log(allEpisodes);
 
   const selectedEpisodes = allEpisodes.filter((episode) => {
@@ -365,8 +360,10 @@ showListingButton.addEventListener ("click", () => {
 
 
 
-function takeToShowEpisodes() {
+function takeToShowEpisodes(event) {
   console.log("Hi Afsha");
+  // makePageForEpisodes(allEpisodes);
+  // buildEpisodeDropdownList(allEpisodes);
 }
 
 

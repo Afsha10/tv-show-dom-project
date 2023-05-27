@@ -592,3 +592,10 @@ const {
   episodeNameNumSeasonComboTextHtml
 } = createEpisodeHeadingText('sometext') 
 
+#
+
+
+
+to make a search bar for both episode cards and shows card
+- link the search bar with the episode cards when using makePageForEpisodes
+- link the search bar with the show cards when using makePageForShow
