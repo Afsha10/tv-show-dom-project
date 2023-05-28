@@ -46,8 +46,6 @@ function fetchShowEpisodes(event) {
 
 // level 100
 
-// Create an input element inside the rootEle
-
 /*
   If the user clicks show select then the show select will disappear
   If the user clicks the see show listing button then the episodes will disappear and the shows will appear also the episode list should not be shown initially
@@ -93,15 +91,15 @@ function makePageForEpisodes(episodeList) {
     episodeImageContainerHtml.classList.add("episode-image-container");
     episodeImageHtml.src = episodeImageSrc;
     
-    // Get the episode description
-    const episodeDescriptionTextHtml = document.createElement("p");
-    const episodeDescriptionContainerHtml = document.createElement("div");
-    episodeDescriptionTextHtml.classList.add("episode-description-text");
-    episodeDescriptionContainerHtml.classList.add(
-      "episode-description-container"
+    // Get the episode summary
+    const episodeSummaryTextHtml = document.createElement("p");
+    const episodeSummaryContainerHtml = document.createElement("div");
+    episodeSummaryTextHtml.classList.add("episode-summary-text");
+    episodeSummaryContainerHtml.classList.add(
+      "episode-summary-container"
       );
-      const episodeDescription = episode.summary;
-    episodeDescriptionTextHtml.innerHTML = episodeDescription;
+      const episodeSummary = episode.summary;
+    episodeSummaryTextHtml.innerHTML = episodeSummary;
 
     // Update info about displayed episodes
     searchResultDisplayHtml.textContent = `Displaying ${index + 1}/${
@@ -113,8 +111,8 @@ function makePageForEpisodes(episodeList) {
     episodeCardHtml.appendChild(episodeNameNumSeasonComboHolderHtml);
     episodeCardHtml.appendChild(episodeImageContainerHtml);
     episodeImageContainerHtml.appendChild(episodeImageHtml);
-    episodeDescriptionContainerHtml.appendChild(episodeDescriptionTextHtml);
-    episodeCardHtml.appendChild(episodeDescriptionContainerHtml);
+    episodeSummaryContainerHtml.appendChild(episodeSummaryTextHtml);
+    episodeCardHtml.appendChild(episodeSummaryContainerHtml);
     cardsContainerHtml.appendChild(episodeCardHtml);
     rootHtml.appendChild(cardsContainerHtml);
   }); // end of for.each
@@ -147,10 +145,7 @@ function displaySearchedEpisodes(inputValue) {
 // List of event listeners (Should be always at the bottom)
 
 searchInputHtml.addEventListener("input", (event) => {
-  // {
-  //   input: event.target.value.trim().toLowerCase(),
-  //   search: true,
-  // }
+
   const inputValue = event.target.value.trim().toLowerCase(); // target is the dom element in which the input is happening and .value is the text that is being entered
   displaySearchedEpisodes(inputValue);
 });
@@ -164,26 +159,24 @@ searchInputHtml.addEventListener("input", (event) => {
 
 function jumpToEpisode(event) {
   console.log("JumpToEpisode event.target.value", event.target.value);
-  const episodeSelectHtml = document.querySelector("#episode-select-html"); // this is the dropdown
+  const episodeSelectHtml = document.querySelector("#episode-select-html"); // this is the episode dropdown element
 
- console.log(allEpisodes);
-
-  const selectedEpisodes = allEpisodes.filter((episode) => {
+  const selectedEpisode = allEpisodes.filter((episode) => {
     // console.log(episode.name);
     // console.log(episodeSelectHtml.value);
     return episode.name === episodeSelectHtml.value;
   });
-  console.log(selectedEpisodes, "<---selectedEpisodes");
-  // Display selectedEpisodes
+  console.log(selectedEpisode, "<---selectedEpisode");
+  // Display selectedEpisode
   rootHtml.innerHTML = "";
-  makePageForEpisodes(selectedEpisodes);
+  makePageForEpisodes(selectedEpisode);
   // buildEpisodeDropdownList(selectedShows);
 }
 
 // build selection dropdown list
 
 function buildEpisodeDropdownList(episodeList) {
-  const episodeSelectHtml = document.querySelector("#episode-select-html");
+  const episodeSelectHtml = document.querySelector("#episode-select-html"); // this is the episode dropdown element
   episodeSelectHtml.innerHTML = "";
 
   // Create the option element (inside the episodeSelectHTML)
@@ -193,7 +186,6 @@ function buildEpisodeDropdownList(episodeList) {
     const optionEpisodeName = episodeList[i].name;
     const optionSeasonPadded = ("0" + episodeList[i].season).slice(-2);
     const optionEpisodePadded = ("0" + episodeList[i].number).slice(-2);
-    // const episodeOptionValue = `S${optionEpisodeName} - S${optionSeasonPadded}E${optionEpisodePadded}`;
     const episodeOptionTextHtml = `S${optionSeasonPadded}E${optionEpisodePadded} - ${optionEpisodeName}`;
 
     episodeOptionHtml.textContent = episodeOptionTextHtml; // it is the episode list showing on the dropdown list
@@ -229,7 +221,6 @@ function buildShowDropdownList(allShows) {
 
 function makePageForShows(allShows) {
   // console.log(allShows);
-  // const searchCountHtml = document.createElement("span"); // Creating the top span element inside the rootEle
   rootHtml.innerHTML = "";
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
 
@@ -245,7 +236,9 @@ function makePageForShows(allShows) {
     showCardHtml.classList.add("show-card");
 
     const showImageSummaryInfoContainerHtml = document.createElement("div");
-    showImageSummaryInfoContainerHtml.classList.add("show-image-summary-info-container");
+    showImageSummaryInfoContainerHtml.classList.add(
+      "show-image-summary-info-container"
+    );
 
     // Get the show name
     const showName = show.name;
@@ -304,7 +297,7 @@ function makePageForShows(allShows) {
     showGenreDescriptionHtml.classList.add("show-genre-description");
     showGenreContainer.classList.add("show-genre-container");
     showGenreDescriptionHtml.innerText = "Genres: ";
-    showGenreValueHtml.innerHTML = `${showGenre}`;
+    showGenreValueHtml.innerHTML = `${showGenre}`.split(",").join(", ");
 
     // creating a status element and its value inside showBasicInfoContainerHtml
 
@@ -328,39 +321,51 @@ function makePageForShows(allShows) {
     showRuntimeDescriptionHtml.innerText = "Runtime: ";
     showRuntimeValueHtml.innerHTML = `${showRuntime}`;
 
+    // putting showNameContainer inside showCardHtml
 
     showCardHtml.appendChild(showNameContainerHtml);
     showNameContainerHtml.appendChild(showNameTextHtml);
 
+    // putting showImageSummaryInfoContainerHtml inside showCardHtml
+
     showCardHtml.appendChild(showImageSummaryInfoContainerHtml);
+
+    // putting showImageContainerHtml inside showImageSummaryInfoContainerHtml and putting the show image inside the show image holder
 
     showImageSummaryInfoContainerHtml.appendChild(showImageContainerHtml);
     showImageContainerHtml.appendChild(showImageHtml);
 
+    // putting showSummaryContainerHtml inside showImageSummaryInfoContainerHtml and putting the show summary text inside the show summary holder
     showImageSummaryInfoContainerHtml.appendChild(showSummaryContainerHtml);
     showSummaryContainerHtml.appendChild(showSummaryTextHtml);
-    
+
+    // putting showBasicInfoContainerHtml (containing raiting, genres, status and runtime) inside showImageSummaryInfoContainerHtml and putting the showImageSummaryInfoContainerHtml inside the showCardHtml which goes inside the cardsContainerHtml which is inside the rootHtml
     showImageSummaryInfoContainerHtml.appendChild(showBasicInfoContainerHtml);
     showCardHtml.appendChild(showImageSummaryInfoContainerHtml);
     cardsContainerHtml.appendChild(showCardHtml);
     rootHtml.appendChild(cardsContainerHtml);
 
+    // creating rating items inside the rating container and appending to showBasicInfoContainerHtml
     showRatingContainer.appendChild(showRatingDescriptionHtml);
     showRatingContainer.appendChild(showRatingValueHtml);
     showBasicInfoContainerHtml.appendChild(showRatingContainer);
 
+    // creating genre items inside the rating container and appending to showBasicInfoContainerHtml
     showGenreContainer.appendChild(showGenreDescriptionHtml);
     showGenreContainer.appendChild(showGenreValueHtml);
     showBasicInfoContainerHtml.appendChild(showGenreContainer);
 
+    // creating status items inside the rating container and appending to showBasicInfoContainerHtml
     showStatusContainer.appendChild(showStatusDescriptionHtml);
     showStatusContainer.appendChild(showStatusValueHtml);
     showBasicInfoContainerHtml.appendChild(showStatusContainer);
 
+    // creating runtime items inside the rating container and appending to showBasicInfoContainerHtml
     showRuntimeContainer.appendChild(showRuntimeDescriptionHtml);
     showRuntimeContainer.appendChild(showRuntimeValueHtml);
     showBasicInfoContainerHtml.appendChild(showRuntimeContainer);
 
+    // when we click anywhere on the showCardHtml it takes us to that particular show episodes page
     showCardHtml.addEventListener("click", takeToShowEpisodes);
   });
 }

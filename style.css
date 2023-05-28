@@ -167,6 +167,9 @@ body {
   justify-content: center;
 }
 
+.show-rating-description, .show-genre-description, .show-status-description, .show-runtime-description {
+  font-weight: bold;
+}
 
 @media screen and (min-width: 480px) {
 
