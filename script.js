@@ -208,10 +208,10 @@ function buildShowDropdownList(allShows) {
     // update text content for showOptionHml
     showOptionHtml.textContent = optionShowName;
     showSelectHtml.appendChild(showOptionHtml);
-    showSelectHtml.addEventListener("change", (event) =>
-      fetchShowEpisodes(event.target.value)
-    ); // event.target is a DOM element which is the select element containing all the show options. event.target always refers to the element that triggered that event. The value of the select element is the value of the selected option element and event.target.value is a property of that the select element which contains the id in this case
   }
+  showSelectHtml.addEventListener("change", (event) =>
+    fetchShowEpisodes(event.target.value)
+  ); // event.target is a DOM element which is the select element containing all the show options. event.target always refers to the element that triggered that event. The value of the select element is the value of the selected option element and event.target.value is a property of that the select element which contains the id in this case
 }
 
 
