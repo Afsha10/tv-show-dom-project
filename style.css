@@ -154,6 +154,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  cursor: pointer;
 }
 
 
@@ -170,6 +171,8 @@ body {
 .show-rating-description, .show-genre-description, .show-status-description, .show-runtime-description {
   font-weight: bold;
 }
+
+
 
 @media screen and (min-width: 480px) {
 

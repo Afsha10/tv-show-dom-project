@@ -22,9 +22,8 @@ function setup() {
   makePageForShows(allShows);
 }
 
-function fetchShowEpisodes(event) {
-  let SHOW_ID = event.target.value; // event.target is a DOM element which is the select element containing all the show options. event.target always refers to the element that triggered that event. The value of the select element is the value of the selected option element and event.target.value is a property of that the select element which contains the id in this case
-  fetch(`https://api.tvmaze.com/shows/${SHOW_ID}/episodes`) // returns a promise and it is pending
+function fetchShowEpisodes(showId) {
+  fetch(`https://api.tvmaze.com/shows/${showId}/episodes`) // returns a promise and it is pending
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
         return response.json(); // returns the promise as fulfilled and gives us a response object which we pass into the callback function
@@ -54,6 +53,9 @@ function fetchShowEpisodes(event) {
 function makePageForEpisodes(episodeList) {
   episodeSelectHtml.style.display = "inline";
   showSelectHtml.style.display = "none";
+
+  searchInputHtml.removeEventListener("input", searchForShow);
+  searchInputHtml.addEventListener("input", searchForEpisode);
 
   console.log(showSelectHtml, "<---ShowSelectHTML");
   rootHtml.innerHTML = "";
@@ -144,15 +146,7 @@ function displaySearchedEpisodes(inputValue) {
   searchResultDisplayHtml.textContent = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`;
 }
 
-// List of event listeners (Should be always at the bottom)
-
-searchInputHtml.addEventListener("input", (event) => {
-
-  const inputValue = event.target.value.trim().toLowerCase(); // target is the dom element in which the input is happening and .value is the text that is being entered
-  displaySearchedEpisodes(inputValue);
-});
-
-
+// moved the eventListener to the bottom to level 500
 
 // level 300
 
@@ -214,7 +208,9 @@ function buildShowDropdownList(allShows) {
     // update text content for showOptionHml
     showOptionHtml.textContent = optionShowName;
     showSelectHtml.appendChild(showOptionHtml);
-    showSelectHtml.addEventListener("change", fetchShowEpisodes);
+    showSelectHtml.addEventListener("change", (event) =>
+      fetchShowEpisodes(event.target.value)
+    ); // event.target is a DOM element which is the select element containing all the show options. event.target always refers to the element that triggered that event. The value of the select element is the value of the selected option element and event.target.value is a property of that the select element which contains the id in this case
   }
 }
 
@@ -228,6 +224,9 @@ function makePageForShows(allShows) {
   // console.log(allShows);
   rootHtml.innerHTML = "";
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
+
+  searchInputHtml.removeEventListener("input", searchForEpisode);
+  searchInputHtml.addEventListener("input", searchForShow)
 
   // searchCountHtml.classList.add("search-count");
   cardsContainerHtml.classList.add("show-cards-container");
@@ -371,7 +370,7 @@ function makePageForShows(allShows) {
     showBasicInfoContainerHtml.appendChild(showRuntimeContainer);
 
     // when we click anywhere on the showCardHtml it takes us to that particular show episodes page
-    showCardHtml.addEventListener("click", takeToShowEpisodes);
+    showCardHtml.addEventListener("click", () => fetchShowEpisodes(show.id));
   });
 }
 
@@ -383,11 +382,6 @@ showListingButton.addEventListener ("click", () => {
 
 
 
-function takeToShowEpisodes(event) {
-  console.log("Hi Afsha");
-  // makePageForEpisodes(allEpisodes);
-  // buildEpisodeDropdownList(allEpisodes);
-}
 
 
 
@@ -413,11 +407,23 @@ function displaySearchedShows(inputValue) {
   searchResultDisplayHtml.textContent = `Displaying ${filteredShows.length}/${allShows.length} shows`;
 }
 
+
+// Creating two different functions 
+
 // List of event listeners (Should be always at the bottom)
 
-searchInputHtml.addEventListener("input", (event) => {
+function searchForShow(event) {
 
   const inputValue = event.target.value.trim().toLowerCase(); // target is the dom element in which the input is happening and .value is the text that is being entered
   displaySearchedShows(inputValue);
-});
+};
+
+
+// List of event listeners (Should be always at the bottom)
+
+function searchForEpisode (event) {
+
+  const inputValue = event.target.value.trim().toLowerCase(); // target is the dom element in which the input is happening and .value is the text that is being entered
+  displaySearchedEpisodes(inputValue);
+};
 
