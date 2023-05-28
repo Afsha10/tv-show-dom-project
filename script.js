@@ -120,7 +120,7 @@ function makePageForEpisodes(episodeList) {
 
 // level 200
 
-// function to search
+// function to search episodes that matches with inputValue
 
 function displaySearchedEpisodes(inputValue) {
   // creating a fresh array which only holds the episodes that match our search criteria
@@ -386,3 +386,36 @@ function takeToShowEpisodes(event) {
   // makePageForEpisodes(allEpisodes);
   // buildEpisodeDropdownList(allEpisodes);
 }
+
+
+
+// function to search shows that matches with inputValue
+
+function displaySearchedShows(inputValue) {
+  // creating a fresh array which only holds the episodes that match our search criteria
+  const filteredShows = allShows.filter((show) => {
+    if (show.summary !== null && show.name !== null) {
+      return (
+        show.name.toLowerCase().includes(inputValue) ||
+        show.summary.toLowerCase().includes(inputValue)
+      );
+    }
+  });
+
+  // Display searchedEpisodes
+  rootHtml.innerHTML = "";
+  makePageForShows(filteredShows);
+  // makePageForEpisodes(episodeList);
+  buildShowDropdownList(filteredShows);
+
+  searchResultDisplayHtml.textContent = `Displaying ${filteredShows.length}/${allShows.length} shows`;
+}
+
+// List of event listeners (Should be always at the bottom)
+
+searchInputHtml.addEventListener("input", (event) => {
+
+  const inputValue = event.target.value.trim().toLowerCase(); // target is the dom element in which the input is happening and .value is the text that is being entered
+  displaySearchedShows(inputValue);
+});
+
