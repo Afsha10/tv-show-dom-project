@@ -244,6 +244,9 @@ function makePageForShows(allShows) {
     const showCardHtml = document.createElement("div");
     showCardHtml.classList.add("show-card");
 
+    const showImageSummaryInfoContainerHtml = document.createElement("div");
+    showImageSummaryInfoContainerHtml.classList.add("show-image-summary-info-container");
+
     // Get the show name
     const showName = show.name;
     const showNameTextHtml = document.createElement("p");
@@ -253,7 +256,7 @@ function makePageForShows(allShows) {
     showNameTextHtml.innerHTML = showName;
 
     // Get the show image
-    
+
     const showImageSrc = show.image?.medium;
     const showImageHtml = document.createElement("img");
     const showImageContainerHtml = document.createElement("div");
@@ -271,14 +274,17 @@ function makePageForShows(allShows) {
     showSummaryTextHtml.innerHTML = showSummary;
 
     // Create the show basic info container elements
-    
+
     const showBasicInfoContainerHtml = document.createElement("div");
     showBasicInfoContainerHtml.classList.add("show-info-container");
 
+    // accessing the elements from the data
     const showRating = show.rating.average;
     const showGenre = show.genres;
     const showStatus = show.status;
     const showRuntime = show.runtime;
+
+    // creating a rating element and its value inside showBasicInfoContainerHtml
 
     const showRatingDescriptionHtml = document.createElement("span");
     const showRatingValueHtml = document.createElement("span");
@@ -289,6 +295,8 @@ function makePageForShows(allShows) {
     showRatingDescriptionHtml.innerText = "Rated: ";
     showRatingValueHtml.innerHTML = `${showRating}`;
 
+    // creating a genre element and its value inside showBasicInfoContainerHtml
+
     const showGenreDescriptionHtml = document.createElement("span");
     const showGenreValueHtml = document.createElement("span");
     const showGenreContainer = document.createElement("p");
@@ -297,6 +305,8 @@ function makePageForShows(allShows) {
     showGenreContainer.classList.add("show-genre-container");
     showGenreDescriptionHtml.innerText = "Genres: ";
     showGenreValueHtml.innerHTML = `${showGenre}`;
+
+    // creating a status element and its value inside showBasicInfoContainerHtml
 
     const showStatusValueHtml = document.createElement("span");
     const showStatusDescriptionHtml = document.createElement("span");
@@ -307,6 +317,8 @@ function makePageForShows(allShows) {
     showStatusDescriptionHtml.innerText = "Status: ";
     showStatusValueHtml.innerHTML = `${showStatus}`;
 
+    // creating a showRuntime element and its value inside showBasicInfoContainerHtml
+
     const showRuntimeValueHtml = document.createElement("span");
     const showRuntimeDescriptionHtml = document.createElement("span");
     const showRuntimeContainer = document.createElement("p");
@@ -316,14 +328,22 @@ function makePageForShows(allShows) {
     showRuntimeDescriptionHtml.innerText = "Runtime: ";
     showRuntimeValueHtml.innerHTML = `${showRuntime}`;
 
+
     showCardHtml.appendChild(showNameContainerHtml);
     showNameContainerHtml.appendChild(showNameTextHtml);
 
-    showCardHtml.appendChild(showImageContainerHtml);
+    showCardHtml.appendChild(showImageSummaryInfoContainerHtml);
+
+    showImageSummaryInfoContainerHtml.appendChild(showImageContainerHtml);
     showImageContainerHtml.appendChild(showImageHtml);
 
+    showImageSummaryInfoContainerHtml.appendChild(showSummaryContainerHtml);
     showSummaryContainerHtml.appendChild(showSummaryTextHtml);
-    showCardHtml.appendChild(showSummaryContainerHtml);
+    
+    showImageSummaryInfoContainerHtml.appendChild(showBasicInfoContainerHtml);
+    showCardHtml.appendChild(showImageSummaryInfoContainerHtml);
+    cardsContainerHtml.appendChild(showCardHtml);
+    rootHtml.appendChild(cardsContainerHtml);
 
     showRatingContainer.appendChild(showRatingDescriptionHtml);
     showRatingContainer.appendChild(showRatingValueHtml);
@@ -340,10 +360,6 @@ function makePageForShows(allShows) {
     showRuntimeContainer.appendChild(showRuntimeDescriptionHtml);
     showRuntimeContainer.appendChild(showRuntimeValueHtml);
     showBasicInfoContainerHtml.appendChild(showRuntimeContainer);
-
-    showCardHtml.appendChild(showBasicInfoContainerHtml);
-    cardsContainerHtml.appendChild(showCardHtml);
-    rootHtml.appendChild(cardsContainerHtml);
 
     showCardHtml.addEventListener("click", takeToShowEpisodes);
   });
@@ -365,33 +381,3 @@ function takeToShowEpisodes(event) {
   // makePageForEpisodes(allEpisodes);
   // buildEpisodeDropdownList(allEpisodes);
 }
-
-
-// function displaySearchedShows(inputValue) {
-//   // creating a fresh array which only holds the episodes that match our search criteria
-//   const filteredEpisodes = allEpisodes.filter((allShows) => {
-//     return (
-//       show.name.toLowerCase().includes(inputValue) ||
-//       show.summary.toLowerCase().includes(inputValue)
-//     );
-//   });
-
-//   // Display searchedEpisodes
-//   rootHtml.innerHTML = "";
-//   makePageForShows(filteredShows);
-//   // makePageForShows(allShows);
-//   buildShowDropdownList(filteredShows);
-
-//   searchResultDisplayHtml.textContent = `Displaying ${filteredShows.length}/${allEpisodes.length} shows`;
-// }
-
-// // List of event listeners (Should be always at the bottom)
-
-// searchInputHtml.addEventListener("input", (event) => {
-//   // {
-//   //   input: event.target.value.trim().toLowerCase(),
-//   //   search: true,
-//   // }
-//   const inputValue = event.target.value.trim().toLowerCase(); // target is the dom element in which the input is happening and .value is the text that is being entered
-//   displaySearchedEpisodes(inputValue);
-// });

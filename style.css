@@ -2,13 +2,6 @@ body {
   background-color: white;
 }
 
-/* h1 {
-  margin-top: 5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
 .header, .footer {
     width: auto;
     height: 4rem;
@@ -51,12 +44,6 @@ body {
     flex-direction: column;
     gap: 1rem;
 }
-  
-  /* .nav-bar {
-    background-color: lightskyblue;
-  width: 100%;
-  top: 0;
-} */
 
 #root {
   background-color: #8fe4df;
@@ -69,29 +56,15 @@ body {
   text-align: center;
 }
 
-/* .episode-cards-container {
-  background-color: #E9E6E6;
-  border: 0.05rem #db9f9f solid;
-  border-radius: 0.5rem;
-  display: grid;
-  gap: 3rem;
-  justify-items: center;
-  justify-content: center;
-  padding: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-} */
-
 .show-cards-container, .episode-cards-container {
   background-color: #E9E6E6;
   border: 0.05rem #db9f9f solid;
   border-radius: 0.5rem;
-  display: grid;
   gap: 3rem;
   justify-items: center;
   justify-content: center;
   width: 18.25rem;
   padding: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 }
 
 .episode-card {
@@ -111,29 +84,29 @@ body {
   text-align: center;
 }
 
-.show-name-container {
-  grid-area: n;
-}
 
 .show-image-container {
   display: flex;
   flex-direction: column;
   justify-self: center;
-  width: fit-content;
+  width: 19rem;
   padding: 1rem;
   background-color: #E9E6E6;
-  grid-area: i;
+}
+
+.medium-img {
+  width: fit-content;
 }
 
 .show-summary-container {
   background-color: #E9E6E6;
+  width: 100%;
   margin: 1rem;
   padding: 1rem;
-  grid-area: s;
 }
 
 .show-summary-text {
-  width: 18rem;
+  width: 100%;
   text-align: justify;
 }
 
@@ -142,10 +115,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-self: center;
-  width: 18rem;
+  width: 40%;
   padding: 1rem;
   background-color: #E9E6E6;
-  grid-area: b;
 }
 
 .episode-name-num-holder {
@@ -271,80 +243,15 @@ body {
     padding: 1rem;
   }
 
-    .show-card {
+  .show-image-summary-info-container {
+    display:flex;
+    flex-direction: row;
+  }
+
+  .show-card {
     padding-bottom: 1rem;
     gap: 0;
     width: 98%;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-areas:
-      ". . . n n n n n n . . ."
-      "i i i s s s s s b b b ."
-      "i i i s s s s s b b b ."
-      "i i i s s s s s b b b .";
   }
 }
   
-  
-  /* .show-card {
-    padding: 0;
-    gap: 0;
-    width: 70rem;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-template-areas:
-    "n n n n n n n n n n n n"
-    "i i i i b b b b b b b b"
-    "i i i i b b b b b b b b"
-    "i i i i b b b b b b b b"
-    "s s s s s s s s s s s s"
-    "s s s s s s s s s s s s";
-  } */
-
-
-/* 
-@media screen and (min-width: 620px) {
-
-    .cards-container {
-    background-color: #E9E6E6;
-    border: 0.05rem #db9f9f solid;
-    border-radius: 0.5rem;
-    gap: 3rem;
-    display: flex;
-    flex-direction: column;
-    width: 85rem;
-    justify-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  .nav-bar-holder {
-    padding: 1rem;
-    background-color: #E9E6E6;
-  } */
-
-  /* @media screen and (min-width: 620px) {
-  .show-card {
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-areas:
-      ". . . n n n n n n . . ."
-      "i i i s s s s s s b b b"
-      "i i i s s s s s s b b b"
-      "i i i s s s s s s b b b";
-  }
-
-  .nav-bar-holder {
-    padding: 1rem;
-    background-color: #D9D9D9;
-  }
-} */
-
-/* display: none; // hide something
-display: block; // show something 
-you can target each of these cards and give it a class to hide or show. This is CSS way.
-
-Another way is: These cards are build from the JS array. 
-We can build a second array which will only hold the ones that match our criteria.
-
-*/
