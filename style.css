@@ -71,7 +71,7 @@ body {
 .episode-card {
   display: flex;
   flex-direction: column;
-  border: 0.1rem black solid;
+  border: 0.1rem #84d8ec solid;
   background-color: #D1EBF1;
   width: 96%;
   border-radius: 0.3rem;
@@ -124,7 +124,7 @@ body {
 }
 
 .episode-name-num-holder {
-  border: 0.1rem black solid;
+  /* border: 0.1rem black solid; */
   border-radius: 0.3rem;
   display: flex;
   justify-content: center;
@@ -146,6 +146,7 @@ body {
   font-size: medium;
   width: 92%;
   text-align: justify;
+  color: rgb(3, 61, 61);
 }
 
 
@@ -246,7 +247,7 @@ body {
   .episode-card {
     display: flex;
     flex-direction: column;
-    border: 0.1rem black solid;
+    /* border: 0.1rem black solid; */
     background-color:#D1EBF1;;
     width: 96%;
     border-radius: 0.3rem;
