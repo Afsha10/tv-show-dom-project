@@ -1,7 +1,9 @@
 //Get DOM elements
 const rootHtml = document.getElementById("root"); // Get the root element where we'll add the episode cards
-const searchInputHtml = document.getElementById("search-input");
-const searchResultDisplayHtml = document.querySelector(".display-search");
+const episodeSearchInputHtml = document.getElementById("episode-search-input");
+const showSearchInputHtml = document.getElementById("show-search-input");
+const episodeSearchResultDisplayHtml = document.querySelector(".display-episode-search");
+const showSearchResultDisplayHtml = document.querySelector(".display-show-search");
 const episodeSelectHtml = document.querySelector("#episode-select-html");
 const showSelectHtml = document.querySelector("#show-select-html");
 const showListingButton = document.querySelector("#show-listing-button");
@@ -51,11 +53,17 @@ function fetchShowEpisodes(showId) {
 */
 
 function makePageForEpisodes(episodeList) {
-  episodeSelectHtml.style.display = "inline";
-  showSelectHtml.style.display = "none";
+  episodeSelectHtml.style.display = "inline"; // make the episode dropdown list visible
+  showSelectHtml.style.display = "none"; // hide the episode dropdown list
 
-  searchInputHtml.removeEventListener("input", searchForShow);
-  searchInputHtml.addEventListener("input", searchForEpisode);
+  episodeSearchInputHtml.style.display = "inline"; // make the show searchbar visible
+  showSearchInputHtml.style.display = "none"; // hide episode searchbar from show page
+
+  episodeSearchResultDisplayHtml.style.display = "inline";
+  showSearchResultDisplayHtml.style.display = "none"; // hide episode search result from show page
+
+  showSearchInputHtml.removeEventListener("input", searchForShow);
+  episodeSearchInputHtml.addEventListener("input", searchForEpisode);
 
   console.log(showSelectHtml, "<---ShowSelectHTML");
   rootHtml.innerHTML = "";
@@ -82,7 +90,9 @@ function makePageForEpisodes(episodeList) {
 
     const episodeNameNumSeasonComboHolderHtml = document.createElement("div");
     const episodeNameNumSeasonComboTextHtml = document.createElement("span");
-    episodeNameNumSeasonComboHolderHtml.classList.add("episode-name-num-holder");
+    episodeNameNumSeasonComboHolderHtml.classList.add(
+      "episode-name-num-holder"
+    );
     episodeNameNumSeasonComboTextHtml.classList.add("episode-name-num-text");
     episodeNameNumSeasonComboTextHtml.textContent = episodeNameNumSeasonCombo;
 
@@ -94,24 +104,24 @@ function makePageForEpisodes(episodeList) {
     episodeImageHtml.classList.add("medium-img");
     episodeImageContainerHtml.classList.add("episode-image-container");
     episodeImageHtml.src = episodeImageSrc;
-    
+
     // Get the episode summary
     const episodeSummaryTextHtml = document.createElement("p");
     const episodeSummaryContainerHtml = document.createElement("div");
     episodeSummaryTextHtml.classList.add("episode-summary-text");
-    episodeSummaryContainerHtml.classList.add(
-      "episode-summary-container"
-      );
-      const episodeSummary = episode.summary;
+    episodeSummaryContainerHtml.classList.add("episode-summary-container");
+    const episodeSummary = episode.summary;
     episodeSummaryTextHtml.innerHTML = episodeSummary;
 
     // Update info about displayed episodes
-    searchResultDisplayHtml.textContent = `Displaying ${index + 1}/${
+    episodeSearchResultDisplayHtml.textContent = `Displaying ${index + 1}/${
       episodeList.length
     } episodes`;
 
     // Add the episode card elements to the container
-    episodeNameNumSeasonComboHolderHtml.appendChild(episodeNameNumSeasonComboTextHtml);
+    episodeNameNumSeasonComboHolderHtml.appendChild(
+      episodeNameNumSeasonComboTextHtml
+    );
     episodeCardHtml.appendChild(episodeNameNumSeasonComboHolderHtml);
     episodeCardHtml.appendChild(episodeImageContainerHtml);
     episodeImageContainerHtml.appendChild(episodeImageHtml);
@@ -143,7 +153,7 @@ function displaySearchedEpisodes(inputValue) {
   // makePageForEpisodes(episodeList);
   buildEpisodeDropdownList(filteredEpisodes);
 
-  searchResultDisplayHtml.textContent = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`;
+  episodeSearchResultDisplayHtml.textContent = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`;
 }
 
 // moved the eventListener to the bottom to level 500
@@ -219,14 +229,21 @@ function buildShowDropdownList(allShows) {
 
 function makePageForShows(allShows) {
   showSelectHtml.value = "";
-  showSelectHtml.style.display = "inline";
-  episodeSelectHtml.style.display = "none";
+  showSelectHtml.style.display = "inline"; // make the show dropdown visible
+  episodeSelectHtml.style.display = "none"; // hide episode dropdown from show page
+
+  showSearchInputHtml.style.display = "inline"; // make the show searchbar visible
+  episodeSearchInputHtml.style.display = "none"; // hide episode searchbar from show page
+
+  showSearchResultDisplayHtml.style.display = "inline";
+  episodeSearchResultDisplayHtml.style.display = "none"; // hide episode search result from show page
+
   // console.log(allShows);
   rootHtml.innerHTML = "";
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
 
-  searchInputHtml.removeEventListener("input", searchForEpisode);
-  searchInputHtml.addEventListener("input", searchForShow)
+  episodeSearchInputHtml.removeEventListener("input", searchForEpisode);
+  showSearchInputHtml.addEventListener("input", searchForShow);
 
   // searchCountHtml.classList.add("search-count");
   cardsContainerHtml.classList.add("show-cards-container");
@@ -404,7 +421,7 @@ function displaySearchedShows(inputValue) {
   // makePageForEpisodes(episodeList);
   buildShowDropdownList(filteredShows);
 
-  searchResultDisplayHtml.textContent = `Displaying ${filteredShows.length}/${allShows.length} shows`;
+  showSearchResultDisplayHtml.textContent = `Displaying ${filteredShows.length}/${allShows.length} shows`;
 }
 
 

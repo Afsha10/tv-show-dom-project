@@ -51,7 +51,7 @@ body {
   padding: 1rem;
 }
 
-#search-input {
+#episode-search-input, #show-search-input {
   font-size: large;
   text-align: center;
 }
