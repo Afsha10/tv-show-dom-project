@@ -37,6 +37,7 @@ function fetchShowEpisodes(showId) {
     })
     .then((data) => {
       allEpisodes = data;
+      showSearchInputHtml.value = "";
       makePageForEpisodes(allEpisodes);
       buildEpisodeDropdownList(allEpisodes);
     })
@@ -393,7 +394,7 @@ function makePageForShows(allShows) {
 
 showListingButton.addEventListener ("click", () => {
   // the argument after "click" should be a reference to a function, but when the function is called with allShows in this case then it won't be a reference, it will be the return value of the function
-
+  episodeSearchInputHtml.value = "";
   makePageForShows(allShows);
 }); 
 
@@ -418,7 +419,6 @@ function displaySearchedShows(inputValue) {
   // Display searchedEpisodes
   rootHtml.innerHTML = "";
   makePageForShows(filteredShows);
-  // makePageForEpisodes(episodeList);
   buildShowDropdownList(filteredShows);
 
   showSearchResultDisplayHtml.textContent = `Displaying ${filteredShows.length}/${allShows.length} shows`;
