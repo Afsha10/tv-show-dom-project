@@ -163,7 +163,6 @@ function displaySearchedEpisodes(inputValue) {
 
 // jump to episode function
 
-
 function jumpToEpisode(event) {
   console.log("JumpToEpisode event.target.value", event.target.value);
   const episodeSelectHtml = document.querySelector("#episode-select-html"); // this is the episode dropdown element
@@ -224,7 +223,6 @@ function buildShowDropdownList(allShows) {
     fetchShowEpisodes(event.target.value)
   ); // event.target is a DOM element which is the select element containing all the show options. event.target always refers to the element that triggered that event. The value of the select element is the value of the selected option element and event.target.value is a property of that the select element which contains the id in this case
 }
-
 
 // level 500
 
@@ -397,10 +395,6 @@ showListingButton.addEventListener ("click", () => {
   episodeSearchInputHtml.value = "";
   makePageForShows(allShows);
 }); 
-
-
-
-
 
 
 // function to search shows that matches with inputValue
