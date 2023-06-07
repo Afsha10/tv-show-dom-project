@@ -53,15 +53,18 @@ function fetchShowEpisodes(showId) {
   If the user clicks the see show listing button then the episodes will disappear and the shows will appear also the episode list should not be shown initially
 */
 
+function toggleVisibility(showElement, hideElement) {
+  showElement.style.display = "inline"; // makes the element visible
+  hideElement.style.display = "none"; // hides the element
+}
+
 function makePageForEpisodes(episodeList) {
-  episodeSelectHtml.style.display = "inline"; // make the episode dropdown list visible
-  showSelectHtml.style.display = "none"; // hide the episode dropdown list
-
-  episodeSearchInputHtml.style.display = "inline"; // make the show searchbar visible
-  showSearchInputHtml.style.display = "none"; // hide episode searchbar from show page
-
-  episodeSearchResultDisplayHtml.style.display = "inline";
-  showSearchResultDisplayHtml.style.display = "none"; // hide episode search result from show page
+  // make the episode dropdown list visible and hide the show dropdown list
+  toggleVisibility(episodeSelectHtml, showSelectHtml);
+  // make the episode searchbar visible and hide the show searchbar from show page
+  toggleVisibility(episodeSearchInputHtml, showSearchInputHtml);
+  // make the episode search result visible and hide the show search result
+  toggleVisibility(episodeSearchResultDisplayHtml, showSearchResultDisplayHtml);
 
   showSearchInputHtml.removeEventListener("input", searchForShow);
   episodeSearchInputHtml.addEventListener("input", searchForEpisode);
@@ -228,14 +231,12 @@ function buildShowDropdownList(allShows) {
 
 function makePageForShows(allShows) {
   showSelectHtml.value = "";
-  showSelectHtml.style.display = "inline"; // make the show dropdown visible
-  episodeSelectHtml.style.display = "none"; // hide episode dropdown from show page
-
-  showSearchInputHtml.style.display = "inline"; // make the show searchbar visible
-  episodeSearchInputHtml.style.display = "none"; // hide episode searchbar from show page
-
-  showSearchResultDisplayHtml.style.display = "inline";
-  episodeSearchResultDisplayHtml.style.display = "none"; // hide episode search result from show page
+  // make the show dropdown list visible and hide the episode dropdown list
+  toggleVisibility(showSelectHtml, episodeSelectHtml);
+  // make the show searchbar visible and hide the episode searchbar from show page
+  toggleVisibility(showSearchInputHtml, episodeSearchInputHtml);
+  // make the show search result visible and hide the episode search result
+  toggleVisibility(showSearchResultDisplayHtml, episodeSearchResultDisplayHtml);
 
   // console.log(allShows);
   rootHtml.innerHTML = "";
