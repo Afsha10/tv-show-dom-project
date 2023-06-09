@@ -1,0 +1,160 @@
+.header, .footer {
+    width: auto;
+    height: 4rem;
+    background-color: #8FE4DF;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8FE4DF;
+}
+
+.big-button-holder {
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#show-listing-button {
+    background-color: #8FE4DF;
+    border-radius: 1rem;
+    margin: 0.5rem auto;
+    padding: 0.2rem 8rem;
+    font-weight:500;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.nav-bar-holder {
+  border: #190f0f;
+  background-color: #D9D9D9;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* #show-select-html, #season-select-html, #episode-select-html {
+    width: 100%;
+} */
+
+.card {
+  background-color: #D1EBF1;
+    margin: 0.5rem;
+    padding: 2rem;
+    border: 0.25rem solid #00ffd5;
+    border-radius: 1rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 2rem;
+  grid-template-areas:
+    "n"
+    "i"
+    "s"
+    "b";
+}
+
+
+.title-holder {
+  grid-area: n;
+}
+
+.image-holder {
+  height: 14rem;
+  padding: 1rem;
+  background-color: #D9D9D9;
+  width: 10rem;
+  grid-area: i;
+}
+
+.show-image {
+    width: 100%;
+}
+
+.summary-holder {
+    width: 20rem;
+    padding: 0.5rem;
+  grid-area: s;
+  background-color: #D9D9D9;
+  display: flex;
+  padding: 1rem;
+}
+
+.info-box {
+  width: 15rem;
+  grid-area: b;
+  border: #190f0f solid 1px;
+}
+
+.display-search {
+    display: block;
+}
+
+.show-info-list {
+    list-style-type: none;
+    padding: 1rem;
+    /* background-color: #D1EBF1; */
+    background-color: #D9D9D9;
+}
+
+
+/* li {
+      gap: 1rem;
+} */
+
+@media screen and (min-width: 450px) {
+  .card {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+      "n n n n n n n n n n n n"
+      "i i i i b b b b b b b b"
+      "i i i i b b b b b b b b"
+      "i i i i b b b b b b b b"
+      "s s s s s s s s s s s s"
+      "s s s s s s s s s s s s";
+  }
+}
+
+.nav-bar-holder {
+    padding: 1rem;
+    background-color: #D9D9D9;
+
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    height: 2rem;
+
+}
+
+@media screen and (min-width: 620px) {
+  .card {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+      ". . . n n n n n n . . ."
+      "i i i s s s s s s b b b"
+      "i i i s s s s s s b b b"
+      "i i i s s s s s s b b b";
+  }
+  .nav-bar-holder {
+    padding: 1rem;
+    background-color: #D9D9D9;
+  }
+}

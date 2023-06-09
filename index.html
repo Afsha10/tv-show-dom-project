@@ -3,19 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | My Name (My GitHub username)</title>
+    <title>TV Show Project | Afsha (Afsha10)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <script src="script.js" defer ></script>
   </head>
-
+  
   <body>
+    <header class="header">
+      <div class="title-holder">
+        <h1>TV Show Guide</h1>
+      </div>
+    </header>   
+    <div class="big-button-holder">
+      <button id="show-listing-button">View Show Listing</button>
+    </div>
+        <div class="nav-bar-holder">
+      <nav class="nav-bar">
+        <select id="show-select-html">
+          <option value="">Select a Show</option>
+        </select>
+        <!-- <select id="season-select-html">
+          <option value="">Select a Season</option>
+        </select> -->
+        <select id="episode-select-html" style="display: none">
+          <option value="">Select an Episode</option>
+        </select>
+        <input
+          type="text"
+          autocomplete="off"
+          id="episode-search-input"
+          placeholder="Search"
+        />
+        <input
+          type="text"
+          autocomplete="off"
+          id="show-search-input"
+          placeholder="Search"
+        />
+        <span class="display-show-search"></span>
+        <span class="display-episode-search"></span>
+      </nav>
+    </div>
     <div id="root">
     </div>
-
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
-    <script src="episodes.js"></script>
-
+    <script src="./shows.js"></script>
+    <!-- <script src="shows.js"></script>  -->
     <!-- Loads YOUR javascript code -->
-    <script src="script.js"></script>
+    
+    <footer id="footer">
+      <p id="source">Source: TVMaze.com</p>
+    </footer>
   </body>
 </html>
