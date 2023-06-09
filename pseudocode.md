@@ -1,5 +1,7 @@
 You can edit ALL of the code here
 
+quick note for function: addDataToEpisodeInfoBox
+
 Pseudocode for level 100:
 
 1. We are working with an episode list which is an array

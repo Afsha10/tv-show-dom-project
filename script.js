@@ -143,6 +143,7 @@ function makePageForEpisodes(episodeList) {
     cardsContainerHtml.appendChild(episodeCardHtml);
     rootHtml.appendChild(cardsContainerHtml);
   }); // end of for.each
+  window.scrollTo(0, 0); // scroll to top of the page (when x-axis and y- axix zero)
 }
 
 // level 200
@@ -388,6 +389,7 @@ function makePageForShows(allShows) {
     // when we click anywhere on the showCardHtml it takes us to that particular show episodes page
     showCardHtml.addEventListener("click", () => fetchShowEpisodes(show.id));
   });
+  window.scrollTo(0, 0); // scroll to top of the page (when x-axis and y- axix zero)
 }
 
 showListingButton.addEventListener ("click", () => {
