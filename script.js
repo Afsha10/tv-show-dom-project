@@ -58,6 +58,19 @@ function toggleVisibility(showElement, hideElement) {
   hideElement.style.display = "none"; // hides the element
 }
 
+function getFormattedEpisodeNameInDropdown(episode) {
+  const episodeTitle = episode.name;
+  const paddedSeasonNum = ("0" + episode.season).slice(-2);
+  const paddedEpisodeNum = ("0" + episode.number).slice(-2);
+  return `S${paddedSeasonNum}E${paddedEpisodeNum} - ${episodeTitle}`;
+}
+
+function getFormattedEpisodeNameInEpisodeCards(episode) {
+  const paddedSeasonNum = ("0" + episode.season).slice(-2);
+  const paddedEpisodeNum = ("0" + episode.number).slice(-2);
+  return `${episode.name} - S${paddedSeasonNum}E${paddedEpisodeNum}`;
+}
+
 function makePageForEpisodes(episodeList) {
   // make the episode dropdown list visible and hide the show dropdown list
   toggleVisibility(episodeSelectHtml, showSelectHtml);
@@ -69,7 +82,6 @@ function makePageForEpisodes(episodeList) {
   showSearchInputHtml.removeEventListener("input", searchForShow);
   episodeSearchInputHtml.addEventListener("input", searchForEpisode);
 
-  console.log(showSelectHtml, "<---ShowSelectHTML");
   rootHtml.innerHTML = "";
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
 
@@ -78,11 +90,8 @@ function makePageForEpisodes(episodeList) {
   // Loop through each episode and create a card for it
 
   episodeList.forEach((episode, index) => {
-    // Get the episode name, season number, episode number, and combine them
-    const episodeName = episode.name;
-    const paddedSeasonNum = ("0" + episode.season).slice(-2);
-    const paddedEpisodeNum = ("0" + episode.number).slice(-2);
-    const episodeNameNumSeasonCombo = `${episodeName} - S${paddedSeasonNum}E${paddedEpisodeNum}`;
+    // Get the episode name, season number, episode number, and combine them using the right function
+    const episodeNameNumSeasonCombo = getFormattedEpisodeNameInEpisodeCards(episode);
 
     // Create the episode card elements
 
@@ -160,26 +169,18 @@ function displaySearchedEpisodes(inputValue) {
   episodeSearchResultDisplayHtml.textContent = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`;
 }
 
-// moved the eventListener to the bottom to level 500
-
 // level 300
 
 // jump to episode function
 
 function jumpToEpisode(event) {
-  console.log("JumpToEpisode event.target.value", event.target.value);
   const episodeSelectHtml = document.querySelector("#episode-select-html"); // this is the episode dropdown element
 
   const selectedEpisode = allEpisodes.filter((episode) => {
-    // console.log(episode.name);
-    // console.log(episodeSelectHtml.value);
     return episode.name === episodeSelectHtml.value;
   });
-  console.log(selectedEpisode, "<---selectedEpisode");
-  // Display selectedEpisode
   rootHtml.innerHTML = "";
   makePageForEpisodes(selectedEpisode);
-  // buildEpisodeDropdownList(selectedShows);
 }
 
 // build selection dropdown list
@@ -193,9 +194,8 @@ function buildEpisodeDropdownList(episodeList) {
   for (let i = 0; i < episodeList.length; i++) {
     const episodeOptionHtml = document.createElement("option");
     const optionEpisodeName = episodeList[i].name;
-    const optionSeasonPadded = ("0" + episodeList[i].season).slice(-2);
-    const optionEpisodePadded = ("0" + episodeList[i].number).slice(-2);
-    const episodeOptionTextHtml = `S${optionSeasonPadded}E${optionEpisodePadded} - ${optionEpisodeName}`;
+    const episode = episodeList[i];
+    const episodeOptionTextHtml = getFormattedEpisodeNameInDropdown(episode);
 
     episodeOptionHtml.textContent = episodeOptionTextHtml; // it is the episode list showing on the dropdown list
     // episodeOptionHtml.value = i; // the value of the dropdown item is stored as i from the for loop
@@ -238,7 +238,6 @@ function makePageForShows(allShows) {
   // make the show search result visible and hide the episode search result
   toggleVisibility(showSearchResultDisplayHtml, episodeSearchResultDisplayHtml);
 
-  // console.log(allShows);
   rootHtml.innerHTML = "";
   const cardsContainerHtml = document.createElement("div"); // Creating the cards container element inside the rootEl
 
